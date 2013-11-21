@@ -13,12 +13,10 @@ public class Affichage extends JPanel {
 		Station test2 = new Station(new Coordonnees(50, 100), 1, "test2");
 		
 		//Affichage Station test1
-		g.fillOval(test1.getCoordonnees().getX() - 10/2, test1.getCoordonnees().getY() - 10/2, 10, 10);
-		g.drawString(test1.getNom(), test1.getCoordonnees().getX() + 7, test1.getCoordonnees().getY() - 3);
+		test1.dessinerStation(g);
 		
 		//Affichage Station test2
-		g.fillOval(test2.getCoordonnees().getX() - 10/2, test2.getCoordonnees().getY() - 10/2, 10, 10);
-		g.drawString(test2.getNom(), test2.getCoordonnees().getX() + 7, test2.getCoordonnees().getY() - 3);
+		test2.dessinerStation(g);
 		
 		//Affichage ligne test1-test2
 		g.drawLine(test1.getCoordonnees().getX(), test1.getCoordonnees().getY(), test2.getCoordonnees().getX(), test2.getCoordonnees().getY());

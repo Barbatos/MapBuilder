@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 public class Station extends Coordonnees {
 	private Coordonnees coordonnees;
 	private int id;
@@ -37,6 +39,12 @@ public class Station extends Coordonnees {
 	
 	public void setNom(String nom){
 		this.nom = nom;
+	}
+	
+	public void dessinerStation(Graphics g){
+		int taille = 10;
+		g.fillOval(this.getCoordonnees().getX() - taille/2, this.getCoordonnees().getY() - taille/2, taille, taille);
+		g.drawString(this.getNom(), this.getCoordonnees().getX() + 7, this.getCoordonnees().getY() - 3);
 	}
 	
 	public String toString(){

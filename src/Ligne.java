@@ -57,4 +57,23 @@ public class Ligne extends Station{
 	public int getNumeroStation(Station station) {
 		return listeStations.indexOf(station);
 	}
+
+	public String toString() {
+		String str;
+		str = "";
+		str += "La Station " + this.getNom();
+		str += ", d'ID : " + this.getId();
+		str += " est composée des stations suivantes : \n";
+	
+		for (int i = 0; i < listeStations.size(); i++) {
+			if (i != 0)
+				str += " et ";
+
+			str += this.getStation(i).toString();
+		}
+
+		str += "\n\n";
+
+		return str;
+	}
 }

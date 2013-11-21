@@ -1,8 +1,9 @@
-import java.util.*;
+import java.awt.Graphics;
+import java.util.Vector;
 public class Ligne extends Station{
 	private int id;
 	private String nom;
-	private Vector<Station> listeStations;
+	private Vector<Station> listeStations = new Vector<Station>();
 	
 	public Ligne(){
 		this.id = -1;
@@ -35,8 +36,7 @@ public class Ligne extends Station{
 	}
 
 	public void setStationArrivee(Station station) {
-		int taille = listeStations.size();
-		listeStations.add(taille + 1, station);
+		listeStations.add(listeStations.size() , station);
 	}
 
 	public void insertStation(Station station, int numero) {
@@ -57,13 +57,23 @@ public class Ligne extends Station{
 	public int getNumeroStation(Station station) {
 		return listeStations.indexOf(station);
 	}
+	
+	public void dessinerLigne(Graphics g){
+		for(int i = 0;i < listeStations.size();i++){
+			listeStations.elementAt(i).dessinerStation(g);
+			
+			if(i < listeStations.size() - 1){
+				g.drawLine(listeStations.elementAt(i).getCoordonnees().getX(), listeStations.elementAt(i).getCoordonnees().getY(), listeStations.elementAt(i + 1).getCoordonnees().getX(), listeStations.elementAt(i + 1).getCoordonnees().getY());
+			}
+		}
+	}
 
 	public String toString() {
 		String str;
 		str = "";
 		str += "La Station " + this.getNom();
 		str += ", d'ID : " + this.getId();
-		str += " est composée des stations suivantes : \n";
+		str += " est composee des stations suivantes : \n";
 	
 		for (int i = 0; i < listeStations.size(); i++) {
 			if (i != 0)

@@ -1,22 +1,28 @@
 
 public class Intersection {
 
-	int ID;
-	String Type;
+	private int id;
+	private String type;
 	
-	public int getID(){
-		return ID;
+	public Intersection(int id, String type){
+		this.id = id;
+		this.type = type;
+	}
+	
+	public int getId(){
+		return id;
 	}
 	
 	public String getType(){
-		return Type;
+		return type;
 	}
 	
-	public void setID(int ID){
-		this.ID = ID;
+	public void setID(int id){
+		this.id = id;
 	}
 	
-	public void setType(String Type){
-		this.Type = Type;
+	public void setType(String type){
+		this.type = type;
 	}
+
 }

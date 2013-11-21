@@ -51,6 +51,13 @@ public class Horaire {
 	}
 	
 	public String toString(){
-		return "Il est " + this.getHeure() + ":" + this.getMinute() + " au " + this.getJSemaine() + "e jour de la semaine dans la periode " + this.getPeriode();
+		String str = "";
+		str += "Il est " + this.getHeure(); 
+		str += ":" + this.getMinute();
+		str += " au " + this.getJSemaine();
+		str += "eme jour de la semaine dans la periode " + this.getPeriode();
+		str += ". \n";
+		
+		return str;
 	}
 }

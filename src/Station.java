@@ -40,6 +40,13 @@ public class Station extends Coordonnees {
 	}
 	
 	public String toString(){
-		return "Vous etes a la station " + this.getNom() + " numero " + this.getId() + "dont les coordonnees sont : " + this.getCoordonnees();
+		String str;
+		str = "";
+		str += "Vous etes a la station " + this.getNom();
+		str += " numero " + this.getId();
+		str += "dont les coordonnees sont : " + this.getCoordonnees();
+		str += ". \n";
+		
+		return str;
 	}
 }

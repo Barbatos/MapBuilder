@@ -1,7 +1,5 @@
 import java.awt.List;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 public class Fichier {
 	private String nom;
@@ -60,7 +58,47 @@ public class Fichier {
 		}
 	}
 	
-	public boolean chargerFichier(){
-		return false;
+	public List chargerFichier(){
+		String cheminFichier;
+		
+		cheminFichier = Fichier.REPERTOIRE_FICHIERS + this.nom + Fichier.EXTENSION_FICHIER;
+		
+		this.liste = new List();
+		
+		try {
+			
+			// On ouvre le fichier
+			File f = new File(cheminFichier);
+			
+			if(!f.exists()){
+				System.out.println("Le fichier " + cheminFichier + " n'existe pas !");
+				return null;
+			}
+			
+			FileInputStream fichier = new FileInputStream(f);
+			ObjectInputStream infos = new ObjectInputStream(fichier);
+			
+			// On récupère son contenu et on le place dans une liste
+			this.liste = (List) infos.readObject();
+			
+			// On ferme le fichier
+			infos.close();
+			fichier.close();
+			
+			return this.liste;
+		}
+		
+		
+		catch(IOException e){
+			System.out.println("Impossible de charger le fichier " + cheminFichier);
+			e.printStackTrace();
+			return null;
+		}
+		
+		catch(ClassNotFoundException e){
+			System.out.println("Impossible de charger le fichier " + cheminFichier + "... classe introuvable !");
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

@@ -43,8 +43,8 @@ class Segment extends Coordonnees {
 	public String toString() {
 		String str;
 		str = "";
-		str += "Le Segment n°" + this.getNumero();
-		str += " démarre en " + this.getDepart();
+		str += "Le Segment numero" + this.getNumero();
+		str += " demarre en " + this.getDepart();
 		str += " et finit en " + this.getArrivee();
 		str += " . \n";
 

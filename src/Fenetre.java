@@ -1,6 +1,8 @@
 import javax.swing.JFrame;
 
 public class Fenetre extends JFrame {
+	private static final long serialVersionUID = 1L;
+
 	public Fenetre(){                
 		super();
 		CreerFenetre();
@@ -22,11 +24,13 @@ public class Fenetre extends JFrame {
 
 		// Opération par défaut quand on quitte
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Import de la classe Affichage
 		this.setContentPane(new Affichage());
 	}
 
 	public static void main(String args[]){
-		Fenetre a = new Fenetre();
-		a.setVisible(true);
+		Fenetre fenetre = new Fenetre();
+		fenetre.setVisible(true);
 	}
 }

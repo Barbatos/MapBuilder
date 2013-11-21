@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 class Segment extends Coordonnees {
 
 	private Coordonnees coordonneesDepart;
@@ -13,6 +15,12 @@ class Segment extends Coordonnees {
 	public Segment(Coordonnees _coordonneesDepart, Coordonnees _coordonneesArrivee, int _numero) {
 		coordonneesDepart = _coordonneesDepart;
 		coordonneesArrivee = _coordonneesArrivee;
+		numero = _numero;
+	}
+	
+	public Segment(Station sta1, Station sta2, int _numero) {
+		coordonneesDepart = sta1.getCoordonnees();
+		coordonneesArrivee = sta2.getCoordonnees();
 		numero = _numero;
 	}
 
@@ -39,7 +47,11 @@ class Segment extends Coordonnees {
 	public void setNumero(int _numero) {
 		numero = _numero;
 	}
-
+	
+	public void dessinerSegment(Graphics g){
+		g.drawLine(this.getDepart().getX(), this.getDepart().getY(), this.getArrivee().getX(), this.getArrivee().getY());
+	}
+	
 	public String toString() {
 		String str;
 		str = "";

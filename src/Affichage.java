@@ -1,34 +1,14 @@
-import javax.swing.JFrame;
+import java.awt.Graphics;
+import javax.swing.JPanel;
 
-public class Affichage extends JFrame {
+public class Affichage extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public Affichage(){
-		super();
-		
-		CreerFenetre();
-	}
-	
-	private void CreerFenetre(){
-		
-		// On définit le titre de la fenêtre
-		setTitle("MapBuilder v0.0.0.0.1");
-		
-		// Taille par défaut: 800x600
-		setSize(800, 600);
-		
-		// On centre la fenêtre
-		setLocationRelativeTo(null);
-		
-		// On empêche le redimensionnement de la fenêtre
-		setResizable(false);
-		
-		// Opération par défaut quand on quitte
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-	
-	public static void main(String args[]){
-		Affichage a = new Affichage();
-		a.setVisible(true);
-	}
+
+	public void paintComponent(Graphics g){
+		//Vous verrez cette phrase chaque fois que la méthode sera invoquée
+		System.out.println("Je suis exécutée !"); 
+		g.fillOval(20, 20, 20, 20);
+	}    
+
 }

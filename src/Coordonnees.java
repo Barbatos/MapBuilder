@@ -18,4 +18,13 @@ public class Coordonnees {
 	public void setY(int _y){
 		this.y = _y;
 	}
+
+	public String toString() {
+		String str;
+		str = "";
+		str += "X : " + this.getX();
+		str += "Y : " + this.getY();
+
+		return str;
+	}
 }

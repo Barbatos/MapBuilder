@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Station extends Coordonnees {
@@ -45,6 +46,13 @@ public class Station extends Coordonnees {
 		int taille = 10;
 		g.fillOval(this.getCoordonnees().getX() - taille/2, this.getCoordonnees().getY() - taille/2, taille, taille);
 		g.drawString(this.getNom(), this.getCoordonnees().getX() + 7, this.getCoordonnees().getY() - 3);
+	}
+	
+	public void dessinerInfo(Graphics g){
+		g.setColor(Color.black);
+		g.drawString("Station : " + this.getNom(), 1200 - 290, 20);
+		g.drawString("Numéro : " + this.getId(), 1200 - 290, 40);
+		g.drawString("Coordonnées : X :" + this.getCoordonnees().getX() + " Y : " + this.getCoordonnees().getY(), 1200 - 290, 60);
 	}
 	
 	public String toString(){

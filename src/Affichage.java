@@ -64,5 +64,12 @@ public class Affichage extends JPanel {
 		//Affichager ligne li2
 		g.setColor(Color.black);
 		li2.dessinerLigne(g);
+		
+		//Affichage rectangle d'information
+		g.setColor(Color.orange);
+		g.fillRect(1200 - 300, 0, 1200, 200);
+		
+		//Affichage informations station sta1
+		sta1.dessinerInfo(g);
 	}
 }

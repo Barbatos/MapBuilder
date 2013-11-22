@@ -5,6 +5,7 @@ class Segment extends Coordonnees {
 	private Coordonnees coordonneesDepart;
 	private Coordonnees coordonneesArrivee;
 	private int numero;
+	
 
  	public Segment() {
 		coordonneesDepart = new Coordonnees();

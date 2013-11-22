@@ -1,15 +1,17 @@
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 public class Fenetre extends JFrame {
 	private static final long serialVersionUID = 1L;
+	private Affichage affichage = new Affichage();
 
 	public Fenetre(){                
 		super();
 		CreerFenetre();
 	}     
 
-	private void CreerFenetre(){
-
+	private void CreerFenetre(){		
 		// On définit le titre de la fenêtre
 		setTitle("MapBuilder v0.0.0.0.1");
 
@@ -25,8 +27,10 @@ public class Fenetre extends JFrame {
 		// Opération par défaut quand on quitte
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		affichage.setBackground(Color.ORANGE);
+		
 		// Import de la classe Affichage
-		this.setContentPane(new Affichage());
+		this.setContentPane(affichage);
 	}
 
 	public static void main(String args[]){

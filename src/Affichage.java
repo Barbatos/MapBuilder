@@ -17,6 +17,17 @@ public class Affichage extends JPanel {
 		Station sta7 = new Station(new Coordonnees(170, 70), 7, "sta7");
 		Station sta8 = new Station(new Coordonnees(500, 500), 8, "sta8");
 
+		//Initialisation zone
+		Zone zon1 = new Zone(1, "1");
+		zon1.insertStation(sta1);
+		zon1.insertStation(sta2);
+		zon1.insertStation(sta3);
+		zon1.insertStation(sta4);
+		zon1.insertStation(sta5);
+		zon1.insertStation(sta6);
+		zon1.insertStation(sta7);
+		zon1.insertStation(sta8);
+		
 		//Initialisation des lignes
 		Ligne li1 = new Ligne(1, "1");
 		li1.setStationDepart(sta1);
@@ -42,31 +53,16 @@ public class Affichage extends JPanel {
 		li3.insertStation(sta6, 5);
 		li3.insertStation(sta7, 6);
 		
+		//Affichage zone zon1
+		g.setColor(Color.red);
+		zon1.dessinerZone(g);
+
 		//Affichage ligne li1
+		g.setColor(Color.black);
 		li1.dessinerLigne(g);
 		
 		//Affichager ligne li2
+		g.setColor(Color.black);
 		li2.dessinerLigne(g);
-		
-		//Affichage polygone zone test
-		int x[] = {400, 500, 500, 400};
-		int y[] = {100, 100, 200, 200};
-		
-		g.setColor(Color.red);
-		g.fillPolygon(x, y, 3);
-		
-		//test
-		int xx = 0;
-		int yy = 0;
-		
-		for(int i = 0;i < 8;i++){
-			xx += li3.getStation(i).getCoordonnees().getX();
-			yy += li3.getStation(i).getCoordonnees().getY();
-		}
-		
-		xx /= 8;
-		yy /= 8;
-		
-		g.fillOval(xx, yy, 100, 100);
 	}
 }

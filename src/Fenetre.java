@@ -16,7 +16,7 @@ public class Fenetre extends JFrame {
 		setTitle("MapBuilder v0.0.0.0.1");
 
 		// Taille par défaut: 800x600
-		setSize(800, 600);
+		setSize(1200, 675);
 
 		// On centre la fenêtre
 		setLocationRelativeTo(null);

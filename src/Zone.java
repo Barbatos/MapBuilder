@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+import java.awt.Polygon;
 import java.util.Vector;
 
 public class Zone extends Station{
@@ -31,11 +33,8 @@ public class Zone extends Station{
 		this.nom = _nom;
 	}
 	
-	public void insertStation(Station station, int numero) {
-		if (numero < listeStations.size())
-			listeStations.insertElementAt(station, numero);
-		else
-			System.out.println("Erreur d'insertion de station dans la Ligne !");
+	public void insertStation(Station station) {
+		listeStations.add(station);
 	}
 
 	public Station getStation(int numero) {
@@ -48,5 +47,27 @@ public class Zone extends Station{
 
 	public int getNumeroStation(Station station) {
 		return listeStations.indexOf(station);
+	}
+	
+	public void dessinerZone(Graphics g){
+		int x[] = new int[3];
+		int y[] = new int[3];
+		
+		for(int i = 0;i < listeStations.size();i++){
+			x[0] = listeStations.elementAt(i).getCoordonnees().getX();
+			y[0] = listeStations.elementAt(i).getCoordonnees().getY();
+			
+			for(int j = i;j < listeStations.size();j++){
+				x[1] = listeStations.elementAt(j).getCoordonnees().getX();
+				y[1] = listeStations.elementAt(j).getCoordonnees().getY();
+				
+				for(int k = j;k < listeStations.size();k++){
+					x[2] = listeStations.elementAt(k).getCoordonnees().getX();
+					y[2] = listeStations.elementAt(k).getCoordonnees().getY();
+					
+					g.fillPolygon(x, y, 3);
+				}
+			}
+		}
 	}
 }

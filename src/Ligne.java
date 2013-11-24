@@ -51,9 +51,10 @@ public class Ligne extends Station{
 	public Station getStation(int numero) {
 		if (numero < listeStations.size())
 			return listeStations.elementAt(numero);
-		else 
+		else{
 			System.out.println("Erreur d'insertion de station dans la Ligne !");
 			return listeStations.lastElement();
+		}
 	}
 
 	public int getNumeroStation(Station station) {

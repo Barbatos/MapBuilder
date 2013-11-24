@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Vector;
 
 public class Station extends Coordonnees {
 	private Coordonnees coordonnees;
 	private int id;
 	private String nom;
+	private Vector<MoyenTransport> listeTransports = new Vector<MoyenTransport>();
 	
 	public Station(){
 		this.coordonnees = new Coordonnees();
@@ -42,6 +44,19 @@ public class Station extends Coordonnees {
 		this.nom = nom;
 	}
 	
+	public void insertTransport(MoyenTransport transport){
+		listeTransports.add(transport);
+	}
+	
+	public MoyenTransport getTransport(int numero) {
+		if (numero < listeTransports.size())
+			return listeTransports.elementAt(numero);
+		else{
+			System.out.println("Erreur d'insertion de transport dans la station !");
+			return listeTransports.lastElement();
+		}
+	}
+	
 	public void dessinerStation(Graphics g){
 		int taille = 10;
 		g.fillOval(this.getCoordonnees().getX() - taille/2, this.getCoordonnees().getY() - taille/2, taille, taille);
@@ -53,6 +68,10 @@ public class Station extends Coordonnees {
 		g.drawString("Station : " + this.getNom(), 1200 - 290, 20);
 		g.drawString("Numéro : " + this.getId(), 1200 - 290, 40);
 		g.drawString("Coordonnées : X :" + this.getCoordonnees().getX() + " Y : " + this.getCoordonnees().getY(), 1200 - 290, 60);
+		g.drawString("Moyen(s) de transport : ", 1200 - 290, 80);
+		for(int i = 0;i < listeTransports.size();i++){
+			g.drawString("- " + this.getTransport(i).getNom(), 1200 - 160, 80 + i * 20);
+		}
 	}
 	
 	public String toString(){

@@ -41,7 +41,7 @@ public class Zone extends Station{
 		if (numero < listeStations.size())
 			return listeStations.elementAt(numero);
 		else 
-			System.out.println("Erreur d'insertion de station dans la Ligne !");
+			System.out.println("Erreur d'insertion de station dans la ligne !");
 			return listeStations.lastElement();
 	}
 

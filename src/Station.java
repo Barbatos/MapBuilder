@@ -49,7 +49,7 @@ public class Station extends Coordonnees {
 	}
 	
 	public void dessinerInfo(Graphics g){
-		g.setColor(Color.black);
+		g.setColor(new Color(175, 175, 225));
 		g.drawString("Station : " + this.getNom(), 1200 - 290, 20);
 		g.drawString("Numéro : " + this.getId(), 1200 - 290, 40);
 		g.drawString("Coordonnées : X :" + this.getCoordonnees().getX() + " Y : " + this.getCoordonnees().getY(), 1200 - 290, 60);

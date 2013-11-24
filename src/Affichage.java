@@ -7,6 +7,9 @@ public class Affichage extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		setBackground(new Color(100, 100, 100));
+		
 		//Initialisation stations
 		Station sta1 = new Station(new Coordonnees(10, 50), 1, "sta1");
 		Station sta2 = new Station(new Coordonnees(50, 100), 2, "sta2");
@@ -54,19 +57,17 @@ public class Affichage extends JPanel {
 		li3.insertStation(sta7, 6);
 		
 		//Affichage zone zon1
-		g.setColor(Color.red);
+		g.setColor(new Color(255, 200, 200));
 		zon1.dessinerZone(g);
 
 		//Affichage ligne li1
-		g.setColor(Color.black);
-		li1.dessinerLigne(g);
+		li1.dessinerLigne(g, new Color(200, 255, 200));
 		
 		//Affichager ligne li2
-		g.setColor(Color.black);
-		li2.dessinerLigne(g);
+		li2.dessinerLigne(g, new Color(200, 200, 255));
 		
 		//Affichage rectangle d'information
-		g.setColor(Color.orange);
+		g.setColor(new Color(65, 65, 65));
 		g.fillRect(1200 - 300, 0, 1200, 200);
 		
 		//Affichage informations station sta1

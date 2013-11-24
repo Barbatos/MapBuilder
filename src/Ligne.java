@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Vector;
 
@@ -59,13 +60,15 @@ public class Ligne extends Station{
 		return listeStations.indexOf(station);
 	}
 	
-	public void dessinerLigne(Graphics g){
+	public void dessinerLigne(Graphics g, Color couleur){
 		for(int i = 0;i < listeStations.size();i++){
-			listeStations.elementAt(i).dessinerStation(g);
-			
 			if(i < listeStations.size() - 1){
+				g.setColor(couleur);
 				g.drawLine(listeStations.elementAt(i).getCoordonnees().getX(), listeStations.elementAt(i).getCoordonnees().getY(), listeStations.elementAt(i + 1).getCoordonnees().getX(), listeStations.elementAt(i + 1).getCoordonnees().getY());
 			}
+			
+			g.setColor(new Color(0, 0, 0));
+			listeStations.elementAt(i).dessinerStation(g);
 		}
 	}
 

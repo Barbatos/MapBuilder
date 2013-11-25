@@ -27,8 +27,6 @@ public class Fenetre extends JFrame {
 		// Opération par défaut quand on quitte
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		affichage.setBackground(Color.ORANGE);
-		
 		// Import de la classe Affichage
 		this.setContentPane(affichage);
 	}

@@ -65,7 +65,7 @@ public class Affichage extends JPanel {
 		li3.insertStation(sta7, 6);
 		
 		//Affichage zone zon1
-		g.setColor(new Color(255, 200, 200));
+		g.setColor(new Color(200, 100, 100));
 		zon1.dessinerZone(g);
 
 		//Affichage ligne li1

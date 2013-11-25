@@ -1,6 +1,5 @@
 import java.awt.Graphics;
 import java.util.Vector;
-import java.lang.Math;
 
 public class Zone extends Station{
 	private int id;

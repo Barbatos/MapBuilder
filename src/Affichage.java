@@ -1,5 +1,7 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
@@ -9,6 +11,9 @@ public class Affichage extends JPanel {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(new Color(100, 100, 100));
+		
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setStroke(new BasicStroke(2));
 		
 		//Initialisation moyens de transport
 		MoyenTransport bus = new MoyenTransport(1, "Bus");

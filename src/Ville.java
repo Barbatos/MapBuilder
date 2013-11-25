@@ -2,7 +2,7 @@ import java.util.Vector;
 
 public class Ville extends Segment{
 	private String nom;
-	private Vector<Segment> listeSegments = new Vector<Segment>();
+	//private Vector<Segment> listeSegments = new Vector<Segment>();
 	
 	public Ville(){
 		this.nom = "Pas de nom";
@@ -20,7 +20,7 @@ public class Ville extends Segment{
 		this.nom = _nom;
 	}
 	
-	public void insertSegment(Segment segment, int numero) {
+	/*public void insertSegment(Segment segment, int numero) {
 		if (numero < listeSegments.size())
 			listeSegments.insertElementAt(segment, numero);
 		else
@@ -37,5 +37,5 @@ public class Ville extends Segment{
 
 	public int getNumeroSegment(Segment segment) {
 		return listeSegments.indexOf(segment);
-	}
+	}*/
 }

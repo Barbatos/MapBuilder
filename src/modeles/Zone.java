@@ -44,6 +44,10 @@ public class Zone extends Station{
 			System.out.println("Erreur d'insertion de station dans la ligne !");
 			return listeStations.lastElement();
 	}
+	
+	public Vector<Station> getListeStations(){
+		return listeStations;
+	}
 
 	public int getNumeroStation(Station station) {
 		return listeStations.indexOf(station);

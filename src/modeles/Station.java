@@ -3,6 +3,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Vector;
 
+import javax.swing.JButton;
+
+import vues.Vue;
+
 /**
  * Station est la classe representant une station, quelque soit le type de celle-ci
  * 
@@ -12,7 +16,8 @@ public class Station extends Coordonnees {
 	private Coordonnees coordonnees;
 	private int id;
 	private String nom;
-	private Vector<MoyenTransport> listeTransports = new Vector<MoyenTransport>();
+	private Vector<Horaire> listeHoraires = new Vector<Horaire>();
+	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	
 	/**
 	 * Constructeur par defaut d'une Station
@@ -86,27 +91,29 @@ public class Station extends Coordonnees {
 		this.nom = nom;
 	}
 	
-	/**
-	 * Ajoute un moyen de transport a cette Station
-	 * @param transport Une instance de MoyenTransport, qui coerrspond au moyen de transport a ajouter a cette Station
-	 * @see MoyenTransport
-	 */
-	public void insertTransport(MoyenTransport transport){
-		listeTransports.add(transport);
+	public void insertHoraire(Horaire horaire){
+		listeHoraires.add(horaire);
 	}
 	
-	/**
-	 * Recupere un moyen de transport de cette Station
-	 * @param numero Un entier, qui correspond a la position du moyen de transport dans la liste des moyens de transport de cette Station
-	 * @return Une instance de MoyenTransport, qui correspond au moyen de transport a la position donnee
-	 * @see MoyenTransport
-	 */
-	public MoyenTransport getTransport(int numero) {
-		if (numero < listeTransports.size())
-			return listeTransports.elementAt(numero);
+	public Horaire getHoraire(int numero) {
+		if (numero < listeHoraires.size())
+			return listeHoraires.elementAt(numero);
 		else{
-			System.out.println("Erreur d'insertion de transport dans la station !");
-			return listeTransports.lastElement();
+			System.out.println("Erreur d'insertion d'Horaire dans la Station !");
+			return listeHoraires.lastElement();
+		}
+	}
+	
+	public void insertLigne(Ligne ligne){
+		listeLignes.add(ligne);
+	}
+	
+	public Ligne getLigne(int numero){
+		if(numero < listeLignes.size())
+			return listeLignes.elementAt(numero);
+		else{
+			System.out.println("Erreur d'insertion de Ligne dans la Station !");
+			return listeLignes.lastElement();
 		}
 	}
 	
@@ -128,15 +135,24 @@ public class Station extends Coordonnees {
 	 */
 	public void dessinerInfo(Graphics g){
 		g.setColor(new Color(65, 65, 65));
-		g.fillRect(1200 - 300, 0, 1200, 200);
+		g.fillRect(Vue.WIDTH - 300, 0, Vue.WIDTH, 200);
+		
 		g.setColor(new Color(175, 175, 225));
-		g.drawString("Station : " + this.getNom(), 1200 - 290, 20);
-		g.drawString("Numéro : " + this.getId(), 1200 - 290, 40);
-		g.drawString("Coordonnées : X :" + this.getCoordonnees().getX() + " Y : " + this.getCoordonnees().getY(), 1200 - 290, 60);
-		g.drawString("Moyen(s) de transport : ", 1200 - 290, 80);
-		for(int i = 0;i < listeTransports.size();i++){
-			g.drawString("- " + this.getTransport(i).getNom(), 1200 - 160, 80 + i * 20);
+		g.drawString("Station : " + this.getNom(), Vue.WIDTH - 290, 20);
+		g.drawString("Numéro : " + this.getId(), Vue.WIDTH - 290, 40);
+		g.drawString("Ligne(s) : ", Vue.WIDTH - 290, 60);
+		
+		for(int i = 0;i < listeLignes.size();i++){
+			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Vue.WIDTH - 230, 60 + i * 20);
 		}
+	}
+	
+	public Vector<Horaire> getlisteHoraires() {
+		return listeHoraires;
+	}
+
+	public void setlisteHoraires(Vector<Horaire> listeHoraires) {
+		this.listeHoraires = listeHoraires;
 	}
 	
 	public String toString(){

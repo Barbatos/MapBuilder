@@ -2,19 +2,26 @@ package vues;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import modeles.Ligne;
 import modeles.Station;
 import modeles.Zone;
 
 public class Vue extends JPanel {
+	public final static int WIDTH = 1200;
+	public final static int HEIGHT = 675;
+	
 	private JFrame fenetre;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
@@ -40,9 +47,13 @@ public class Vue extends JPanel {
 			listeLignes.elementAt(i).dessinerLigne(g2);
 		}
 		
-		//Affichage informations de la station cliquée
+		// Affichage informations de la station cliquée
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);
+			
+			this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+
+			this.add(new JButton("Horaire de la ligne"));
 		}
 		
 		mouseListener = new MouseListener(){
@@ -84,7 +95,7 @@ public class Vue extends JPanel {
 		fenetre.setTitle("MapBuilder v0.0.0.0.1");
 
 		// Taille par défaut
-		fenetre.setSize(1200, 675);
+		fenetre.setSize(WIDTH, HEIGHT);
 
 		// On centre la fenêtre
 		fenetre.setLocationRelativeTo(null);

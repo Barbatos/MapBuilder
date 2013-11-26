@@ -7,6 +7,7 @@ public class Ligne extends Station{
 	private int id;
 	private String nom;
 	private Color couleur;
+	private MoyenTransport transport;
 	private Vector<Station> listeStations = new Vector<Station>();
 	
 	public Ligne(){
@@ -15,10 +16,11 @@ public class Ligne extends Station{
 		this.couleur = new Color(100, 100, 100);
 	}
 	
-	public Ligne(int _id, String _nom, Color _couleur){
+	public Ligne(int _id, String _nom, Color _couleur, MoyenTransport transport){
 		this.id = _id;
 		this.nom = _nom;
 		this.couleur = _couleur;
+		this.transport = transport;
 	}
 	
 	public int getId(){
@@ -33,6 +35,10 @@ public class Ligne extends Station{
 		return this.couleur;
 	}
 	
+	public MoyenTransport getTransport(){
+		return this.transport;
+	}
+	
 	public void setId(int _id){
 		this.id = _id;
 	}
@@ -43,6 +49,10 @@ public class Ligne extends Station{
 
 	public void setCouleur(Color _couleur){
 		this.couleur = _couleur;
+	}
+	
+	public void setTransport(MoyenTransport transport){
+		this.transport = transport;
 	}
 	
 	public void setStationDepart(Station station) {
@@ -83,6 +93,42 @@ public class Ligne extends Station{
 			g.setColor(new Color(0, 0, 0));
 			listeStations.elementAt(i).dessinerStation(g);
 		}
+	}
+	
+	// méthodes à tester
+	
+	public Vector<Station> getListeStations() {
+		return listeStations;
+	}
+
+	public void setListeStations(Vector<Station> listeStations) {
+		this.listeStations = listeStations;
+	}
+	
+	// in test
+	public String afficherHoraire() {
+		String str = "";
+		
+		str += " Horaires de la ligne " + this;
+		str += ". \n";
+		
+		for(int l = 0; l < this.getListeStations().size(); l++)
+			str += "\t Station : " + this.getStation(l);
+		
+		str += "\n";
+		
+		for(int k = 0; k < this.getStation(0).getlisteHoraires().size(); k++) {
+			for(int i = 0; i < this.getListeStations().size(); i++) {
+			
+				str += "\t " + this.getStation(i).getHoraire(k).getMinute()/24;
+				str += ":" + this.getStation(0).getHoraire(k).getMinute()%24;
+			
+			}
+			
+			str += " \n";
+		
+		}
+		return str;
 	}
 
 	public String toString() {

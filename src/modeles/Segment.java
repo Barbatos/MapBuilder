@@ -1,3 +1,4 @@
+package modeles;
 import java.awt.Graphics;
 
 class Segment extends Coordonnees {

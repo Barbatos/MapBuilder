@@ -1,3 +1,4 @@
+package modeles;
 import java.util.Vector;
 
 public class Ville extends Segment{

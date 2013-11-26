@@ -1,3 +1,4 @@
+package modeles;
 public class Horaire {
 	private int jSemaine;
 	private int heure;

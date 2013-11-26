@@ -1,3 +1,4 @@
+package modeles;
 
 public class Coordonnees {
 	private int x;

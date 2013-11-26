@@ -2,7 +2,7 @@ package modeles;
 import java.awt.Graphics;
 import java.util.Vector;
 
-public class Zone extends Station{
+public class Zone extends Station {
 	private int id;
 	private String nom;
 	private Vector<Station> listeStations = new Vector<Station>();

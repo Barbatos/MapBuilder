@@ -1,4 +1,7 @@
 import static org.junit.Assert.*;
+import modeles.Coordonnees;
+import modeles.MoyenTransport;
+import modeles.Station;
 
 import org.junit.Test;
 

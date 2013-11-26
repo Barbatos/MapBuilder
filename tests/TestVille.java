@@ -1,4 +1,5 @@
 import static org.junit.Assert.*;
+import modeles.Ville;
 
 import org.junit.*;
 

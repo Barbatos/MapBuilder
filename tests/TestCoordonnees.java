@@ -1,4 +1,5 @@
 import static org.junit.Assert.*;
+import modeles.Coordonnees;
 
 import org.junit.Test;
 

@@ -127,6 +127,8 @@ public class Station extends Coordonnees {
 	 * @see Graphics
 	 */
 	public void dessinerInfo(Graphics g){
+		g.setColor(new Color(65, 65, 65));
+		g.fillRect(1200 - 300, 0, 1200, 200);
 		g.setColor(new Color(175, 175, 225));
 		g.drawString("Station : " + this.getNom(), 1200 - 290, 20);
 		g.drawString("Numéro : " + this.getId(), 1200 - 290, 40);

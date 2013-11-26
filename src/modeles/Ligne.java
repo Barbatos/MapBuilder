@@ -6,16 +6,19 @@ import java.util.Vector;
 public class Ligne extends Station{
 	private int id;
 	private String nom;
+	private Color couleur;
 	private Vector<Station> listeStations = new Vector<Station>();
 	
 	public Ligne(){
 		this.id = -1;
 		this.nom = "Pas de nom";
+		this.couleur = new Color(100, 100, 100);
 	}
 	
-	public Ligne(int _id, String _nom){
+	public Ligne(int _id, String _nom, Color _couleur){
 		this.id = _id;
 		this.nom = _nom;
+		this.couleur = _couleur;
 	}
 	
 	public int getId(){
@@ -26,6 +29,10 @@ public class Ligne extends Station{
 		return this.nom;
 	}
 	
+	public Color getCouleur(){
+		return this.couleur;
+	}
+	
 	public void setId(int _id){
 		this.id = _id;
 	}
@@ -34,6 +41,10 @@ public class Ligne extends Station{
 		this.nom = _nom;
 	}
 
+	public void setCouleur(Color _couleur){
+		this.couleur = _couleur;
+	}
+	
 	public void setStationDepart(Station station) {
 		listeStations.add(0, station);
 	}
@@ -62,10 +73,10 @@ public class Ligne extends Station{
 		return listeStations.indexOf(station);
 	}
 	
-	public void dessinerLigne(Graphics g, Color couleur){
+	public void dessinerLigne(Graphics g){
 		for(int i = 0;i < listeStations.size();i++){
 			if(i < listeStations.size() - 1){
-				g.setColor(couleur);
+				g.setColor(this.couleur);
 				g.drawLine(listeStations.elementAt(i).getCoordonnees().getX(), listeStations.elementAt(i).getCoordonnees().getY(), listeStations.elementAt(i + 1).getCoordonnees().getX(), listeStations.elementAt(i + 1).getCoordonnees().getY());
 			}
 			

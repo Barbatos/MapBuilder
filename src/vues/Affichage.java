@@ -1,9 +1,16 @@
+package vues;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
+
+import modeles.Coordonnees;
+import modeles.Ligne;
+import modeles.MoyenTransport;
+import modeles.Station;
+import modeles.Zone;
 
 public class Affichage extends JPanel {
 	private static final long serialVersionUID = 1L;

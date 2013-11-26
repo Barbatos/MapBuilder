@@ -1,5 +1,6 @@
 package controleurs;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
@@ -9,7 +10,8 @@ import vues.*;
 
 public class Controleur {
 	private Vue vue;
-	private Zone zon1;
+	private Vector<Zone> listeZones = new Vector<Zone>();
+	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	
 	public Controleur(Vue _vue){
 		this.vue = _vue;
@@ -36,7 +38,7 @@ public class Controleur {
 		sta1.insertTransport(tram);
 
 		//Initialisation zone
-		zon1 = new Zone(1, "1");
+		Zone zon1 = new Zone(1, "1");
 		zon1.insertStation(sta1);
 		zon1.insertStation(sta2);
 		zon1.insertStation(sta3);
@@ -45,10 +47,12 @@ public class Controleur {
 		zon1.insertStation(sta6);
 		zon1.insertStation(sta7);
 		zon1.insertStation(sta8);
-		this.vue.setZone(zon1);
+		listeZones.add(zon1);
+		
+		this.vue.setListeZones(listeZones);
 		
 		//Initialisation des lignes
-		Ligne li1 = new Ligne(1, "1");
+		Ligne li1 = new Ligne(1, "1", new Color(200, 255, 200));
 		li1.setStationDepart(sta1);
 		li1.setStationArrivee(sta5);
 		li1.insertStation(sta2, 1);
@@ -56,13 +60,13 @@ public class Controleur {
 		li1.insertStation(sta4, 3);
 		li1.insertStation(sta5, 4);
 		
-		Ligne li2 = new Ligne(2, "2");
+		Ligne li2 = new Ligne(2, "2", new Color(110, 200, 250));
 		li2.setStationDepart(sta6);
 		li2.setStationArrivee(sta8);
 		li2.insertStation(sta3, 1);
 		li2.insertStation(sta7, 2);
 		
-		Ligne li3 = new Ligne(3, "3");
+		Ligne li3 = new Ligne(3, "3", new Color(40, 70, 20));
 		li3.setStationDepart(sta1);
 		li3.setStationArrivee(sta8);
 		li3.insertStation(sta2, 1);
@@ -72,5 +76,9 @@ public class Controleur {
 		li3.insertStation(sta6, 5);
 		li3.insertStation(sta7, 6);
 		
+		listeLignes.add(li1);
+		listeLignes.add(li2);
+		listeLignes.add(li3);
+		this.vue.setListeLignes(listeLignes);
 	}
 }

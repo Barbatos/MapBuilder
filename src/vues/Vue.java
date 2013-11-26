@@ -10,12 +10,14 @@ import java.util.Vector;
 
 import javax.swing.*;
 
+import modeles.Ligne;
 import modeles.Station;
 import modeles.Zone;
 
 public class Vue extends JPanel {
 	private JFrame fenetre;
-	private Zone zone;
+	private Vector<Zone> listeZones = new Vector<Zone>();
+	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private MouseListener mouseListener;
 	private Station stationActuelle = null;
 	
@@ -26,22 +28,19 @@ public class Vue extends JPanel {
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(2));
 		
-		//Affichage zone zon1
+		// Affichage des zones
 		g.setColor(new Color(200, 100, 100));
-		zone.dessinerZone(g);
+		
+		for(int i = 0; i < listeZones.size(); i++){
+			listeZones.elementAt(i).dessinerZone(g);
+		}
 
-		//Affichage ligne li1
-		/*li1.dessinerLigne(g, new Color(200, 255, 200));
+		// Affichage des lignes
+		for(int i = 0; i < listeLignes.size(); i++){
+			listeLignes.elementAt(i).dessinerLigne(g2);
+		}
 		
-		//Affichager ligne li2
-		li2.dessinerLigne(g, new Color(200, 200, 255));
-		
-		//Affichage rectangle d'information
-		g.setColor(new Color(65, 65, 65));
-		g.fillRect(1200 - 300, 0, 1200, 200);
-		
-		//Affichage informations station sta1
-		*/
+		//Affichage informations de la station cliquée
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);
 		}
@@ -63,15 +62,17 @@ public class Vue extends JPanel {
 	}
 	
 	public void verifierClicStation(int x, int y){
-		Vector<Station> listeStations = zone.getListeStations();
-		for(int i = 0; i < listeStations.size(); i++){
-			if( 
-				(x <= (listeStations.elementAt(i).getCoordonnees().getX() + 7)) &&
-				(x >= (listeStations.elementAt(i).getCoordonnees().getX() - 7)) && 
-				(y <= (listeStations.elementAt(i).getCoordonnees().getY() + 7)) && 
-				(y >= (listeStations.elementAt(i).getCoordonnees().getY() - 7))
-			  ){
-				setStationActuelle(listeStations.elementAt(i));
+		for(int j = 0; j < listeZones.size(); j++){
+			Vector<Station> listeStations = listeZones.elementAt(j).getListeStations();
+			for(int i = 0; i < listeStations.size(); i++){
+				if( 
+					(x <= (listeStations.elementAt(i).getCoordonnees().getX() + 7)) &&
+					(x >= (listeStations.elementAt(i).getCoordonnees().getX() - 7)) && 
+					(y <= (listeStations.elementAt(i).getCoordonnees().getY() + 7)) && 
+					(y >= (listeStations.elementAt(i).getCoordonnees().getY() - 7))
+				  ){
+					setStationActuelle(listeStations.elementAt(i));
+				}
 			}
 		}
 	}
@@ -104,8 +105,12 @@ public class Vue extends JPanel {
 		return fenetre;
 	}
 	
-	public void setZone(Zone zone){
-		this.zone = zone;
+	public void setListeZones(Vector<Zone> zones){
+		this.listeZones = zones;
+	}
+	
+	public void setListeLignes(Vector<Ligne> lignes){
+		this.listeLignes = lignes;
 	}
 	
 	public void setStationActuelle(Station _station){

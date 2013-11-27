@@ -16,6 +16,7 @@ public class Station extends Coordonnees {
 	private String nom;
 	private Vector<Horaire> listeHoraires = new Vector<Horaire>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
+	private Vector<Bouton> listeBoutons = new Vector<Bouton>();
 	
 	/**
 	 * Constructeur par defaut d'une Station
@@ -115,6 +116,19 @@ public class Station extends Coordonnees {
 		}
 	}
 	
+	public void insertBouton(Bouton bouton){
+		listeBoutons.add(bouton);
+	}
+	
+	public Bouton getBouton(int numero){
+		if(numero < listeBoutons.size())
+			return listeBoutons.elementAt(numero);
+		else{
+			System.out.println("Erreur d'insertion de Ligne dans la Station !");
+			return listeBoutons.lastElement();
+		}
+	}
+	
 	/**
 	 * Dessine cette Station a l'affichage
 	 * @param g Une instance de Graphics
@@ -132,9 +146,6 @@ public class Station extends Coordonnees {
 	 * @see Graphics
 	 */
 	public void dessinerInfo(Graphics g){
-		g.setColor(new Color(65, 65, 65));
-		g.fillRect(Vue.WIDTH - 300, 0, 300, 250);
-		
 		g.setColor(new Color(175, 175, 225));
 		g.drawString("INFORMATIONS", Vue.WIDTH - 210, 20);
 		g.drawString("Station : " + this.getNom(), Vue.WIDTH - 290, 60);
@@ -145,7 +156,15 @@ public class Station extends Coordonnees {
 			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Vue.WIDTH - 230, 100 + i * 20);
 		}
 		
+		listeBoutons.add(new Bouton("Horaires de la station " + this.getNom(), Vue.WIDTH - 270, 180, 240, 30));
 		
+		for(int i = 0;i < listeLignes.size();i++){
+			listeBoutons.add(new Bouton("Horaires de la ligne " + this.getLigne(i).getNom(), Vue.WIDTH - 270, 220 + 40 * i, 240, 30));
+		}
+		
+		for(int i = 0;i < listeBoutons.size();i++){
+			this.getBouton(i).paintComponent(g);
+		}
 	}
 	
 	public Vector<Horaire> getlisteHoraires() {

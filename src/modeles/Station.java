@@ -147,7 +147,6 @@ public class Station extends Coordonnees {
 	 */
 	public void dessinerInfo(Graphics g){
 		g.setColor(new Color(175, 175, 225));
-		g.drawString("INFORMATIONS", Vue.WIDTH - 210, 20);
 		g.drawString("Station : " + this.getNom(), Vue.WIDTH - 290, 60);
 		g.drawString("Numéro : " + this.getId(), Vue.WIDTH - 290, 80);
 		g.drawString("Ligne(s) : ", Vue.WIDTH - 290, 100);

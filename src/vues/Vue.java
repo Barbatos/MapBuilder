@@ -37,7 +37,7 @@ public class Vue extends JPanel{
 		g.fillRect(Vue.WIDTH - 300, 0, 300, Vue.HEIGHT);
 		
 		g.setColor(new Color(175, 175, 225));
-		g.drawString("INFORMATIONS", Vue.WIDTH - 195, 20);
+		g.drawString("INFORMATIONS", Vue.WIDTH - 300 / 2 - g.getFontMetrics().stringWidth("INFORMATIONS") / 2, 20);
 		
 		// Affichage des zones
 		g.setColor(new Color(200, 100, 100));

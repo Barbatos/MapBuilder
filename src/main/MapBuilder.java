@@ -1,9 +1,9 @@
 package main;
 
 import javax.swing.SwingUtilities;
-import modeles.*;
-import vues.*;
-import controleurs.*;
+
+import vues.Vue;
+import controleurs.Controleur;
 
 public class MapBuilder {
 	public static void main(String args[]){

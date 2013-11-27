@@ -1,12 +1,14 @@
 package controleurs;
 
 import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Vector;
 
-import modeles.*;
-import vues.*;
+import modeles.Coordonnees;
+import modeles.Ligne;
+import modeles.MoyenTransport;
+import modeles.Station;
+import modeles.Zone;
+import vues.Vue;
 
 public class Controleur {
 	private Vue vue;

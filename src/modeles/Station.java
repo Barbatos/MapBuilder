@@ -1,10 +1,8 @@
 package modeles;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Vector;
-
-import javax.swing.JButton;
-
 import vues.Vue;
 
 /**
@@ -135,16 +133,19 @@ public class Station extends Coordonnees {
 	 */
 	public void dessinerInfo(Graphics g){
 		g.setColor(new Color(65, 65, 65));
-		g.fillRect(Vue.WIDTH - 300, 0, Vue.WIDTH, 200);
+		g.fillRect(Vue.WIDTH - 300, 0, 300, 250);
 		
 		g.setColor(new Color(175, 175, 225));
-		g.drawString("Station : " + this.getNom(), Vue.WIDTH - 290, 20);
-		g.drawString("Numéro : " + this.getId(), Vue.WIDTH - 290, 40);
-		g.drawString("Ligne(s) : ", Vue.WIDTH - 290, 60);
+		g.drawString("INFORMATIONS", Vue.WIDTH - 210, 20);
+		g.drawString("Station : " + this.getNom(), Vue.WIDTH - 290, 60);
+		g.drawString("Numéro : " + this.getId(), Vue.WIDTH - 290, 80);
+		g.drawString("Ligne(s) : ", Vue.WIDTH - 290, 100);
 		
 		for(int i = 0;i < listeLignes.size();i++){
-			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Vue.WIDTH - 230, 60 + i * 20);
+			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Vue.WIDTH - 230, 100 + i * 20);
 		}
+		
+		
 	}
 	
 	public Vector<Horaire> getlisteHoraires() {

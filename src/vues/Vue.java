@@ -2,15 +2,12 @@ package vues;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,7 +15,8 @@ import modeles.Ligne;
 import modeles.Station;
 import modeles.Zone;
 
-public class Vue extends JPanel {
+public class Vue extends JPanel{
+	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 675;
 	
@@ -35,6 +33,12 @@ public class Vue extends JPanel {
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(2));
 		
+		g.setColor(new Color(65, 65, 65));
+		g.fillRect(Vue.WIDTH - 300, 0, 300, 250);
+		
+		g.setColor(new Color(175, 175, 225));
+		g.drawString("INFORMATIONS", Vue.WIDTH - 210, 20);
+		
 		// Affichage des zones
 		g.setColor(new Color(200, 100, 100));
 		
@@ -50,10 +54,6 @@ public class Vue extends JPanel {
 		// Affichage informations de la station cliquée
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);
-			
-			this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-
-			this.add(new JButton("Horaire de la ligne"));
 		}
 		
 		mouseListener = new MouseListener(){
@@ -101,7 +101,7 @@ public class Vue extends JPanel {
 		fenetre.setLocationRelativeTo(null);
 
 		// On empêche le redimensionnement de la fenêtre
-		//fenetre.setResizable(false);
+		fenetre.setResizable(false);
 
 		// Opération par défaut quand on quitte
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

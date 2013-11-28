@@ -23,11 +23,8 @@ public class Controleur {
 	public void initialiser(){
 		
 		//Initialisation moyens de transport
-		MoyenTransport bus = new MoyenTransport(1, "Bus", 20);
-		MoyenTransport tram = new MoyenTransport(2, "Tram", 40);
-		
-		//Initialisation horaires
-		Horaire hor1 = new Horaire(1, 2, 12, 1);
+		MoyenTransport bus = new MoyenTransport(1, "Bus");
+		MoyenTransport tram = new MoyenTransport(2, "Tram");
 		
 		//Initialisation stations
 		Station sta1 = new Station(new Coordonnees(10, 50), 1, "sta1");
@@ -66,8 +63,6 @@ public class Controleur {
 		li2.setStationArrivee(sta8);
 		li2.insertStation(sta3, 1);
 		li2.insertStation(sta7, 2);
-		
-		li1.setHoraires(sta1, hor1);
 		
 		System.out.println(li1.afficherHoraire());
 		

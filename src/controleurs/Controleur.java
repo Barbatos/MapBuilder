@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.Vector;
 
 import modeles.Coordonnees;
-import modeles.Horaire;
 import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;

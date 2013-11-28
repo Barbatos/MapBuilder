@@ -7,7 +7,6 @@ public class MoyenTransport {
 	public MoyenTransport(){
 		this.id = -1;
 		this.nom = "Pas de nom";
-		this.vitesse = -1;
 	}
 	
 	public MoyenTransport(int _id, String _nom){

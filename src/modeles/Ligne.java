@@ -131,13 +131,7 @@ public class Ligne extends Station{
 	public String afficherHoraire() {
 		String str = "";
 		
-		str += " Horaires de la ligne " + this;
-		str += ". \n";
-		
-		for(int l = 0; l < this.getListeStations().size(); l++)
-			str += "\t Station : " + this.getStation(l);
-		
-		str += "\n";
+		str += " Horaires de " + this;
 		
 		for(int k = 0; k < this.getStation(0).getlisteHoraires().size(); k++) {
 			for(int i = 0; i < this.getListeStations().size(); i++) {
@@ -156,7 +150,7 @@ public class Ligne extends Station{
 	public String toString() {
 		String str;
 		str = "";
-		str += "La Station " + this.getNom();
+		str += "La ligne " + this.getNom();
 		str += ", d'ID : " + this.getId();
 		str += " est composee des stations suivantes : \n";
 	

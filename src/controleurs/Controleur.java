@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.Vector;
 
 import modeles.Coordonnees;
+import modeles.Horaire;
 import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;
@@ -24,6 +25,9 @@ public class Controleur {
 		//Initialisation moyens de transport
 		MoyenTransport bus = new MoyenTransport(1, "Bus", 20);
 		MoyenTransport tram = new MoyenTransport(2, "Tram", 40);
+		
+		//Initialisation horaires
+		Horaire hor1 = new Horaire(1, 2, 12, 1);
 		
 		//Initialisation stations
 		Station sta1 = new Station(new Coordonnees(10, 50), 1, "sta1");
@@ -57,12 +61,15 @@ public class Controleur {
 		li1.insertStation(sta3, 2);
 		li1.insertStation(sta4, 3);
 		
-		
 		Ligne li2 = new Ligne(2, "2", new Color(110, 200, 250), bus);
 		li2.setStationDepart(sta6);
 		li2.setStationArrivee(sta8);
 		li2.insertStation(sta3, 1);
 		li2.insertStation(sta7, 2);
+		
+		li1.setHoraires(sta1, hor1);
+		
+		System.out.println(li1.afficherHoraire());
 		
 		for(int i = 0;i < li1.getListeStations().size();i++){
 			li1.getStation(i).insertLigne(li1);

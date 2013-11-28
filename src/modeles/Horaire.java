@@ -40,11 +40,23 @@ public class Horaire {
 	}
 	
 	public void setHeure(int heure){
-		this.heure = heure;
+		if(heure >= 24){
+			this.setJSemaine(this.getJSemaine() + this.getHeure() / 24);
+			this.heure = heure % 24;
+		}
+		else{
+			this.heure = heure;
+		}
 	}
 	
 	public void setMinute(int minute){
-		this.minute = minute;
+		if(minute >= 60){
+			this.setHeure(this.getHeure() + this.getMinute() / 60);
+			this.minute = minute % 60;
+		}
+		else{
+			this.minute = minute;
+		}
 	}
 	
 	public void setPeriode(int periode){

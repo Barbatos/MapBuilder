@@ -55,6 +55,28 @@ public class Ligne extends Station{
 		this.transport = transport;
 	}
 	
+	public void setHoraires(Station stationDepart, Horaire horaireDepart){
+		Horaire horaireCourante = horaireDepart;
+		int minutes;
+		int heures;
+		
+		this.getStation(0).insertHoraire(horaireCourante);
+		
+		for(int i = 1;i < listeStations.size();i++){
+			double distance = Math.sqrt((this.getStation(i).getCoordonnees().getX() - this.getStation(i - 1).getCoordonnees().getX()) * (this.getStation(i).getCoordonnees().getX() - this.getStation(i - 1).getCoordonnees().getX()) + (this.getStation(i).getCoordonnees().getY() - this.getStation(i - 1).getCoordonnees().getY()) * (this.getStation(i).getCoordonnees().getY() - this.getStation(i - 1).getCoordonnees().getY()));
+			
+			minutes = (int) (distance / this.getTransport().getVitesse() % 60);
+			
+			heures = (int) (distance / this.getTransport().getVitesse() / 60);
+			
+			horaireCourante.setMinute(horaireCourante.getMinute() + minutes);
+			
+			horaireCourante.setHeure(horaireCourante.getHeure() + heures);
+					
+			this.getStation(i).insertHoraire(horaireCourante);
+		}
+	}
+	
 	public void setStationDepart(Station station) {
 		listeStations.add(0, station);
 	}

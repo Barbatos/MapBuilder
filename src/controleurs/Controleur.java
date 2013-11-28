@@ -22,8 +22,8 @@ public class Controleur {
 	public void initialiser(){
 		
 		//Initialisation moyens de transport
-		MoyenTransport bus = new MoyenTransport(1, "Bus");
-		MoyenTransport tram = new MoyenTransport(2, "Tram");
+		MoyenTransport bus = new MoyenTransport(1, "Bus", 20);
+		MoyenTransport tram = new MoyenTransport(2, "Tram", 40);
 		
 		//Initialisation stations
 		Station sta1 = new Station(new Coordonnees(10, 50), 1, "sta1");

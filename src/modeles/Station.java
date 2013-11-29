@@ -208,8 +208,7 @@ public class Station extends Coordonnees {
 		String str;
 		str = "";
 		str += " n° " + this.getId();
-		str += " : " + this.getCoordonnees();
-		str += ". \n";
+		str += " :" + this.getCoordonnees();
 		
 		return str;
 	}

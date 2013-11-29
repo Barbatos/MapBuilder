@@ -108,16 +108,20 @@ public class Ligne extends Station{
 	public String toString() {
 		String str;
 		str = "";
-		str += "la ligne " + this.getNom();
-		str += ", d'ID : " + this.getId();
+		str += "Ligne " + this.getNom();
+		str += " ID : " + this.getId();
 		str += "\n";
 
 		for (int i = 0; i < listeStations.size(); i++) {
 			str += this.getStation(i).toString();
+			str += "\t";
 		}
+		
+		str += "\n";
+
 		for (int i = 0; i < this.getStation(0).getlisteHoraires().size(); i++) {
 			for (int j = 0; i < listeStations.size(); i++) {
-				str += this.getStation(j).getHoraire(i) + " /t ";
+				str += this.getStation(j).getHoraire(i) + " \t\t\t ";
 			}
 			str += "\n";
 		}

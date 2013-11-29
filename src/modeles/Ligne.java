@@ -105,35 +105,17 @@ public class Ligne extends Station{
 		this.listeStations = listeStations;
 	}
 	
-	public String afficherHoraire() {
-		String str = "";
-		
-		str += " Horaires de " + this;
-		
-		for(int k = 0; k < this.getStation(0).getlisteHoraires().size(); k++) {
-			for(int i = 0; i < this.getListeStations().size(); i++) {
-			
-				str += "\t " + this.getStation(i).getHoraire(k).getMinute()/24;
-				str += ":" + this.getStation(0).getHoraire(k).getMinute()%24;
-			
-			}
-			
-			str += " \n";
-		
-		}
-		return str;
-	}
-
 	public String toString() {
 		String str;
 		str = "";
 		str += "la ligne " + this.getNom();
 		str += ", d'ID : " + this.getId();
-		
+		str += "\n";
+
 		for (int i = 0; i < listeStations.size(); i++) {
 			str += this.getStation(i).toString();
 		}
-		for (int i = 0; i < this.getlisteHoraires().size(); i++) {
+		for (int i = 0; i < this.getStation(0).getlisteHoraires().size(); i++) {
 			for (int j = 0; i < listeStations.size(); i++) {
 				str += this.getStation(j).getHoraire(i) + " /t ";
 			}

@@ -95,7 +95,7 @@ public class Ligne extends Station{
 		}
 	}
 	
-	// méthodes à tester
+	// mï¿½thodes ï¿½ tester
 	
 	public Vector<Station> getListeStations() {
 		return listeStations;
@@ -105,7 +105,6 @@ public class Ligne extends Station{
 		this.listeStations = listeStations;
 	}
 	
-	// in test
 	public String afficherHoraire() {
 		String str = "";
 		
@@ -128,17 +127,18 @@ public class Ligne extends Station{
 	public String toString() {
 		String str;
 		str = "";
-		str += "La ligne " + this.getNom();
+		str += "la ligne " + this.getNom();
 		str += ", d'ID : " + this.getId();
-		str += " est composee des stations suivantes : \n";
-	
+		
 		for (int i = 0; i < listeStations.size(); i++) {
-			if (i != 0)
-				str += " et ";
-
 			str += this.getStation(i).toString();
 		}
-
+		for (int i = 0; i < this.getlisteHoraires().size(); i++) {
+			for (int j = 0; i < listeStations.size(); i++) {
+				str += this.getStation(j).getHoraire(i) + " /t ";
+			}
+			str += "\n";
+		}
 		str += "\n\n";
 
 		return str;

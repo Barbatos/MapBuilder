@@ -90,16 +90,46 @@ public class Station extends Coordonnees {
 		this.nom = nom;
 	}
 	
+	/**
+	 * Insert un horaire dansla liste des horaires
+	 * @param horaire Un horaire, que l'on insert dans la liste
+	 */
 	public void insertHoraire(Horaire horaire){
 		listeHoraires.add(horaire);
 	}
 	
+	/**
+	 * Rï¿½cupï¿½re l'horaire ï¿½ un indice
+	 * @param numero Un int, qui correspond au numï¿½ro de l'horaire dans la liste de horaires
+	 * @return Horaire, qui correspond ï¿½ l'horaire dans la liste au numï¿½ro indiquï¿½.
+	 */
 	public Horaire getHoraire(int numero) {
 		if (numero < listeHoraires.size())
 			return listeHoraires.elementAt(numero);
 		else{
 			System.out.println("Erreur d'insertion d'Horaire dans la Station !");
 			return listeHoraires.lastElement();
+		}
+	}
+
+	/**
+	 * Remet les horaires par ordre chronologique dans la liste
+	 */
+	public void trierHoraireChronologique() {
+		Horaire horaireTemp = new Horaire();
+
+		for (int i = 0; i < listeHoraires.size() - 1; i++) {
+			for (int j = i + 1; j < listeHoraires.size(); j++) {
+				if(
+					( getHoraire(i).getHeure() > getHoraire(j).getHeure() ) ||
+					( getHoraire(i).getHeure() == getHoraire(j).getHeure() &&
+						getHoraire(i).getMinute() > getHoraire(j).getMinute() )
+				) {
+						horaireTemp = getHoraire(i);
+						listeHoraires.set(i, getHoraire(j));
+						listeHoraires.set(j, horaireTemp);
+				}
+			}
 		}
 	}
 	
@@ -148,7 +178,7 @@ public class Station extends Coordonnees {
 	public void dessinerInfo(Graphics g){
 		g.setColor(new Color(175, 175, 225));
 		g.drawString("Station : " + this.getNom(), Vue.WIDTH - 290, 60);
-		g.drawString("Numéro : " + this.getId(), Vue.WIDTH - 290, 80);
+		g.drawString("Numï¿½ro : " + this.getId(), Vue.WIDTH - 290, 80);
 		g.drawString("Ligne(s) : ", Vue.WIDTH - 290, 100);
 		
 		for(int i = 0;i < listeLignes.size();i++){
@@ -177,9 +207,8 @@ public class Station extends Coordonnees {
 	public String toString(){
 		String str;
 		str = "";
-		str += "Vous etes a la station " + this.getNom();
-		str += " numero " + this.getId();
-		str += "dont les coordonnees sont : " + this.getCoordonnees();
+		str += " nÂ° " + this.getId();
+		str += " : " + this.getCoordonnees();
 		str += ". \n";
 		
 		return str;

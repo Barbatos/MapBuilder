@@ -9,6 +9,7 @@ import modeles.MoyenTransport;
 import modeles.Station;
 import modeles.Zone;
 import vues.Vue;
+import modeles.*;
 
 public class Controleur {
 	private Vue vue;
@@ -57,14 +58,21 @@ public class Controleur {
 		li1.insertStation(sta3, 2);
 		li1.insertStation(sta4, 3);
 		
+		for(int i = 0; i < 10; i++) {
+			for(int j = 0; j < li1.getListeStations().size(); j++) {
+				Horaire hor = new Horaire(i, j, i+j, i*j);
+				li1.getStation(j).insertHoraire(hor);
+			}
+		}
+		
 		Ligne li2 = new Ligne(2, "2", new Color(110, 200, 250), bus);
 		li2.setStationDepart(sta6);
 		li2.setStationArrivee(sta8);
 		li2.insertStation(sta3, 1);
 		li2.insertStation(sta7, 2);
 		
-		System.out.println(li1.afficherHoraire());
-		
+		System.out.println(li1);
+
 		for(int i = 0;i < li1.getListeStations().size();i++){
 			li1.getStation(i).insertLigne(li1);
 		}

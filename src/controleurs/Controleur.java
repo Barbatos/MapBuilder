@@ -1,6 +1,8 @@
 package controleurs;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import modeles.Horaire;
@@ -14,6 +16,7 @@ public class Controleur {
 	private Vue vue;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
+	private MouseListener mouseListener;
 	
 	public Controleur(Vue _vue){
 		this.vue = _vue;
@@ -83,5 +86,40 @@ public class Controleur {
 		listeLignes.add(li1);
 		listeLignes.add(li2);
 		this.vue.setListeLignes(listeLignes);
+		
+		mouseListener = new MouseListener(){
+			public void mouseClicked(MouseEvent event){
+				System.out.println("ok");
+				verifierClicStation(event.getX(), event.getY());
+				raffraichirVue();
+			}
+			public void mouseEntered(MouseEvent event){}
+			public void mouseExited(MouseEvent event){}
+			public void mouseReleased(MouseEvent event){}
+			public void mousePressed(MouseEvent event){}
+		};
+		
+		this.vue.addMouseListener(mouseListener);
+	}
+	
+	public void verifierClicStation(int x, int y){
+		for(int j = 0; j < listeZones.size(); j++){
+			Vector<Station> listeStations = listeZones.elementAt(j).getListeStations();
+			for(int i = 0; i < listeStations.size(); i++){
+				if( 
+					(x <= (listeStations.elementAt(i).getX() + 7)) &&
+					(x >= (listeStations.elementAt(i).getX() - 7)) && 
+					(y <= (listeStations.elementAt(i).getY() + 7)) && 
+					(y >= (listeStations.elementAt(i).getY() - 7))
+				  ){
+					System.out.println("lolol station:"+listeStations.elementAt(i));
+					this.vue.setStationActuelle(listeStations.elementAt(i));
+				}
+			}
+		}
+	}
+	
+	public void raffraichirVue(){
+		this.vue.repaint();
 	}
 }

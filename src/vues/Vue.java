@@ -4,8 +4,6 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -23,7 +21,6 @@ public class Vue extends JPanel{
 	private JFrame fenetre;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
-	private MouseListener mouseListener;
 	private Station stationActuelle = null;
 	
 	public void paintComponent(Graphics g){
@@ -54,37 +51,6 @@ public class Vue extends JPanel{
 		// Affichage informations de la station cliquée
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);
-		}
-		
-		mouseListener = new MouseListener(){
-			public void mouseClicked(MouseEvent event){
-				verifierClicStation(event.getX(), event.getY());
-				repaint();
-			}
-			
-			public void mouseEntered(MouseEvent event){}
-			public void mouseExited(MouseEvent event){}
-			public void mouseReleased(MouseEvent event){}
-			public void mousePressed(MouseEvent event){}
-			
-		};
-		
-		this.addMouseListener(mouseListener);
-	}
-	
-	public void verifierClicStation(int x, int y){
-		for(int j = 0; j < listeZones.size(); j++){
-			Vector<Station> listeStations = listeZones.elementAt(j).getListeStations();
-			for(int i = 0; i < listeStations.size(); i++){
-				if( 
-					(x <= (listeStations.elementAt(i).getX() + 7)) &&
-					(x >= (listeStations.elementAt(i).getX() - 7)) && 
-					(y <= (listeStations.elementAt(i).getY() + 7)) && 
-					(y >= (listeStations.elementAt(i).getY() - 7))
-				  ){
-					setStationActuelle(listeStations.elementAt(i));
-				}
-			}
 		}
 	}
 	

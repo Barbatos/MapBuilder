@@ -77,10 +77,10 @@ public class Vue extends JPanel{
 			Vector<Station> listeStations = listeZones.elementAt(j).getListeStations();
 			for(int i = 0; i < listeStations.size(); i++){
 				if( 
-					(x <= (listeStations.elementAt(i).getCoordonnees().getX() + 7)) &&
-					(x >= (listeStations.elementAt(i).getCoordonnees().getX() - 7)) && 
-					(y <= (listeStations.elementAt(i).getCoordonnees().getY() + 7)) && 
-					(y >= (listeStations.elementAt(i).getCoordonnees().getY() - 7))
+					(x <= (listeStations.elementAt(i).getX() + 7)) &&
+					(x >= (listeStations.elementAt(i).getX() - 7)) && 
+					(y <= (listeStations.elementAt(i).getY() + 7)) && 
+					(y >= (listeStations.elementAt(i).getY() - 7))
 				  ){
 					setStationActuelle(listeStations.elementAt(i));
 				}

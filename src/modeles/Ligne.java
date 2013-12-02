@@ -87,7 +87,7 @@ public class Ligne extends Station{
 		for(int i = 0;i < listeStations.size();i++){
 			if(i < listeStations.size() - 1){
 				g.setColor(this.couleur);
-				g.drawLine(listeStations.elementAt(i).getCoordonnees().getX(), listeStations.elementAt(i).getCoordonnees().getY(), listeStations.elementAt(i + 1).getCoordonnees().getX(), listeStations.elementAt(i + 1).getCoordonnees().getY());
+				g.drawLine(listeStations.elementAt(i).getX(), listeStations.elementAt(i).getY(), listeStations.elementAt(i + 1).getX(), listeStations.elementAt(i + 1).getY());
 			}
 			
 			g.setColor(new Color(0, 0, 0));

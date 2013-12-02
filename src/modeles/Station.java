@@ -10,9 +10,10 @@ import vues.Vue;
  * 
  * @version 1.0
  */
-public class Station extends Coordonnees {
-	private Coordonnees coordonnees;
+public class Station{
 	private int id;
+	private int coordX;
+	private int coordY;
 	private String nom;
 	private Vector<Horaire> listeHoraires = new Vector<Horaire>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
@@ -22,8 +23,9 @@ public class Station extends Coordonnees {
 	 * Constructeur par defaut d'une Station
 	 */
 	public Station(){
-		this.coordonnees = new Coordonnees();
 		this.id = -1;
+		this.coordX = -1;
+		this.coordY = -1;
 		this.nom = "Sans nom";
 	}
 	
@@ -34,19 +36,27 @@ public class Station extends Coordonnees {
 	 * @param nom Une chaine de caractere, qui correspond au nom cette Station
 	 * @see Coordonnees
 	 */
-	public Station(Coordonnees coordonnees, int id, String nom){
-		this.coordonnees = coordonnees;
+	public Station(int id, int coordX, int coordY, String nom){
 		this.id = id;
+		this.coordX = coordX;
+		this.coordY = coordY;
 		this.nom = nom;
 	}
 	
 	/**
 	 * Recupere les coordonnees de cette Station
-	 * @return Une instance de Coordonnees, qui correspond aux coordonnees x et y de cette Station
-	 * @see Coordonnees
+	 * @return Un entier, qui correspond a la coordonnee x de cette Station
 	 */
-	public Coordonnees getCoordonnees(){
-		return this.coordonnees;
+	public int getX(){
+		return this.coordX;
+	}
+	
+	/**
+	 * Recupere les coordonnees de cette Station
+	 * @return Un entier, qui correspond a la coordonnee y de cette Station
+	 */
+	public int getY(){
+		return this.coordY;
 	}
 	
 	/**
@@ -67,11 +77,18 @@ public class Station extends Coordonnees {
 	
 	/**
 	 * Definit les coordonnees de cette Station
-	 * @param coordonnees Une instance de Coordonnees, qui correspond aux coordonnees x et y de cette Station
-	 * @see Coordonnees
+	 * @param coordX Un entier, qui correspond a la coordonnee x de cette Station
 	 */
-	public void setCoordonnees(Coordonnees coordonnees){
-		this.coordonnees = coordonnees;
+	public void setX(int coordX){
+		this.coordX = coordX;
+	}
+	
+	/**
+	 * Definit les coordonnees de cette Station
+	 * @param coordY Un entier, qui correspond a la coordonnee y de cette Station
+	 */
+	public void setY(int coordY){
+		this.coordY = coordY;
 	}
 	
 	/**
@@ -166,8 +183,8 @@ public class Station extends Coordonnees {
 	 */
 	public void dessinerStation(Graphics g){
 		int taille = 10;
-		g.fillOval(this.getCoordonnees().getX() - taille/2, this.getCoordonnees().getY() - taille/2, taille, taille);
-		g.drawString(this.getNom(), this.getCoordonnees().getX() + 7, this.getCoordonnees().getY() - 3);
+		g.fillOval(this.getX() - taille/2, this.getY() - taille/2, taille, taille);
+		g.drawString(this.getNom(), this.getX() + 7, this.getY() - 3);
 	}
 	
 	/**
@@ -178,7 +195,7 @@ public class Station extends Coordonnees {
 	public void dessinerInfo(Graphics g){
 		g.setColor(new Color(175, 175, 225));
 		g.drawString("Station : " + this.getNom(), Vue.WIDTH - 290, 60);
-		g.drawString("Num�ro : " + this.getId(), Vue.WIDTH - 290, 80);
+		g.drawString("Numero : " + this.getId(), Vue.WIDTH - 290, 80);
 		g.drawString("Ligne(s) : ", Vue.WIDTH - 290, 100);
 		
 		for(int i = 0;i < listeLignes.size();i++){
@@ -207,8 +224,9 @@ public class Station extends Coordonnees {
 	public String toString(){
 		String str;
 		str = "";
-		str += " n° " + this.getId();
-		str += " :" + this.getCoordonnees();
+		str += " num " + this.getId();
+		str += " : X :" + this.getX();
+		str += " Y : " + this.getY();
 		
 		return str;
 	}

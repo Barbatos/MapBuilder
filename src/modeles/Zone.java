@@ -58,16 +58,16 @@ public class Zone extends Station {
 		int y[] = new int[3];
 		
 		for(int i = 0;i < listeStations.size();i++){
-			x[0] = listeStations.elementAt(i).getCoordonnees().getX();
-			y[0] = listeStations.elementAt(i).getCoordonnees().getY();
+			x[0] = listeStations.elementAt(i).getX();
+			y[0] = listeStations.elementAt(i).getY();
 			
 			for(int j = i;j < listeStations.size();j++){
-				x[1] = listeStations.elementAt(j).getCoordonnees().getX();
-				y[1] = listeStations.elementAt(j).getCoordonnees().getY();
+				x[1] = listeStations.elementAt(j).getX();
+				y[1] = listeStations.elementAt(j).getY();
 				
 				for(int k = j;k < listeStations.size();k++){
-					x[2] = listeStations.elementAt(k).getCoordonnees().getX();
-					y[2] = listeStations.elementAt(k).getCoordonnees().getY();
+					x[2] = listeStations.elementAt(k).getX();
+					y[2] = listeStations.elementAt(k).getY();
 					
 					g.fillPolygon(x, y, 3);
 				}
@@ -80,15 +80,15 @@ public class Zone extends Station {
 //		int y[] = new int[3];
 //		
 //		
-//		x[0] = listeStations.elementAt(0).getCoordonnees().getX();
-//		y[0] = listeStations.elementAt(0).getCoordonnees().getY();
+//		x[0] = listeStations.elementAt(0).getX();
+//		y[0] = listeStations.elementAt(0).getY();
 //		
-//		x[1] = listeStations.elementAt(1).getCoordonnees().getX();
-//		y[1] = listeStations.elementAt(1).getCoordonnees().getY();
+//		x[1] = listeStations.elementAt(1).getX();
+//		y[1] = listeStations.elementAt(1).getY();
 //		
 //		for(int i = 2;i < listeStations.size();i++){
-//			int tempX = listeStations.elementAt(i).getCoordonnees().getX();
-//			int tempY = listeStations.elementAt(i).getCoordonnees().getY();
+//			int tempX = listeStations.elementAt(i).getX();
+//			int tempY = listeStations.elementAt(i).getY();
 //			
 //			if(Math.sqrt((tempX - x[0]) * (tempX - x[0]) + (tempY - y[0]) * (tempY - y[0])) < Math.sqrt((x[1] - x[0]) * (x[1] - x[0]) + (y[1] - y[0]) * (y[1] - y[0]))){
 //				x[1] = tempX;

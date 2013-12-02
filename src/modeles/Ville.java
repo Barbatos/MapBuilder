@@ -1,6 +1,6 @@
 package modeles;
 
-public class Ville extends Segment{
+public class Ville{
 	private String nom;
 	//private Vector<Segment> listeSegments = new Vector<Segment>();
 	
@@ -19,23 +19,4 @@ public class Ville extends Segment{
 	public void setNom(String _nom){
 		this.nom = _nom;
 	}
-	
-	/*public void insertSegment(Segment segment, int numero) {
-		if (numero < listeSegments.size())
-			listeSegments.insertElementAt(segment, numero);
-		else
-			System.out.println("Erreur d'insertion de station dans la Ligne !");
-	}
-
-	public Segment getSegment(int numero) {
-		if (numero < listeSegments.size())
-			return listeSegments.elementAt(numero);
-		else 
-			System.out.println("Erreur d'insertion de station dans la Ligne !");
-			return listeSegments.lastElement();
-	}
-
-	public int getNumeroSegment(Segment segment) {
-		return listeSegments.indexOf(segment);
-	}*/
 }

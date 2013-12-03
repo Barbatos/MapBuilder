@@ -7,13 +7,11 @@ public class BaseDeDonnees {
 	private Statement statement = null;
 	private String utilisateur = "";
 	private String motDePasse = "";
-	private String nomBase = "";
 	private String host = "";
 	
-	public BaseDeDonnees(String _utilisateur, String _motDePasse, String _nomBase, String _host){
+	public BaseDeDonnees(String _host, String _utilisateur, String _motDePasse){
 		this.utilisateur = _utilisateur;
 		this.motDePasse = _motDePasse;
-		this.nomBase = _nomBase;
 		this.host = _host;
 		
 		// Chargement du driver
@@ -54,10 +52,6 @@ public class BaseDeDonnees {
 	
 	public void setMotDePasse(String _motDePasse){
 		this.motDePasse = _motDePasse;
-	}
-	
-	public void setNomBase(String _nomBase){
-		this.nomBase = _nomBase;
 	}
 	
 	public void setHost(String _host){

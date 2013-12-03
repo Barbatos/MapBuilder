@@ -10,6 +10,7 @@ import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;
 import modeles.Zone;
+import modeles.BaseDeDonnees;
 import vues.Vue;
 
 public class Controleur {
@@ -17,9 +18,11 @@ public class Controleur {
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private MouseListener mouseListener;
+	private BaseDeDonnees bdd;
 	
 	public Controleur(Vue _vue){
 		this.vue = _vue;
+		this.bdd = new BaseDeDonnees("jdbc:mysql://localhost:3306/mapbuilder", "root", "");
 	}
 	
 	public void initialiser(){

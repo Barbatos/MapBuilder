@@ -11,19 +11,19 @@ import modeles.MoyenTransport;
 import modeles.Station;
 import modeles.Zone;
 import modeles.BaseDeDonnees;
-import vues.Vue;
+import vues.Carte;
 
 public class Controleur {
-	private Vue vue;
+	private Carte carte;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private MouseListener mouseListener;
 	private BaseDeDonnees bdd;
 	private boolean clique = false;
 	
-	public Controleur(Vue _vue){
-		this.vue = _vue;
-		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "");
+	public Controleur(Carte _carte){
+		this.carte = _carte;
+		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "bite");
 	}
 	
 	public void initialiser(){
@@ -53,7 +53,7 @@ public class Controleur {
 		zon1.insertStation(sta8);
 		listeZones.add(zon1);
 		
-		this.vue.setListeZones(listeZones);
+		this.carte.setListeZones(listeZones);
 		
 		//Initialisation des lignes
 		Ligne li1 = new Ligne(1, "1", new Color(200, 255, 200), tram);
@@ -88,7 +88,7 @@ public class Controleur {
 		
 		listeLignes.add(li1);
 		listeLignes.add(li2);
-		this.vue.setListeLignes(listeLignes);
+		this.carte.setListeLignes(listeLignes);
 		
 		mouseListener = new MouseListener(){
 			public void mouseClicked(MouseEvent event){
@@ -96,7 +96,7 @@ public class Controleur {
 				if(clique){
 					verifierClicBoutonHoraire(event.getX(), event.getY());
 				}
-				vue.repaint();
+				carte.repaint();
 			}
 			public void mouseEntered(MouseEvent event){}
 			public void mouseExited(MouseEvent event){}
@@ -104,7 +104,7 @@ public class Controleur {
 			public void mousePressed(MouseEvent event){}
 		};
 		
-		this.vue.addMouseListener(mouseListener);
+		this.carte.addMouseListener(mouseListener);
 	}
 	
 	public void verifierClicStation(int x, int y){
@@ -117,7 +117,7 @@ public class Controleur {
 					(y <= (listeStations.elementAt(i).getY() + 7)) && 
 					(y >= (listeStations.elementAt(i).getY() - 7))
 				  ){
-					this.vue.setStationActuelle(listeStations.elementAt(i));
+					this.carte.setStationActuelle(listeStations.elementAt(i));
 					clique = true;
 				}
 			}
@@ -125,12 +125,12 @@ public class Controleur {
 	}
 	
 	public void verifierClicBoutonHoraire(int x, int y){
-		for(int i = 0;i < this.vue.getStationActuelle().getListeBoutonsHoraire().size();i++){
+		for(int i = 0;i < this.carte.getStationActuelle().getListeBoutonsHoraire().size();i++){
 			if( 
-				(x <= this.vue.getStationActuelle().getBoutonHoraire(i).getX() + this.vue.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
-				(x >= this.vue.getStationActuelle().getBoutonHoraire(i).getX()) && 
-				(y <= this.vue.getStationActuelle().getBoutonHoraire(i).getY() + this.vue.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
-				(y >= this.vue.getStationActuelle().getBoutonHoraire(i).getY())
+				(x <= this.carte.getStationActuelle().getBoutonHoraire(i).getX() + this.carte.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
+				(x >= this.carte.getStationActuelle().getBoutonHoraire(i).getX()) && 
+				(y <= this.carte.getStationActuelle().getBoutonHoraire(i).getY() + this.carte.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
+				(y >= this.carte.getStationActuelle().getBoutonHoraire(i).getY())
 			){
 				//TODO
 				return;

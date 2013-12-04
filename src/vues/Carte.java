@@ -13,7 +13,7 @@ import modeles.Ligne;
 import modeles.Station;
 import modeles.Zone;
 
-public class Vue extends JPanel{
+public class Carte extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 675;
@@ -31,10 +31,10 @@ public class Vue extends JPanel{
 		g2.setStroke(new BasicStroke(2));
 		
 		g.setColor(new Color(65, 65, 65));
-		g.fillRect(Vue.WIDTH - 300, 0, 300, Vue.HEIGHT);
+		g.fillRect(Carte.WIDTH - 300, 0, 300, Carte.HEIGHT);
 		
 		g.setColor(new Color(175, 175, 225));
-		g.drawString("INFORMATIONS", Vue.WIDTH - 300 / 2 - g.getFontMetrics().stringWidth("INFORMATIONS") / 2, 20);
+		g.drawString("INFORMATIONS", Carte.WIDTH - 300 / 2 - g.getFontMetrics().stringWidth("INFORMATIONS") / 2, 20);
 		
 		// Affichage des zones
 		g.setColor(new Color(200, 100, 100));
@@ -54,7 +54,7 @@ public class Vue extends JPanel{
 		}
 	}
 	
-	public Vue(){
+	public Carte(){
 		fenetre = new JFrame();
 		
 		// On définit le titre de la fenêtre

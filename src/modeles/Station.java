@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Vector;
 
-import vues.Vue;
+import vues.Carte;
 
 /**
  * Station est la classe representant une station, quelque soit le type de celle-ci
@@ -199,19 +199,19 @@ public class Station{
 	 */
 	public void dessinerInfo(Graphics g){
 		g.setColor(new Color(175, 175, 225));
-		g.drawString("Station : " + this.getNom(), Vue.WIDTH - 290, 60);
-		g.drawString("Numero : " + this.getId(), Vue.WIDTH - 290, 80);
-		g.drawString("Ligne(s) : ", Vue.WIDTH - 290, 100);
+		g.drawString("Station : " + this.getNom(), Carte.WIDTH - 290, 60);
+		g.drawString("Numero : " + this.getId(), Carte.WIDTH - 290, 80);
+		g.drawString("Ligne(s) : ", Carte.WIDTH - 290, 100);
 		
 		for(int i = 0;i < listeLignes.size();i++){
-			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Vue.WIDTH - 230, 100 + i * 20);
+			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Carte.WIDTH - 230, 100 + i * 20);
 		}
 		
-		listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la station " + this.getNom(), Vue.WIDTH - 270, 180, 240, 30));
+		listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la station " + this.getNom(), Carte.WIDTH - 270, 180, 240, 30));
 		//listeBoutonsHoraire.elementAt(0).initialiser();
 		
 		for(int i = 0;i < listeLignes.size();i++){
-			listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la ligne " + this.getLigne(i).getNom(), Vue.WIDTH - 270, 220 + 40 * i, 240, 30));
+			listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la ligne " + this.getLigne(i).getNom(), Carte.WIDTH - 270, 220 + 40 * i, 240, 30));
 		}
 		
 		for(int i = 0;i < listeBoutonsHoraire.size();i++){

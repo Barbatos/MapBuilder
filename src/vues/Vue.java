@@ -94,4 +94,8 @@ public class Vue extends JPanel{
 		this.stationActuelle = _station;
 	}
 	
+	public Station getStationActuelle(){
+		return stationActuelle;
+	}
+	
 }

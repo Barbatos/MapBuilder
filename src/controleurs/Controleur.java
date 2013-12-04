@@ -19,6 +19,7 @@ public class Controleur {
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private MouseListener mouseListener;
 	private BaseDeDonnees bdd;
+	private boolean clique = false;
 	
 	public Controleur(Vue _vue){
 		this.vue = _vue;
@@ -26,7 +27,6 @@ public class Controleur {
 	}
 	
 	public void initialiser(){
-		
 		//Initialisation moyens de transport
 		MoyenTransport bus = new MoyenTransport(1, "Bus");
 		MoyenTransport tram = new MoyenTransport(2, "Tram");
@@ -92,9 +92,11 @@ public class Controleur {
 		
 		mouseListener = new MouseListener(){
 			public void mouseClicked(MouseEvent event){
-				System.out.println("ok");
 				verifierClicStation(event.getX(), event.getY());
-				raffraichirVue();
+				if(clique){
+					verifierClicBoutonHoraire(event.getX(), event.getY());
+				}
+				vue.repaint();
 			}
 			public void mouseEntered(MouseEvent event){}
 			public void mouseExited(MouseEvent event){}
@@ -115,14 +117,25 @@ public class Controleur {
 					(y <= (listeStations.elementAt(i).getY() + 7)) && 
 					(y >= (listeStations.elementAt(i).getY() - 7))
 				  ){
-					System.out.println("lolol station:"+listeStations.elementAt(i));
 					this.vue.setStationActuelle(listeStations.elementAt(i));
+					clique = true;
 				}
 			}
 		}
 	}
 	
-	public void raffraichirVue(){
-		this.vue.repaint();
+	public void verifierClicBoutonHoraire(int x, int y){
+		System.out.println("youpi");
+		for(int i = 0;i < this.vue.getStationActuelle().getListeBoutonsHoraire().size();i++){
+			if( 
+				(x <= this.vue.getStationActuelle().getBoutonHoraire(i).getX() + this.vue.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
+				(x >= this.vue.getStationActuelle().getBoutonHoraire(i).getX()) && 
+				(y <= this.vue.getStationActuelle().getBoutonHoraire(i).getY() + this.vue.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
+				(y >= this.vue.getStationActuelle().getBoutonHoraire(i).getY())
+			){
+				System.out.println("YEAH !" + this.vue.getStationActuelle().getBoutonHoraire(i).getNom());
+				return;
+			}
+		}
 	}
 }

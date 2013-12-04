@@ -3,6 +3,7 @@ package modeles;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Vector;
+
 import vues.Vue;
 
 /**
@@ -17,7 +18,7 @@ public class Station{
 	private String nom;
 	private Vector<Horaire> listeHoraires = new Vector<Horaire>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
-	private Vector<Bouton> listeBoutons = new Vector<Bouton>();
+	private Vector<BoutonHoraire> listeBoutonsHoraire = new Vector<BoutonHoraire>();
 	
 	/**
 	 * Constructeur par defaut d'une Station
@@ -158,22 +159,26 @@ public class Station{
 		if(numero < listeLignes.size())
 			return listeLignes.elementAt(numero);
 		else{
-			System.out.println("Erreur d'insertion de Ligne dans la Station !");
+			System.out.println("Erreur de recuperation de Ligne dans la Station !");
 			return listeLignes.lastElement();
 		}
 	}
 	
-	public void insertBouton(Bouton bouton){
-		listeBoutons.add(bouton);
+	public void insertBoutonHoraire(BoutonHoraire bouton){
+		listeBoutonsHoraire.add(bouton);
 	}
 	
-	public Bouton getBouton(int numero){
-		if(numero < listeBoutons.size())
-			return listeBoutons.elementAt(numero);
+	public BoutonHoraire getBoutonHoraire(int numero){
+		if(numero < listeBoutonsHoraire.size())
+			return listeBoutonsHoraire.elementAt(numero);
 		else{
 			System.out.println("Erreur d'insertion de Ligne dans la Station !");
-			return listeBoutons.lastElement();
+			return listeBoutonsHoraire.lastElement();
 		}
+	}
+	
+	public Vector<BoutonHoraire> getListeBoutonsHoraire(){
+		return listeBoutonsHoraire;
 	}
 	
 	/**
@@ -202,14 +207,15 @@ public class Station{
 			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Vue.WIDTH - 230, 100 + i * 20);
 		}
 		
-		listeBoutons.add(new Bouton("Horaires de la station " + this.getNom(), Vue.WIDTH - 270, 180, 240, 30));
+		listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la station " + this.getNom(), Vue.WIDTH - 270, 180, 240, 30));
+		//listeBoutonsHoraire.elementAt(0).initialiser();
 		
 		for(int i = 0;i < listeLignes.size();i++){
-			listeBoutons.add(new Bouton("Horaires de la ligne " + this.getLigne(i).getNom(), Vue.WIDTH - 270, 220 + 40 * i, 240, 30));
+			listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la ligne " + this.getLigne(i).getNom(), Vue.WIDTH - 270, 220 + 40 * i, 240, 30));
 		}
 		
-		for(int i = 0;i < listeBoutons.size();i++){
-			this.getBouton(i).paintComponent(g);
+		for(int i = 0;i < listeBoutonsHoraire.size();i++){
+			this.getBoutonHoraire(i).paintComponent(g);
 		}
 	}
 	

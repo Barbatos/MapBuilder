@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
+import java.sql.*;
 
 import modeles.Horaire;
 import modeles.Ligne;
@@ -23,10 +24,22 @@ public class Controleur {
 	
 	public Controleur(Carte _carte){
 		this.carte = _carte;
-		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "bite");
+		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "");
 	}
 	
-	public void initialiser(){
+	public void initialiser() {
+		ResultSet reponse;
+		
+		try {
+			reponse = this.bdd.select("SELECT * FROM moyentransport");
+			while(reponse.next()){
+				System.out.println("moyen transport: "+reponse.getString("nom"));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		
 		//Initialisation moyens de transport
 		MoyenTransport bus = new MoyenTransport(1, "Bus");
 		MoyenTransport tram = new MoyenTransport(2, "Tram");

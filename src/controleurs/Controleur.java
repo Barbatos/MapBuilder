@@ -125,7 +125,6 @@ public class Controleur {
 	}
 	
 	public void verifierClicBoutonHoraire(int x, int y){
-		System.out.println("youpi");
 		for(int i = 0;i < this.vue.getStationActuelle().getListeBoutonsHoraire().size();i++){
 			if( 
 				(x <= this.vue.getStationActuelle().getBoutonHoraire(i).getX() + this.vue.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
@@ -133,7 +132,7 @@ public class Controleur {
 				(y <= this.vue.getStationActuelle().getBoutonHoraire(i).getY() + this.vue.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
 				(y >= this.vue.getStationActuelle().getBoutonHoraire(i).getY())
 			){
-				System.out.println("YEAH !" + this.vue.getStationActuelle().getBoutonHoraire(i).getNom());
+				//TODO
 				return;
 			}
 		}

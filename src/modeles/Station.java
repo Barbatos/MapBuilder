@@ -82,6 +82,7 @@ public class Station{
 	}
 	
 	public void dessinerNom(Graphics g){
+		g.setColor(new Color(0, 0, 0));
 		g.drawString(this.getNom(), this.getX() + 7, this.getY() - 3);
 	}
 	

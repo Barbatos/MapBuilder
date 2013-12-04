@@ -17,6 +17,17 @@ public class BoutonHoraire{
 		this.largeur = largeur;
 		this. hauteur = hauteur;
 	}
+	
+	public void paintComponent(Graphics g){
+		g.setColor(new Color(200, 200, 200));
+		g.fillRect(this.x, this.y, this.largeur, this.hauteur);
+
+		int h = g.getFontMetrics().getHeight();
+		int l = g.getFontMetrics().stringWidth(this.nom);
+
+		g.setColor(new Color(45, 45, 45));
+	    g.drawString(this.nom, x - l / 2 + this.largeur / 2, y + h / 4 + this.hauteur / 2);
+	}
 
 	public String getNom(){
 		return this.nom;
@@ -56,16 +67,5 @@ public class BoutonHoraire{
 	
 	public void setHauteur(int hauteur){
 		this.hauteur = hauteur;
-	}
-	
-	public void paintComponent(Graphics g){
-		g.setColor(new Color(200, 200, 200));
-		g.fillRect(this.x, this.y, this.largeur, this.hauteur);
-
-		int h = g.getFontMetrics().getHeight();
-		int l = g.getFontMetrics().stringWidth(this.nom);
-
-		g.setColor(new Color(45, 45, 45));
-	    g.drawString(this.nom, x - l / 2 + this.largeur / 2, y + h / 4 + this.hauteur / 2);
 	}
 }

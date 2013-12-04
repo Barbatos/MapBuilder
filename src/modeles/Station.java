@@ -45,6 +45,84 @@ public class Station{
 	}
 	
 	/**
+	 * Dessine cette Station a l'affichage
+	 * @param g Une instance de Graphics
+	 * @see Graphics
+	 */
+	public void dessinerStation(Graphics g){
+		int taille = 10;
+		g.fillOval(this.getX() - taille/2, this.getY() - taille/2, taille, taille);
+	}
+	
+	/**
+	 * Dessine les informations de cette Station a l'affichage
+	 * @param g Une instance de Graphics
+	 * @see Graphics
+	 */
+	public void dessinerInfo(Graphics g){
+		g.setColor(new Color(175, 175, 225));
+		g.drawString("Station : " + this.getNom(), Carte.WIDTH - 290, 60);
+		g.drawString("Numero : " + this.getId(), Carte.WIDTH - 290, 80);
+		g.drawString("Ligne(s) : ", Carte.WIDTH - 290, 100);
+		
+		for(int i = 0;i < listeLignes.size();i++){
+			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Carte.WIDTH - 230, 100 + i * 20);
+		}
+		
+		listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la station " + this.getNom(), Carte.WIDTH - 270, 180, 240, 30));
+		//listeBoutonsHoraire.elementAt(0).initialiser();
+		
+		for(int i = 0;i < listeLignes.size();i++){
+			listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la ligne " + this.getLigne(i).getNom(), Carte.WIDTH - 270, 220 + 40 * i, 240, 30));
+		}
+		
+		for(int i = 0;i < listeBoutonsHoraire.size();i++){
+			this.getBoutonHoraire(i).paintComponent(g);
+		}
+	}
+	
+	public void dessinerNom(Graphics g){
+		g.drawString(this.getNom(), this.getX() + 7, this.getY() - 3);
+	}
+	
+	/**
+	 * Insert un horaire dansla liste des horaires
+	 * @param horaire Un horaire, que l'on insert dans la liste
+	 */
+	public void insertHoraire(Horaire horaire){
+		listeHoraires.add(horaire);
+	}
+
+	/**
+	 * Remet les horaires par ordre chronologique dans la liste
+	 */
+	public void trierHoraireChronologique() {
+		Horaire horaireTemp = new Horaire();
+
+		for (int i = 0; i < listeHoraires.size() - 1; i++) {
+			for (int j = i + 1; j < listeHoraires.size(); j++) {
+				if(
+					( getHoraire(i).getHeure() > getHoraire(j).getHeure() ) ||
+					( getHoraire(i).getHeure() == getHoraire(j).getHeure() &&
+						getHoraire(i).getMinute() > getHoraire(j).getMinute() )
+				) {
+						horaireTemp = getHoraire(i);
+						listeHoraires.set(i, getHoraire(j));
+						listeHoraires.set(j, horaireTemp);
+				}
+			}
+		}
+	}
+	
+	public void insertLigne(Ligne ligne){
+		listeLignes.add(ligne);
+	}
+	
+	public void insertBoutonHoraire(BoutonHoraire bouton){
+		listeBoutonsHoraire.add(bouton);
+	}
+	
+	/**
 	 * Recupere les coordonnees de cette Station
 	 * @return Un entier, qui correspond a la coordonnee x de cette Station
 	 */
@@ -74,6 +152,46 @@ public class Station{
 	 */
 	public String getNom(){
 		return this.nom;
+	}
+	
+	/**
+	 * R�cup�re l'horaire � un indice
+	 * @param numero Un int, qui correspond au num�ro de l'horaire dans la liste de horaires
+	 * @return Horaire, qui correspond � l'horaire dans la liste au num�ro indiqu�.
+	 */
+	public Horaire getHoraire(int numero) {
+		if (numero < listeHoraires.size())
+			return listeHoraires.elementAt(numero);
+		else{
+			System.out.println("Erreur d'insertion d'Horaire dans la Station !");
+			return listeHoraires.lastElement();
+		}
+	}
+	
+	public Vector<Horaire> getlisteHoraires() {
+		return listeHoraires;
+	}
+	
+	public BoutonHoraire getBoutonHoraire(int numero){
+		if(numero < listeBoutonsHoraire.size())
+			return listeBoutonsHoraire.elementAt(numero);
+		else{
+			System.out.println("Erreur d'insertion de Ligne dans la Station !");
+			return listeBoutonsHoraire.lastElement();
+		}
+	}
+	
+	public Vector<BoutonHoraire> getListeBoutonsHoraire(){
+		return listeBoutonsHoraire;
+	}
+	
+	public Ligne getLigne(int numero){
+		if(numero < listeLignes.size())
+			return listeLignes.elementAt(numero);
+		else{
+			System.out.println("Erreur de recuperation de Ligne dans la Station !");
+			return listeLignes.lastElement();
+		}
 	}
 	
 	/**
@@ -108,121 +226,6 @@ public class Station{
 		this.nom = nom;
 	}
 	
-	/**
-	 * Insert un horaire dansla liste des horaires
-	 * @param horaire Un horaire, que l'on insert dans la liste
-	 */
-	public void insertHoraire(Horaire horaire){
-		listeHoraires.add(horaire);
-	}
-	
-	/**
-	 * R�cup�re l'horaire � un indice
-	 * @param numero Un int, qui correspond au num�ro de l'horaire dans la liste de horaires
-	 * @return Horaire, qui correspond � l'horaire dans la liste au num�ro indiqu�.
-	 */
-	public Horaire getHoraire(int numero) {
-		if (numero < listeHoraires.size())
-			return listeHoraires.elementAt(numero);
-		else{
-			System.out.println("Erreur d'insertion d'Horaire dans la Station !");
-			return listeHoraires.lastElement();
-		}
-	}
-
-	/**
-	 * Remet les horaires par ordre chronologique dans la liste
-	 */
-	public void trierHoraireChronologique() {
-		Horaire horaireTemp = new Horaire();
-
-		for (int i = 0; i < listeHoraires.size() - 1; i++) {
-			for (int j = i + 1; j < listeHoraires.size(); j++) {
-				if(
-					( getHoraire(i).getHeure() > getHoraire(j).getHeure() ) ||
-					( getHoraire(i).getHeure() == getHoraire(j).getHeure() &&
-						getHoraire(i).getMinute() > getHoraire(j).getMinute() )
-				) {
-						horaireTemp = getHoraire(i);
-						listeHoraires.set(i, getHoraire(j));
-						listeHoraires.set(j, horaireTemp);
-				}
-			}
-		}
-	}
-	
-	public void insertLigne(Ligne ligne){
-		listeLignes.add(ligne);
-	}
-	
-	public Ligne getLigne(int numero){
-		if(numero < listeLignes.size())
-			return listeLignes.elementAt(numero);
-		else{
-			System.out.println("Erreur de recuperation de Ligne dans la Station !");
-			return listeLignes.lastElement();
-		}
-	}
-	
-	public void insertBoutonHoraire(BoutonHoraire bouton){
-		listeBoutonsHoraire.add(bouton);
-	}
-	
-	public BoutonHoraire getBoutonHoraire(int numero){
-		if(numero < listeBoutonsHoraire.size())
-			return listeBoutonsHoraire.elementAt(numero);
-		else{
-			System.out.println("Erreur d'insertion de Ligne dans la Station !");
-			return listeBoutonsHoraire.lastElement();
-		}
-	}
-	
-	public Vector<BoutonHoraire> getListeBoutonsHoraire(){
-		return listeBoutonsHoraire;
-	}
-	
-	/**
-	 * Dessine cette Station a l'affichage
-	 * @param g Une instance de Graphics
-	 * @see Graphics
-	 */
-	public void dessinerStation(Graphics g){
-		int taille = 10;
-		g.fillOval(this.getX() - taille/2, this.getY() - taille/2, taille, taille);
-		g.drawString(this.getNom(), this.getX() + 7, this.getY() - 3);
-	}
-	
-	/**
-	 * Dessine les informations de cette Station a l'affichage
-	 * @param g Une instance de Graphics
-	 * @see Graphics
-	 */
-	public void dessinerInfo(Graphics g){
-		g.setColor(new Color(175, 175, 225));
-		g.drawString("Station : " + this.getNom(), Carte.WIDTH - 290, 60);
-		g.drawString("Numero : " + this.getId(), Carte.WIDTH - 290, 80);
-		g.drawString("Ligne(s) : ", Carte.WIDTH - 290, 100);
-		
-		for(int i = 0;i < listeLignes.size();i++){
-			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), Carte.WIDTH - 230, 100 + i * 20);
-		}
-		
-		listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la station " + this.getNom(), Carte.WIDTH - 270, 180, 240, 30));
-		//listeBoutonsHoraire.elementAt(0).initialiser();
-		
-		for(int i = 0;i < listeLignes.size();i++){
-			listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la ligne " + this.getLigne(i).getNom(), Carte.WIDTH - 270, 220 + 40 * i, 240, 30));
-		}
-		
-		for(int i = 0;i < listeBoutonsHoraire.size();i++){
-			this.getBoutonHoraire(i).paintComponent(g);
-		}
-	}
-	
-	public Vector<Horaire> getlisteHoraires() {
-		return listeHoraires;
-	}
-
 	public void setlisteHoraires(Vector<Horaire> listeHoraires) {
 		this.listeHoraires = listeHoraires;
 	}

@@ -24,7 +24,7 @@ public class Controleur {
 	
 	public Controleur(Carte _carte){
 		this.carte = _carte;
-		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "");
+		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "bite");
 	}
 	
 	public void initialiser() {
@@ -111,7 +111,12 @@ public class Controleur {
 				}
 				carte.repaint();
 			}
-			public void mouseEntered(MouseEvent event){}
+			
+			public void mouseEntered(MouseEvent event){
+				verifierPassageStation(event.getX(), event.getY());
+				carte.repaint();
+			}
+			
 			public void mouseExited(MouseEvent event){}
 			public void mouseReleased(MouseEvent event){}
 			public void mousePressed(MouseEvent event){}
@@ -132,6 +137,23 @@ public class Controleur {
 				  ){
 					this.carte.setStationActuelle(listeStations.elementAt(i));
 					clique = true;
+				}
+			}
+		}
+	}
+	
+	public void verifierPassageStation(int x, int y){
+		for(int j = 0; j < listeZones.size(); j++){
+			Vector<Station> listeStations = listeZones.elementAt(j).getListeStations();
+			for(int i = 0; i < listeStations.size(); i++){
+				if( 
+					(x <= (listeStations.elementAt(i).getX() + 7)) &&
+					(x >= (listeStations.elementAt(i).getX() - 7)) && 
+					(y <= (listeStations.elementAt(i).getY() + 7)) && 
+					(y >= (listeStations.elementAt(i).getY() - 7))
+				  ){
+					System.out.println("bonjour");
+					this.carte.setStationPassageSouris(listeStations.elementAt(i));
 				}
 			}
 		}

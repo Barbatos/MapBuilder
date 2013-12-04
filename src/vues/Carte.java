@@ -22,6 +22,7 @@ public class Carte extends JPanel{
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private Station stationActuelle = null;
+	private Station stationPassageSouris = null;
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -51,6 +52,11 @@ public class Carte extends JPanel{
 		// Affichage informations de la station cliquée
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);
+		}
+		
+		// Affichage nom de la station sur laquelle on passe
+		if(stationPassageSouris != null){
+			stationPassageSouris.dessinerNom(g);
 		}
 	}
 	
@@ -82,6 +88,14 @@ public class Carte extends JPanel{
 		return fenetre;
 	}
 	
+	public Station getStationActuelle(){
+		return stationActuelle;
+	}
+	
+	public Station getStationPassageSouris(){
+		return stationPassageSouris;
+	}
+	
 	public void setListeZones(Vector<Zone> zones){
 		this.listeZones = zones;
 	}
@@ -94,8 +108,7 @@ public class Carte extends JPanel{
 		this.stationActuelle = _station;
 	}
 	
-	public Station getStationActuelle(){
-		return stationActuelle;
+	public void setStationPassageSouris(Station station){
+		this.stationPassageSouris = station;
 	}
-	
 }

@@ -3,6 +3,7 @@ package controleurs;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Vector;
 import java.sql.*;
 
@@ -19,6 +20,7 @@ public class Controleur {
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private MouseListener mouseListener;
+	private MouseMotionListener mouseMotionListener;
 	private BaseDeDonnees bdd;
 	private boolean clique = false;
 	
@@ -112,16 +114,21 @@ public class Controleur {
 				carte.repaint();
 			}
 			
-			public void mouseEntered(MouseEvent event){
-				verifierPassageStation(event.getX(), event.getY());
-				carte.repaint();
-			}
-			
+			public void mouseEntered(MouseEvent event){}			
 			public void mouseExited(MouseEvent event){}
 			public void mouseReleased(MouseEvent event){}
 			public void mousePressed(MouseEvent event){}
 		};
 		
+		mouseMotionListener = new MouseMotionListener(){
+			public void mouseDragged(MouseEvent event){}
+			public void mouseMoved(MouseEvent event){
+				verifierPassageStation(event.getX(), event.getY());
+				carte.repaint();
+			}
+		};
+		
+		this.carte.addMouseMotionListener(mouseMotionListener);
 		this.carte.addMouseListener(mouseListener);
 	}
 	
@@ -152,7 +159,6 @@ public class Controleur {
 					(y <= (listeStations.elementAt(i).getY() + 7)) && 
 					(y >= (listeStations.elementAt(i).getY() - 7))
 				  ){
-					System.out.println("bonjour");
 					this.carte.setStationPassageSouris(listeStations.elementAt(i));
 				}
 			}

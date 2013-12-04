@@ -23,7 +23,7 @@ public class Controleur {
 	
 	public Controleur(Vue _vue){
 		this.vue = _vue;
-		this.bdd = new BaseDeDonnees("jdbc:mysql://localhost:3306/mapbuilder", "root", "");
+		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "");
 	}
 	
 	public void initialiser(){

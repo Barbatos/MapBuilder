@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.util.Vector;
 
 public class Carte {
@@ -44,6 +45,47 @@ public class Carte {
 		return listeExte;
 	}
 	
+	public void dessinerZoneBis(Graphics g){
+		int x[] = new int[3];
+		int y[] = new int[3];
+		Vector<Station> listeExte = new Vector<Station>();
+		boolean dessinable;
+		
+		for(int f = 0; f < listeZones.size(); f++) {
+			listeExte = stationsExterieures(listeZones.elementAt(f));
+
+			for(int i = 0;i < listeZones.elementAt(f).getListeStations().size();i++){
+				x[0] = listeZones.elementAt(f).getListeStations().elementAt(i).getX();
+				y[0] = listeZones.elementAt(f).getListeStations().elementAt(i).getY();
+				
+				for(int j = i;j < listeZones.elementAt(f).getListeStations().size();j++){
+					x[1] = listeZones.elementAt(f).getListeStations().elementAt(j).getX();
+					y[1] = listeZones.elementAt(f).getListeStations().elementAt(j).getY();
+					
+					for(int k = j;k < listeZones.elementAt(f).getListeStations().size();k++){
+						x[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getX();
+						y[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getY();
+						
+						Polygon polygonXY = new Polygon(x, y, 3);
+						dessinable = true;
+						
+						for(int m = 0; m < listeExte.size(); m ++) {
+							// si le polygone formé par x et y ne contient aucune station de listeExte, alors on le dessine.
+							if(polygonXY.contains(listeExte.elementAt(m).getX(), listeExte.elementAt(m).getY())) {
+								dessinable = false;
+							}
+						}
+						
+						if(dessinable) {
+							g.fillPolygon(x, y, 3);
+						}
+					}
+				}
+			}
+		}
+
+	}
+	
 	public void dessinerCarte(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(2));
@@ -54,6 +96,8 @@ public class Carte {
 		for(int i = 0; i < listeZones.size(); i++){
 			listeZones.elementAt(i).dessinerZone(g);
 		}
+		
+		this.dessinerZoneBis(g);
 
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){

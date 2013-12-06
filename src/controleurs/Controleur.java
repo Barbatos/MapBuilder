@@ -4,20 +4,21 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
-import java.sql.*;
 
-import modeles.Horaire;
+import modeles.BaseDeDonnees;
 import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;
 import modeles.Zone;
-import modeles.BaseDeDonnees;
 import vues.Carte;
 
 public class Controleur {
 	private Carte carte;
 	private Vector<Zone> listeZones = new Vector<Zone>();
+	Vector<Station> listeStations = new Vector<Station>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	Vector<MoyenTransport> listeMoyensTransport = new Vector<MoyenTransport>();
 	private MouseListener mouseListener;
@@ -35,13 +36,7 @@ public class Controleur {
 		ResultSet reponseStation;
 		ResultSet reponseLigne;
 		ResultSet reponseZone;
-		ResultSet reponseTransportLigne;
-		int id = 0;
-		String nom = "";
-		
-		//Initialisation moyens de transport
-		MoyenTransport bus = new MoyenTransport(1, "Bus");
-		MoyenTransport tram = new MoyenTransport(2, "Tram");
+		ResultSet reponseLigneStation;
 		
 		try {
 			reponseMoyenTransport = this.bdd.select("SELECT * FROM moyentransport");
@@ -57,8 +52,6 @@ public class Controleur {
 		
 		try {
 			reponseStation = this.bdd.select("SELECT * FROM station");
-			
-			Vector<Station> listeStations = new Vector<Station>();
 			
 			while(reponseStation.next()){
 				listeStations.add(new Station(reponseStation.getInt("id"), reponseStation.getInt("coordX"), reponseStation.getInt("coordY"), reponseStation.getString("nom")));
@@ -77,19 +70,12 @@ public class Controleur {
 			e3.printStackTrace();
 		}
 		
+		//Initialisation des lignes
 		try {
 			reponseLigne = this.bdd.select("SELECT l.*, lt.idTransport FROM `ligne` l INNER JOIN `ligne-transport` lt ON lt.idLigne = l.id");
 			
-			Vector<Station> listeLignes = new Vector<Station>();
-			
 			while(reponseLigne.next()){
-				MoyenTransport tmp = null;
-				
-				for(int i = 0;i < listeMoyensTransport.size();i++){
-					if(listeMoyensTransport.elementAt(i).getId() == reponseLigne.getInt("idTransport")){
-						tmp = listeMoyensTransport.elementAt(i);
-					}
-				}
+				MoyenTransport tmp = getMoyenTransportId(reponseLigne.getInt("idTransport"));
 				
 				listeLignes.add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), tmp));		
 			}
@@ -97,61 +83,31 @@ public class Controleur {
 			e4.printStackTrace();
 		}
 		
-		//Initialisation stations
-		Station sta1 = new Station(1, 10, 50, "sta1");
-		Station sta2 = new Station(2, 50, 100, "sta2");
-		Station sta3 = new Station(3, 100, 150, "sta3");
-		Station sta4 = new Station(4, 200, 300, "sta4");
-		Station sta5 = new Station(5, 500, 310, "sta5");
-		Station sta6 = new Station(6, 50, 170, "sta6");
-		Station sta7 = new Station(7, 170, 70, "sta7");
-		Station sta8 = new Station(8, 500, 500, "sta8");
-
-		//Initialisation zone
-		Zone zon1 = new Zone(1, "1");
-		zon1.insertStation(sta1);
-		zon1.insertStation(sta2);
-		zon1.insertStation(sta3);
-		zon1.insertStation(sta4);
-		zon1.insertStation(sta5);
-		zon1.insertStation(sta6);
-		zon1.insertStation(sta7);
-		zon1.insertStation(sta8);
-		listeZones.add(zon1);
-		
-		this.carte.setListeZones(listeZones);
-		
-		//Initialisation des lignes
-		Ligne li1 = new Ligne(1, "1", new Color(200, 255, 200), tram);
-		li1.setStationDepart(sta1);
-		li1.setStationArrivee(sta5);
-		li1.insertStation(sta2, 1);
-		li1.insertStation(sta3, 2);
-		li1.insertStation(sta4, 3);
-		
-		for(int i = 0; i < 10; i++) {
-			for(int j = 0; j < li1.getListeStations().size(); j++) {
-				Horaire hor = new Horaire(i, j, i+j, i*j);
-				li1.getStation(j).insertHoraire(hor);
+		//Initialisation des stations dans les lignes
+		try {
+			reponseLigneStation = this.bdd.select("SELECT * FROM `station-ligne` ORDER BY idLigne, ordre");
+			
+			while(reponseLigneStation.next()){
+				System.out.println(getLigneId(reponseLigneStation.getInt("idLigne")).getNom() + " /// " + getStationId(reponseLigneStation.getInt("idStation")).getNom() + " /// " + reponseLigneStation.getInt("ordre"));
+				
+				getLigneId(reponseLigneStation.getInt("idLigne")).ajouterStation(getStationId(reponseLigneStation.getInt("idStation")));
+				getStationId(reponseLigneStation.getInt("idStation")).ajouterLigne(getLigneId(reponseLigneStation.getInt("idLigne")));;
 			}
+		} catch (SQLException e5){
+			e5.printStackTrace();
 		}
 		
-		Ligne li2 = new Ligne(2, "2", new Color(110, 200, 250), bus);
-		li2.setStationDepart(sta6);
-		li2.setStationArrivee(sta8);
-		li2.insertStation(sta3, 1);
-		li2.insertStation(sta7, 2);
+		//Initialisation des zones
+		try {
+			reponseZone = this.bdd.select("SELECT * FROM zone");
+			
+			while(reponseZone.next()){
+				listeZones.add(new Zone(reponseZone.getInt("id"), reponseZone.getString("nom")));
+			}
+		} catch (SQLException e6) {
+			e6.printStackTrace();
+		}
 
-		for(int i = 0;i < li1.getListeStations().size();i++){
-			li1.getStation(i).insertLigne(li1);
-		}
-		
-		for(int i = 0;i < li2.getListeStations().size();i++){
-			li2.getStation(i).insertLigne(li2);
-		}
-		
-		listeLignes.add(li1);
-		listeLignes.add(li2);
 		this.carte.setListeLignes(listeLignes);
 		
 		mouseListener = new MouseListener(){
@@ -182,34 +138,28 @@ public class Controleur {
 	}
 	
 	public void verifierClicStation(int x, int y){
-		for(int j = 0; j < listeZones.size(); j++){
-			Vector<Station> listeStations = listeZones.elementAt(j).getListeStations();
-			for(int i = 0; i < listeStations.size(); i++){
-				if( 
-					(x <= (listeStations.elementAt(i).getX() + 7)) &&
-					(x >= (listeStations.elementAt(i).getX() - 7)) && 
-					(y <= (listeStations.elementAt(i).getY() + 7)) && 
-					(y >= (listeStations.elementAt(i).getY() - 7))
-				  ){
-					this.carte.setStationActuelle(listeStations.elementAt(i));
-					clique = true;
-				}
+		for(int i = 0; i < listeStations.size(); i++){
+			if( 
+				(x <= (listeStations.elementAt(i).getX() + 7)) &&
+				(x >= (listeStations.elementAt(i).getX() - 7)) && 
+				(y <= (listeStations.elementAt(i).getY() + 7)) && 
+				(y >= (listeStations.elementAt(i).getY() - 7))
+			  ){
+				this.carte.setStationActuelle(listeStations.elementAt(i));
+				clique = true;
 			}
 		}
 	}
 	
 	public void verifierPassageStation(int x, int y){
-		for(int j = 0; j < listeZones.size(); j++){
-			Vector<Station> listeStations = listeZones.elementAt(j).getListeStations();
-			for(int i = 0; i < listeStations.size(); i++){
-				if( 
-					(x <= (listeStations.elementAt(i).getX() + 7)) &&
-					(x >= (listeStations.elementAt(i).getX() - 7)) && 
-					(y <= (listeStations.elementAt(i).getY() + 7)) && 
-					(y >= (listeStations.elementAt(i).getY() - 7))
-				  ){
-					this.carte.setStationPassageSouris(listeStations.elementAt(i));
-				}
+		for(int i = 0; i < listeStations.size(); i++){
+			if( 
+				(x <= (listeStations.elementAt(i).getX() + 7)) &&
+				(x >= (listeStations.elementAt(i).getX() - 7)) && 
+				(y <= (listeStations.elementAt(i).getY() + 7)) && 
+				(y >= (listeStations.elementAt(i).getY() - 7))
+			  ){
+				this.carte.setStationPassageSouris(listeStations.elementAt(i));
 			}
 		}
 	}
@@ -226,5 +176,32 @@ public class Controleur {
 				return;
 			}
 		}
+	}
+	
+	public Station getStationId(int id){
+		for(int i = 0;i < listeStations.size();i++){
+			if(listeStations.elementAt(i).getId() == id){
+				return listeStations.elementAt(i);
+			}
+		}
+		return null;
+	}
+	
+	public Ligne getLigneId(int id){
+		for(int i = 0;i < listeLignes.size();i++){
+			if(listeLignes.elementAt(i).getId() == id){
+				return listeLignes.elementAt(i);
+			}
+		}
+		return null;
+	}
+	
+	public MoyenTransport getMoyenTransportId(int id){
+		for(int i = 0;i < listeMoyensTransport.size();i++){
+			if(listeMoyensTransport.elementAt(i).getId() == id){
+				return listeMoyensTransport.elementAt(i);
+			}
+		}
+		return null;
 	}
 }

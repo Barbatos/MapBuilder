@@ -82,7 +82,7 @@ public class Station{
 	}
 	
 	public void dessinerNom(Graphics g){
-		g.setColor(new Color(0, 0, 0));
+		g.setColor(new Color(255, 255, 255));
 		g.drawString(this.getNom(), this.getX() + 7, this.getY() - 3);
 	}
 	
@@ -90,7 +90,7 @@ public class Station{
 	 * Insert un horaire dansla liste des horaires
 	 * @param horaire Un horaire, que l'on insert dans la liste
 	 */
-	public void insertHoraire(Horaire horaire){
+	public void ajouterHoraire(Horaire horaire){
 		listeHoraires.add(horaire);
 	}
 
@@ -115,7 +115,7 @@ public class Station{
 		}
 	}
 	
-	public void insertLigne(Ligne ligne){
+	public void ajouterLigne(Ligne ligne){
 		listeLignes.add(ligne);
 	}
 	

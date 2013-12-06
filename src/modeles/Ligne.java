@@ -42,6 +42,10 @@ public class Ligne extends Station{
 			System.out.println("Erreur d'insertion de station dans la Ligne !");
 	}
 	
+	public void ajouterStation(Station station){
+		listeStations.add(station);
+	}
+	
 	public int getId(){
 		return this.id;
 	}

@@ -233,10 +233,11 @@ public class Station{
 	
 	public String toString(){
 		String str;
-		str = "";
-		str += " num " + this.getId();
-		str += " : X :" + this.getX();
-		str += " Y : " + this.getY();
+		str = "Station : ";
+		str += " nom - " + this.getNom();
+		str += " / num - " + this.getId();
+		str += " / X - " + this.getX();
+		str += " / Y - " + this.getY();
 		
 		return str;
 	}

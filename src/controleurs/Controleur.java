@@ -19,6 +19,7 @@ public class Controleur {
 	private Carte carte;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
+	Vector<MoyenTransport> listeMoyensTransport = new Vector<MoyenTransport>();
 	private MouseListener mouseListener;
 	private MouseMotionListener mouseMotionListener;
 	private BaseDeDonnees bdd;
@@ -30,21 +31,71 @@ public class Controleur {
 	}
 	
 	public void initialiser() {
-		ResultSet reponse;
+		ResultSet reponseMoyenTransport;
+		ResultSet reponseStation;
+		ResultSet reponseLigne;
+		ResultSet reponseZone;
+		ResultSet reponseTransportLigne;
+		int id = 0;
+		String nom = "";
+		
+		//Initialisation moyens de transport
+		MoyenTransport bus = new MoyenTransport(1, "Bus");
+		MoyenTransport tram = new MoyenTransport(2, "Tram");
 		
 		try {
-			reponse = this.bdd.select("SELECT * FROM moyentransport");
-			while(reponse.next()){
-				System.out.println("moyen transport: "+reponse.getString("nom"));
+			reponseMoyenTransport = this.bdd.select("SELECT * FROM moyentransport");
+			
+			Vector<MoyenTransport> listeMoyenTransport = new Vector<MoyenTransport>();
+			
+			while(reponseMoyenTransport.next()){
+				listeMoyenTransport.add(new MoyenTransport(reponseMoyenTransport.getInt("id"), reponseMoyenTransport.getString("nom")));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 		
+		try {
+			reponseStation = this.bdd.select("SELECT * FROM station");
+			
+			Vector<Station> listeStations = new Vector<Station>();
+			
+			while(reponseStation.next()){
+				listeStations.add(new Station(reponseStation.getInt("id"), reponseStation.getInt("coordX"), reponseStation.getInt("coordY"), reponseStation.getString("nom")));
+			}
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 		
-		//Initialisation moyens de transport
-		MoyenTransport bus = new MoyenTransport(1, "Bus");
-		MoyenTransport tram = new MoyenTransport(2, "Tram");
+		try {
+			reponseMoyenTransport = this.bdd.select("SELECT * FROM moyentransport");
+			
+			while(reponseMoyenTransport.next()){
+				listeMoyensTransport.add(new MoyenTransport(reponseMoyenTransport.getInt("id"), reponseMoyenTransport.getString("nom")));
+			}
+		} catch (SQLException e3) {
+			e3.printStackTrace();
+		}
+		
+		try {
+			reponseLigne = this.bdd.select("SELECT l.*, lt.idTransport FROM `ligne` l INNER JOIN `ligne-transport` lt ON lt.idLigne = l.id");
+			
+			Vector<Station> listeLignes = new Vector<Station>();
+			
+			while(reponseLigne.next()){
+				MoyenTransport tmp = null;
+				
+				for(int i = 0;i < listeMoyensTransport.size();i++){
+					if(listeMoyensTransport.elementAt(i).getId() == reponseLigne.getInt("idTransport")){
+						tmp = listeMoyensTransport.elementAt(i);
+					}
+				}
+				
+				listeLignes.add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), tmp));		
+			}
+		} catch (SQLException e4){
+			e4.printStackTrace();
+		}
 		
 		//Initialisation stations
 		Station sta1 = new Station(1, 10, 50, "sta1");
@@ -90,8 +141,6 @@ public class Controleur {
 		li2.setStationArrivee(sta8);
 		li2.insertStation(sta3, 1);
 		li2.insertStation(sta7, 2);
-		
-		System.out.println(li1);
 
 		for(int i = 0;i < li1.getListeStations().size();i++){
 			li1.getStation(i).insertLigne(li1);

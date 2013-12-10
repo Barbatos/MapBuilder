@@ -18,9 +18,9 @@ import vues.Carte;
 public class Controleur {
 	private Carte carte;
 	private Vector<Zone> listeZones = new Vector<Zone>();
-	Vector<Station> listeStations = new Vector<Station>();
+	private Vector<Station> listeStations = new Vector<Station>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
-	Vector<MoyenTransport> listeMoyensTransport = new Vector<MoyenTransport>();
+	private Vector<MoyenTransport> listeMoyensTransport = new Vector<MoyenTransport>();
 	private MouseListener mouseListener;
 	private MouseMotionListener mouseMotionListener;
 	private BaseDeDonnees bdd;
@@ -38,18 +38,22 @@ public class Controleur {
 		ResultSet reponseZone;
 		ResultSet reponseLigneStation;
 		
+		/**
+		 * Initialisation des moyens de transport
+		 */
 		try {
 			reponseMoyenTransport = this.bdd.select("SELECT * FROM moyentransport");
 			
-			Vector<MoyenTransport> listeMoyenTransport = new Vector<MoyenTransport>();
-			
 			while(reponseMoyenTransport.next()){
-				listeMoyenTransport.add(new MoyenTransport(reponseMoyenTransport.getInt("id"), reponseMoyenTransport.getString("nom")));
+				listeMoyensTransport.add(new MoyenTransport(reponseMoyenTransport.getInt("id"), reponseMoyenTransport.getString("nom")));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 		
+		/**
+		 * Initialisation des stations
+		 */
 		try {
 			reponseStation = this.bdd.select("SELECT * FROM station");
 			
@@ -60,17 +64,9 @@ public class Controleur {
 			e2.printStackTrace();
 		}
 		
-		try {
-			reponseMoyenTransport = this.bdd.select("SELECT * FROM moyentransport");
-			
-			while(reponseMoyenTransport.next()){
-				listeMoyensTransport.add(new MoyenTransport(reponseMoyenTransport.getInt("id"), reponseMoyenTransport.getString("nom")));
-			}
-		} catch (SQLException e3) {
-			e3.printStackTrace();
-		}
-		
-		//Initialisation des lignes
+		/**
+		 * Initialisation des lignes
+		 */
 		try {
 			reponseLigne = this.bdd.select("SELECT l.*, lt.idTransport FROM `ligne` l INNER JOIN `ligne-transport` lt ON lt.idLigne = l.id");
 			
@@ -79,22 +75,22 @@ public class Controleur {
 				
 				listeLignes.add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), tmp));		
 			}
-		} catch (SQLException e4){
-			e4.printStackTrace();
+		} catch (SQLException e3){
+			e3.printStackTrace();
 		}
 		
-		//Initialisation des stations dans les lignes
+		/**
+		 * Initialisation des relations stations/lignes
+		 */
 		try {
 			reponseLigneStation = this.bdd.select("SELECT * FROM `station-ligne` ORDER BY idLigne, ordre");
 			
 			while(reponseLigneStation.next()){
-				System.out.println(getLigneId(reponseLigneStation.getInt("idLigne")).getNom() + " /// " + getStationId(reponseLigneStation.getInt("idStation")).getNom() + " /// " + reponseLigneStation.getInt("ordre"));
-				
 				getLigneId(reponseLigneStation.getInt("idLigne")).ajouterStation(getStationId(reponseLigneStation.getInt("idStation")));
 				getStationId(reponseLigneStation.getInt("idStation")).ajouterLigne(getLigneId(reponseLigneStation.getInt("idLigne")));;
 			}
-		} catch (SQLException e5){
-			e5.printStackTrace();
+		} catch (SQLException e4){
+			e4.printStackTrace();
 		}
 		
 		//Initialisation des zones
@@ -104,8 +100,8 @@ public class Controleur {
 			while(reponseZone.next()){
 				listeZones.add(new Zone(reponseZone.getInt("id"), reponseZone.getString("nom")));
 			}
-		} catch (SQLException e6) {
-			e6.printStackTrace();
+		} catch (SQLException e5) {
+			e5.printStackTrace();
 		}
 
 		this.carte.setListeLignes(listeLignes);

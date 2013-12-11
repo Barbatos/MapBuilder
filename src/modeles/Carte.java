@@ -44,7 +44,7 @@ public class Carte {
 		return listeExte;
 	}
 	
-	public void dessinerZoneBis(Graphics g){
+	public void dessinerZone(Graphics g){
 		int x[] = new int[3];
 		int y[] = new int[3];
 		Vector<Station> listeExte = new Vector<Station>();
@@ -92,7 +92,7 @@ public class Carte {
 		// Affichage des zones
 		g.setColor(new Color(200, 100, 100));
 		
-		this.dessinerZoneBis(g);
+		this.dessinerZone(g);
 		
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){

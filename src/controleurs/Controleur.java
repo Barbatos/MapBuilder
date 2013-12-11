@@ -126,6 +126,7 @@ public class Controleur {
 		}
 
 		this.cartePanel.setListeLignes(listeLignes);
+		this.cartePanel.setListeZones(listeZones);
 		
 		mouseListener = new MouseListener(){
 			public void mouseClicked(MouseEvent event){

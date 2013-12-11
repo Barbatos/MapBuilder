@@ -39,7 +39,7 @@ public class Zone extends Station {
 		}
 	}
 	
-	public void insertStation(Station station) {
+	public void ajouterStation(Station station) {
 		listeStations.add(station);
 	}
 	

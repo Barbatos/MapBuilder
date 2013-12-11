@@ -40,6 +40,7 @@ public class Controleur {
 		ResultSet reponseLigne;
 		ResultSet reponseZone;
 		ResultSet reponseLigneStation;
+		ResultSet reponseZoneStation;
 		
 		/**
 		 * Initialisation des moyens de transport
@@ -107,6 +108,19 @@ public class Controleur {
 			}
 		} catch (SQLException e5) {
 			e5.printStackTrace();
+		}
+		
+		/**
+		 * Initialisation des relations stations/zones
+		 */
+		try {
+			reponseZoneStation = this.bdd.select("SELECT * FROM `station-zone`");
+			
+			while(reponseZoneStation.next()){
+				getZoneId(reponseZoneStation.getInt("idZone")).ajouterStation(getStationId(reponseZoneStation.getInt("idStation")));
+			}
+		} catch (SQLException e6){
+			e6.printStackTrace();
 		}
 
 		this.cartePanel.setListeLignes(listeLignes);
@@ -215,6 +229,15 @@ public class Controleur {
 		for(int i = 0;i < listeMoyensTransport.size();i++){
 			if(listeMoyensTransport.elementAt(i).getId() == id){
 				return listeMoyensTransport.elementAt(i);
+			}
+		}
+		return null;
+	}
+	
+	public Zone getZoneId(int id){
+		for(int i = 0;i < listeZones.size();i++){
+			if(listeZones.elementAt(i).getId() == id){
+				return listeZones.elementAt(i);
 			}
 		}
 		return null;

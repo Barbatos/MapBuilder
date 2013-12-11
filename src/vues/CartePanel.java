@@ -71,6 +71,10 @@ public class CartePanel extends JPanel{
 		
 		carte.dessinerCarte(g);
 		
+		for(int i = 0;i < this.carte.getListeZones().size();i++){
+			this.carte.getListeZones().elementAt(i).dessinerZone(g);
+		}
+		
 		// Affichage informations de la station cliquée
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);

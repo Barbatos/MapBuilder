@@ -105,7 +105,7 @@ public class Controleur {
 			reponseZone = this.bdd.select("SELECT * FROM zone");
 			
 			while(reponseZone.next()){
-				listeZones.add(new Zone(reponseZone.getInt("id"), reponseZone.getString("nom")));
+				listeZones.add(new Zone(reponseZone.getInt("id"), reponseZone.getString("nom"), new Color(reponseZone.getInt("couleurR"), reponseZone.getInt("couleurG"), reponseZone.getInt("couleurB"))));
 			}
 		} catch (SQLException e5) {
 			e5.printStackTrace();
@@ -119,6 +119,7 @@ public class Controleur {
 			
 			while(reponseZoneStation.next()){
 				getZoneId(reponseZoneStation.getInt("idZone")).ajouterStation(getStationId(reponseZoneStation.getInt("idStation")));
+				getStationId(reponseZoneStation.getInt("idStation")).setZone(getZoneId(reponseZoneStation.getInt("idZone")));
 			}
 		} catch (SQLException e6){
 			e6.printStackTrace();

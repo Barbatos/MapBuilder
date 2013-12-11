@@ -19,6 +19,7 @@ public class Station{
 	private Vector<Horaire> listeHoraires = new Vector<Horaire>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private Vector<Bouton> listeBoutonsHoraire = new Vector<Bouton>();
+	private Zone zone;
 	
 	/**
 	 * Constructeur par defaut d'une Station
@@ -62,6 +63,9 @@ public class Station{
 	public void dessinerInfo(Graphics g){
 		g.setColor(new Color(175, 175, 225));
 		g.drawString("Station : " + this.getNom(), CartePanel.WIDTH - 290, 60);
+		
+		g.drawString("Zone : " + this.getZone().getNom(), CartePanel.WIDTH - 290, 80);
+		
 		g.drawString("Ligne(s) : ", CartePanel.WIDTH - 290, 100);
 		
 		for(int i = 0;i < listeLignes.size();i++){
@@ -69,7 +73,6 @@ public class Station{
 		}
 		
 		listeBoutonsHoraire.add(new Bouton("Horaires de la station", CartePanel.WIDTH - 270, 180, 240, 30));
-		//listeBoutonsHoraire.elementAt(0).initialiser();
 		
 		for(int i = 0;i < listeLignes.size();i++){
 			listeBoutonsHoraire.add(new Bouton("Horaires de la ligne " + this.getLigne(i).getNom(), CartePanel.WIDTH - 270, 220 + 40 * i, 240, 30));
@@ -154,6 +157,10 @@ public class Station{
 		return this.nom;
 	}
 	
+	public Zone getZone(){
+		return this.zone;
+	}
+	
 	/**
 	 * Récupère l'horaire à un indice
 	 * @param numero Un int, qui correspond au numéro de l'horaire dans la liste de horaires
@@ -224,6 +231,10 @@ public class Station{
 	 */
 	public void setNom(String nom){
 		this.nom = nom;
+	}
+	
+	public void setZone(Zone zone){
+		this.zone = zone;
 	}
 	
 	public void setlisteHoraires(Vector<Horaire> listeHoraires) {

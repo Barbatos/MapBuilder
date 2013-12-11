@@ -1,20 +1,24 @@
 package modeles;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Vector;
 
 public class Zone extends Station {
 	private int id;
 	private String nom;
+	private Color couleur;
 	private Vector<Station> listeStations = new Vector<Station>();
 	
 	public Zone(){
 		this.id = -1;
 		this.nom = "Pas de nom";
+		this.couleur = new Color(100, 100, 100);
 	}
 	
-	public Zone(int _id, String _nom){
+	public Zone(int _id, String _nom, Color couleur){
 		this.id = _id;
 		this.nom = _nom;
+		this.couleur = couleur;
 	}
 	
 	public void dessinerZone(Graphics g){
@@ -33,6 +37,7 @@ public class Zone extends Station {
 					x[2] = listeStations.elementAt(k).getX();
 					y[2] = listeStations.elementAt(k).getY();
 					
+					g.setColor(this.couleur);
 					g.fillPolygon(x, y, 3);
 				}
 			}
@@ -49,6 +54,10 @@ public class Zone extends Station {
 	
 	public String getNom(){
 		return this.nom;
+	}
+	
+	public Color getCouleur(){
+		return this.couleur;
 	}
 	
 	public Station getStation(int numero) {
@@ -73,5 +82,9 @@ public class Zone extends Station {
 	
 	public void setNom(String _nom){
 		this.nom = _nom;
+	}
+	
+	public void setCouleur(Color couleur){
+		this.couleur = couleur;
 	}
 }

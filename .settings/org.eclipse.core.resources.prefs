@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//src/controleurs/Controleur.java=UTF-8
+encoding//src/main/MapBuilder.java=UTF-8
+encoding//src/modeles/BaseDeDonnees.java=UTF-8
+encoding//src/modeles/Bouton.java=UTF-8
+encoding//src/modeles/Carte.java=UTF-8
+encoding//src/modeles/Fichier.java=UTF-8
+encoding//src/modeles/Horaire.java=UTF-8
+encoding//src/modeles/Intersection.java=UTF-8
+encoding//src/modeles/Ligne.java=UTF-8
+encoding//src/modeles/MoyenTransport.java=UTF-8
+encoding//src/modeles/Station.java=UTF-8
+encoding//src/modeles/Ville.java=UTF-8
+encoding//src/modeles/Zone.java=UTF-8
+encoding//src/vues/AjoutDonneesPanel.java=UTF-8
+encoding//src/vues/CartePanel.java=UTF-8
+encoding//src/vues/HorairesPanel.java=UTF-8

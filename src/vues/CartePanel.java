@@ -29,6 +29,7 @@ public class CartePanel extends JPanel{
 	private Station stationActuelle = null;
 	private Station stationPassageSouris = null;
 	private Vector<Bouton> listeBoutons = new Vector<Bouton>();
+	
 	private Carte carte = new Carte(listeZones, listeLignes, listeVilles, listeStations);
 	
 	public CartePanel(){
@@ -70,18 +71,6 @@ public class CartePanel extends JPanel{
 		
 		carte.dessinerCarte(g);
 		
-//		// Affichage des zones
-//		g.setColor(new Color(200, 100, 100));
-//		
-//		for(int i = 0; i < listeZones.size(); i++){
-//			listeZones.elementAt(i).dessinerZone(g);
-//		}
-//
-//		// Affichage des lignes
-//		for(int i = 0; i < listeLignes.size(); i++){
-//			listeLignes.elementAt(i).dessinerLigne(g2);
-//		}
-		
 		// Affichage informations de la station cliqu�e
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);
@@ -116,10 +105,12 @@ public class CartePanel extends JPanel{
 	
 	public void setListeZones(Vector<Zone> zones){
 		this.listeZones = zones;
+		this.carte.setListeZones(zones);
 	}
 	
 	public void setListeLignes(Vector<Ligne> lignes){
 		this.listeLignes = lignes;
+		this.carte.setListeLignes(lignes);
 	}
 	
 	public void setStationActuelle(Station _station){

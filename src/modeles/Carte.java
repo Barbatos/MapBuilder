@@ -2,7 +2,6 @@ package modeles;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -108,12 +107,28 @@ public class Carte {
 	public void setListeLignes(Vector<Ligne> lignes){
 		this.listeLignes = lignes;
 	}
+	
+	public void setListeStations(Vector<Station> stations){
+		this.listeStations = stations;
+	}
+	
+	public void setListeVilles(Vector<Ville> villes){
+		this.listeVilles = villes;
+	}
 
-	public Vector<Station> getListeStations() {
-		return this.listeStations;
+	public Vector<Zone> getListeZones(){
+		return this.listeZones;
 	}
 
 	public Vector<Ligne> getListeLignes() {
 		return this.listeLignes;
+	}
+	
+	public Vector<Station> getListeStations(){
+		return this.listeStations;
+	}
+	
+	public Vector<Ville> getListeVilles(){
+		return this.listeVilles;
 	}
 }

@@ -14,6 +14,7 @@ import modeles.MoyenTransport;
 import modeles.Station;
 import modeles.Ville;
 import modeles.Zone;
+import vues.AjoutDonneesPanel;
 import vues.CartePanel;
 import vues.HorairesPanel;
 
@@ -114,9 +115,7 @@ public class Controleur {
 		mouseListener = new MouseListener(){
 			public void mouseClicked(MouseEvent event){
 				verifierClicStation(event.getX(), event.getY());
-				if(clique){
-					verifierClicBouton(event.getX(), event.getY());
-				}
+				verifierClicBouton(event.getX(), event.getY());
 				cartePanel.repaint();
 			}
 			
@@ -166,20 +165,7 @@ public class Controleur {
 	}
 	
 	public void verifierClicBouton(int x, int y){
-		// Vérification du clic sur les boutons d'horaires
-		for(int i = 0;i < this.cartePanel.getStationActuelle().getListeBoutonsHoraire().size();i++){
-			if( 
-				(x <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
-				(x >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX()) && 
-				(y <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
-				(y >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY())
-			){
-				new HorairesPanel(this.cartePanel.getStationActuelle());
-				return;
-			}
-		}
-		
-		// Vérification du clic sur les autres boutons
+		// Vérification du clic sur les boutons
 		for(int i = 0;i < this.cartePanel.getListeBoutons().size();i++){
 			if( 
 				(x <= this.cartePanel.getBouton(i).getX() + this.cartePanel.getBouton(i).getLargeur()) &&
@@ -187,8 +173,26 @@ public class Controleur {
 				(y <= this.cartePanel.getBouton(i).getY() + this.cartePanel.getBouton(i).getHauteur()) && 
 				(y >= this.cartePanel.getBouton(i).getY())
 			){
-				System.out.println("yolo");
-				return;
+				if(this.cartePanel.getBouton(i).getNom() == "Ajout de données"){
+					new AjoutDonneesPanel();
+					return;
+				}
+			}
+		}
+		
+		// Vérification du clic sur les boutons d'horaires, seulement si on
+		// a sélectionné la station qui nous intéresse.
+		if(clique){
+			for(int i = 0;i < this.cartePanel.getStationActuelle().getListeBoutonsHoraire().size();i++){
+				if( 
+					(x <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
+					(x >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX()) && 
+					(y <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
+					(y >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY())
+				){
+					new HorairesPanel(this.cartePanel.getStationActuelle());
+					return;
+				}
 			}
 		}
 	}

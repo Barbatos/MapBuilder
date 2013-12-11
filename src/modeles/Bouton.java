@@ -15,7 +15,7 @@ public class Bouton {
 		this.x = x;
 		this.y = y;
 		this.largeur = largeur;
-		this. hauteur = hauteur;
+		this.hauteur = hauteur;
 	}
 	
 	public void paintComponent(Graphics g){

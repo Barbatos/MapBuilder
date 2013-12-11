@@ -2,6 +2,7 @@ package modeles;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -12,7 +13,7 @@ public class Carte {
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private Vector<Ville> listeVilles = new Vector<Ville>();
 	private Vector<Station> listeStations = new Vector<Station>();
-
+	
 	public Carte(){
 	}
 	
@@ -106,5 +107,15 @@ public class Carte {
 	
 	public void setListeLignes(Vector<Ligne> lignes){
 		this.listeLignes = lignes;
+	}
+
+	public Vector<Station> getListeStations() {
+		// TODO Auto-generated method stub
+		return this.listeStations;
+	}
+
+	public Vector<Ligne> getListeLignes() {
+		// TODO Auto-generated method stub
+		return this.listeLignes;
 	}
 }

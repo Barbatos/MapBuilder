@@ -9,8 +9,10 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import modeles.Carte;
 import modeles.Ligne;
 import modeles.Station;
+import modeles.Ville;
 import modeles.Zone;
 
 public class CartePanel extends JPanel{
@@ -21,25 +23,29 @@ public class CartePanel extends JPanel{
 	private JFrame fenetre;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
+	private Vector<Ville> listeVilles = new Vector<Ville>();
+	private Vector<Station> listeStations = new Vector<Station>();
 	private Station stationActuelle = null;
 	private Station stationPassageSouris = null;
+	
+	private Carte carte = new Carte(listeZones, listeLignes, listeVilles, listeStations);
 	
 	public CartePanel(){
 		fenetre = new JFrame();
 		
-		// On définit le titre de la fenêtre
+		// On dï¿½finit le titre de la fenï¿½tre
 		fenetre.setTitle("MapBuilder v0.0.0.0.1");
 
-		// Taille par défaut
+		// Taille par dï¿½faut
 		fenetre.setSize(WIDTH, HEIGHT);
 
-		// On centre la fenêtre
+		// On centre la fenï¿½tre
 		fenetre.setLocationRelativeTo(null);
 
-		// On empêche le redimensionnement de la fenêtre
+		// On empï¿½che le redimensionnement de la fenï¿½tre
 		fenetre.setResizable(false);
 
-		// Opération par défaut quand on quitte
+		// Opï¿½ration par dï¿½faut quand on quitte
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Import de la classe Affichage
@@ -61,19 +67,21 @@ public class CartePanel extends JPanel{
 		g.setColor(new Color(175, 175, 225));
 		g.drawString("INFORMATIONS", CartePanel.WIDTH - 300 / 2 - g.getFontMetrics().stringWidth("INFORMATIONS") / 2, 20);
 		
-		// Affichage des zones
-		g.setColor(new Color(200, 100, 100));
+		carte.dessinerCarte(g);
 		
-		for(int i = 0; i < listeZones.size(); i++){
-			listeZones.elementAt(i).dessinerZone(g);
-		}
-
-		// Affichage des lignes
-		for(int i = 0; i < listeLignes.size(); i++){
-			listeLignes.elementAt(i).dessinerLigne(g2);
-		}
+//		// Affichage des zones
+//		g.setColor(new Color(200, 100, 100));
+//		
+//		for(int i = 0; i < listeZones.size(); i++){
+//			listeZones.elementAt(i).dessinerZone(g);
+//		}
+//
+//		// Affichage des lignes
+//		for(int i = 0; i < listeLignes.size(); i++){
+//			listeLignes.elementAt(i).dessinerLigne(g2);
+//		}
 		
-		// Affichage informations de la station cliquée
+		// Affichage informations de la station cliquï¿½e
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);
 		}

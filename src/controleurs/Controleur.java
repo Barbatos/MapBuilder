@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import modeles.BaseDeDonnees;
+import modeles.Carte;
 import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;
@@ -17,7 +18,8 @@ import vues.CartePanel;
 import vues.HorairesPanel;
 
 public class Controleur {
-	private CartePanel carte;
+	private CartePanel cartePanel;
+	private Carte carte;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Station> listeStations = new Vector<Station>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
@@ -28,7 +30,7 @@ public class Controleur {
 	private boolean clique = false;
 	
 	public Controleur(CartePanel _carte){
-		this.carte = _carte;
+		this.cartePanel = _carte;
 		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "bite");
 	}
 	
@@ -59,7 +61,7 @@ public class Controleur {
 			reponseStation = this.bdd.select("SELECT * FROM station");
 			
 			while(reponseStation.next()){
-				listeStations.add(new Station(reponseStation.getInt("id"), reponseStation.getInt("coordX"), reponseStation.getInt("coordY"), reponseStation.getString("nom")));
+				carte.getListeStations().add(new Station(reponseStation.getInt("id"), reponseStation.getInt("coordX"), reponseStation.getInt("coordY"), reponseStation.getString("nom")));
 			}
 		} catch (SQLException e2) {
 			e2.printStackTrace();
@@ -74,7 +76,7 @@ public class Controleur {
 			while(reponseLigne.next()){
 				MoyenTransport tmp = getMoyenTransportId(reponseLigne.getInt("idTransport"));
 				
-				listeLignes.add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), tmp));		
+				carte.getListeLignes().add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), tmp));		
 			}
 		} catch (SQLException e3){
 			e3.printStackTrace();
@@ -115,7 +117,7 @@ public class Controleur {
 				if(clique){
 					verifierClicBoutonHoraire(event.getX(), event.getY());
 				}
-				carte.repaint();
+				cartePanel.repaint();
 			}
 			
 			public void mouseEntered(MouseEvent event){}			
@@ -128,12 +130,12 @@ public class Controleur {
 			public void mouseDragged(MouseEvent event){}
 			public void mouseMoved(MouseEvent event){
 				verifierPassageStation(event.getX(), event.getY());
-				carte.repaint();
+				cartePanel.repaint();
 			}
 		};
 		
-		this.carte.addMouseMotionListener(mouseMotionListener);
-		this.carte.addMouseListener(mouseListener);
+		this.cartePanel.addMouseMotionListener(mouseMotionListener);
+		this.cartePanel.addMouseListener(mouseListener);
 	}
 	
 	public void verifierClicStation(int x, int y){
@@ -144,7 +146,7 @@ public class Controleur {
 				(y <= (listeStations.elementAt(i).getY() + 7)) && 
 				(y >= (listeStations.elementAt(i).getY() - 7))
 			  ){
-				this.carte.setStationActuelle(listeStations.elementAt(i));
+				this.cartePanel.setStationActuelle(listeStations.elementAt(i));
 				clique = true;
 			}
 		}
@@ -158,20 +160,20 @@ public class Controleur {
 				(y <= (listeStations.elementAt(i).getY() + 7)) && 
 				(y >= (listeStations.elementAt(i).getY() - 7))
 			  ){
-				this.carte.setStationPassageSouris(listeStations.elementAt(i));
+				this.cartePanel.setStationPassageSouris(listeStations.elementAt(i));
 			}
 		}
 	}
 	
 	public void verifierClicBoutonHoraire(int x, int y){
-		for(int i = 0;i < this.carte.getStationActuelle().getListeBoutonsHoraire().size();i++){
+		for(int i = 0;i < this.cartePanel.getStationActuelle().getListeBoutonsHoraire().size();i++){
 			if( 
-				(x <= this.carte.getStationActuelle().getBoutonHoraire(i).getX() + this.carte.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
-				(x >= this.carte.getStationActuelle().getBoutonHoraire(i).getX()) && 
-				(y <= this.carte.getStationActuelle().getBoutonHoraire(i).getY() + this.carte.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
-				(y >= this.carte.getStationActuelle().getBoutonHoraire(i).getY())
+				(x <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
+				(x >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX()) && 
+				(y <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
+				(y >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY())
 			){
-				HorairesPanel horairesPanel = new HorairesPanel(this.carte.getStationActuelle());
+				HorairesPanel horairesPanel = new HorairesPanel(this.cartePanel.getStationActuelle());
 				return;
 			}
 		}

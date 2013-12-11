@@ -119,6 +119,7 @@ public class Controleur {
 			
 			while(reponseZoneStation.next()){
 				getZoneId(reponseZoneStation.getInt("idZone")).ajouterStation(getStationId(reponseZoneStation.getInt("idStation")));
+				getStationId(reponseZoneStation.getInt("idStation")).setZone(getZoneId(reponseZoneStation.getInt("idZone")));
 			}
 		} catch (SQLException e6){
 			e6.printStackTrace();

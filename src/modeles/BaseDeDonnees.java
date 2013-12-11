@@ -23,13 +23,13 @@ public class BaseDeDonnees {
 			System.exit(2);
 		}
 		
-		// Connexion à la base de données
+		// Connexion Ã  la base de donnÃ©es
 		try {
 			this.connexion = DriverManager.getConnection(this.host, this.utilisateur, this.motDePasse);
 			this.statement = this.connexion.createStatement();
 		} 
 		catch (SQLException e){
-			System.out.println("Connexion impossible à MySQL !");
+			System.out.println("Connexion impossible Ã  MySQL !");
 			e.printStackTrace();
 			System.exit(2);
 		}
@@ -63,7 +63,7 @@ public class BaseDeDonnees {
 			connexion.close();
 		}
 		catch (SQLException e){
-			System.out.println("Impossible de fermer la connexion à la base de données !");
+			System.out.println("Impossible de fermer la connexion Ã  la base de donnÃ©es !");
 			e.printStackTrace();
 		}
 	}

@@ -166,7 +166,7 @@ public class Controleur {
 	}
 	
 	public void verifierClicBouton(int x, int y){
-		// VŽrification du clic sur les boutons d'horaires
+		// VÃ©rification du clic sur les boutons d'horaires
 		for(int i = 0;i < this.cartePanel.getStationActuelle().getListeBoutonsHoraire().size();i++){
 			if( 
 				(x <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
@@ -179,7 +179,7 @@ public class Controleur {
 			}
 		}
 		
-		// VŽrification du clic sur les autres boutons
+		// VÃ©rification du clic sur les autres boutons
 		for(int i = 0;i < this.cartePanel.getListeBoutons().size();i++){
 			if( 
 				(x <= this.cartePanel.getBouton(i).getX() + this.cartePanel.getBouton(i).getLargeur()) &&

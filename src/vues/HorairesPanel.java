@@ -21,16 +21,16 @@ public class HorairesPanel extends JPanel{
 		
 		fenetre = new JFrame();
 		
-		// On définit le titre de la fenêtre
+		// On dÃ©finit le titre de la fenÃªtre
 		fenetre.setTitle("Horaires " + station.getNom());
 
-		// Taille par défaut
+		// Taille par dÃ©faut
 		fenetre.setSize(WIDTH, HEIGHT);
 
-		// On centre la fenêtre
+		// On centre la fenÃªtre
 		fenetre.setLocationRelativeTo(null);
 
-		// On empêche le redimensionnement de la fenêtre
+		// On empÃªche le redimensionnement de la fenÃªtre
 		fenetre.setResizable(false);
 		
 		// Import de la classe Affichage

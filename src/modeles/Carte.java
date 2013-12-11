@@ -49,6 +49,8 @@ public class Carte {
 		int y[] = new int[3];
 		Vector<Station> listeExte = new Vector<Station>();
 		boolean dessinable;
+		int xTour[] = new int[24];
+		int yTour[] = new int[24];
 		
 		for(int f = 0; f < listeZones.size(); f++) {
 			listeExte = stationsExterieures(listeZones.elementAt(f));
@@ -74,9 +76,27 @@ public class Carte {
 								dessinable = false;
 							}
 						}
-						
+
+						// permet de dessiner tout autour de chaque station, et lisse ainsi le rendu
+						for(int d = 0; d < 3; d++) {
+							xTour[1+d*8] = x[d] + 1; 
+							xTour[2+d*8] = x[d] + 1;
+							xTour[3+d*8] = x[d] + 1;
+							xTour[5+d*8] = x[d] - 1; 
+							xTour[6+d*8] = x[d] - 1;
+							xTour[7+d*8] = x[d] - 1;
+							
+							yTour[0+d*8] = y[d] + 1; 
+							yTour[1+d*8] = y[d] + 1;
+							yTour[3+d*8] = y[d] - 1;
+							yTour[4+d*8] = y[d] - 1; 
+							yTour[5+d*8] = y[d] - 1;
+							yTour[7+d*8] = y[d] + 1;
+
+						}
+					
 						if(dessinable) {
-							g.fillPolygon(x, y, 3);
+							g.fillPolygon(xTour, yTour, 3);
 						}
 					}
 				}

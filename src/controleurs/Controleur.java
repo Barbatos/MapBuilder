@@ -13,10 +13,11 @@ import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;
 import modeles.Zone;
-import vues.Carte;
+import vues.CartePanel;
+import vues.HorairesPanel;
 
 public class Controleur {
-	private Carte carte;
+	private CartePanel carte;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Station> listeStations = new Vector<Station>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
@@ -26,7 +27,7 @@ public class Controleur {
 	private BaseDeDonnees bdd;
 	private boolean clique = false;
 	
-	public Controleur(Carte _carte){
+	public Controleur(CartePanel _carte){
 		this.carte = _carte;
 		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "bite");
 	}
@@ -93,7 +94,9 @@ public class Controleur {
 			e4.printStackTrace();
 		}
 		
-		//Initialisation des zones
+		/**
+		 * Initialisation des zones
+		 */
 		try {
 			reponseZone = this.bdd.select("SELECT * FROM zone");
 			
@@ -168,7 +171,7 @@ public class Controleur {
 				(y <= this.carte.getStationActuelle().getBoutonHoraire(i).getY() + this.carte.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
 				(y >= this.carte.getStationActuelle().getBoutonHoraire(i).getY())
 			){
-				//TODO
+				HorairesPanel horairesPanel = new HorairesPanel(this.carte.getStationActuelle());
 				return;
 			}
 		}

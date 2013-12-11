@@ -14,7 +14,6 @@ public class Carte {
 	private Vector<Station> listeStations = new Vector<Station>();
 
 	public Carte(){
-		
 	}
 	
 	public Carte(Vector<Zone> listeZones, Vector<Ligne> listeLignes, Vector<Ville> listeVilles, Vector<Station> listeStations) {
@@ -93,12 +92,8 @@ public class Carte {
 		// Affichage des zones
 		g.setColor(new Color(200, 100, 100));
 		
-		for(int i = 0; i < listeZones.size(); i++){
-			listeZones.elementAt(i).dessinerZone(g);
-		}
-		
 		this.dessinerZoneBis(g);
-
+		
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){
 			listeLignes.elementAt(i).dessinerLigne(g2);

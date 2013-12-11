@@ -2,7 +2,7 @@ package main;
 
 import javax.swing.SwingUtilities;
 
-import vues.Carte;
+import vues.CartePanel;
 import controleurs.Controleur;
 
 public class MapBuilder {
@@ -10,7 +10,7 @@ public class MapBuilder {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run(){
-				Carte carte = new Carte();
+				CartePanel carte = new CartePanel();
 				Controleur controleur = new Controleur(carte);
 				controleur.initialiser();
 			}

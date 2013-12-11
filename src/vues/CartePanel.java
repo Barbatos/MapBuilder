@@ -13,7 +13,7 @@ import modeles.Ligne;
 import modeles.Station;
 import modeles.Zone;
 
-public class Carte extends JPanel{
+public class CartePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 675;
@@ -24,6 +24,30 @@ public class Carte extends JPanel{
 	private Station stationActuelle = null;
 	private Station stationPassageSouris = null;
 	
+	public CartePanel(){
+		fenetre = new JFrame();
+		
+		// On définit le titre de la fenêtre
+		fenetre.setTitle("MapBuilder v0.0.0.0.1");
+
+		// Taille par défaut
+		fenetre.setSize(WIDTH, HEIGHT);
+
+		// On centre la fenêtre
+		fenetre.setLocationRelativeTo(null);
+
+		// On empêche le redimensionnement de la fenêtre
+		fenetre.setResizable(false);
+
+		// Opération par défaut quand on quitte
+		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// Import de la classe Affichage
+		fenetre.setContentPane(this);
+		
+		fenetre.setVisible(true);
+	}	
+	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(new Color(100, 100, 100));
@@ -32,10 +56,10 @@ public class Carte extends JPanel{
 		g2.setStroke(new BasicStroke(2));
 		
 		g.setColor(new Color(65, 65, 65));
-		g.fillRect(Carte.WIDTH - 300, 0, 300, Carte.HEIGHT);
+		g.fillRect(CartePanel.WIDTH - 300, 0, 300, CartePanel.HEIGHT);
 		
 		g.setColor(new Color(175, 175, 225));
-		g.drawString("INFORMATIONS", Carte.WIDTH - 300 / 2 - g.getFontMetrics().stringWidth("INFORMATIONS") / 2, 20);
+		g.drawString("INFORMATIONS", CartePanel.WIDTH - 300 / 2 - g.getFontMetrics().stringWidth("INFORMATIONS") / 2, 20);
 		
 		// Affichage des zones
 		g.setColor(new Color(200, 100, 100));
@@ -58,30 +82,6 @@ public class Carte extends JPanel{
 		if(stationPassageSouris != null){
 			stationPassageSouris.dessinerNom(g);
 		}
-	}
-	
-	public Carte(){
-		fenetre = new JFrame();
-		
-		// On définit le titre de la fenêtre
-		fenetre.setTitle("MapBuilder v0.0.0.0.1");
-
-		// Taille par défaut
-		fenetre.setSize(WIDTH, HEIGHT);
-
-		// On centre la fenêtre
-		fenetre.setLocationRelativeTo(null);
-
-		// On empêche le redimensionnement de la fenêtre
-		fenetre.setResizable(false);
-
-		// Opération par défaut quand on quitte
-		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		// Import de la classe Affichage
-		fenetre.setContentPane(this);
-		
-		fenetre.setVisible(true);
 	}
 	
 	public JFrame getFenetre(){

@@ -110,12 +110,10 @@ public class Carte {
 	}
 
 	public Vector<Station> getListeStations() {
-		// TODO Auto-generated method stub
 		return this.listeStations;
 	}
 
 	public Vector<Ligne> getListeLignes() {
-		// TODO Auto-generated method stub
 		return this.listeLignes;
 	}
 }

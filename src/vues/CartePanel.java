@@ -120,4 +120,12 @@ public class CartePanel extends JPanel{
 	public void setStationPassageSouris(Station station){
 		this.stationPassageSouris = station;
 	}
+	
+	public Vector<Bouton> getListeBoutons(){
+		return this.listeBoutons;
+	}
+	
+	public Bouton getBouton(int i){
+		return this.listeBoutons.elementAt(i);
+	}
 }

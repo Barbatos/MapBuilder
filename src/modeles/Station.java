@@ -18,7 +18,7 @@ public class Station{
 	private String nom;
 	private Vector<Horaire> listeHoraires = new Vector<Horaire>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
-	private Vector<BoutonHoraire> listeBoutonsHoraire = new Vector<BoutonHoraire>();
+	private Vector<Bouton> listeBoutonsHoraire = new Vector<Bouton>();
 	
 	/**
 	 * Constructeur par defaut d'une Station
@@ -69,11 +69,11 @@ public class Station{
 			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), CartePanel.WIDTH - 230, 100 + i * 20);
 		}
 		
-		listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la station", CartePanel.WIDTH - 270, 180, 240, 30));
+		listeBoutonsHoraire.add(new Bouton("Horaires de la station", CartePanel.WIDTH - 270, 180, 240, 30));
 		//listeBoutonsHoraire.elementAt(0).initialiser();
 		
 		for(int i = 0;i < listeLignes.size();i++){
-			listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la ligne " + this.getLigne(i).getNom(), CartePanel.WIDTH - 270, 220 + 40 * i, 240, 30));
+			listeBoutonsHoraire.add(new Bouton("Horaires de la ligne " + this.getLigne(i).getNom(), CartePanel.WIDTH - 270, 220 + 40 * i, 240, 30));
 		}
 		
 		for(int i = 0;i < listeBoutonsHoraire.size();i++){
@@ -119,7 +119,7 @@ public class Station{
 		listeLignes.add(ligne);
 	}
 	
-	public void insertBoutonHoraire(BoutonHoraire bouton){
+	public void insertBoutonHoraire(Bouton bouton){
 		listeBoutonsHoraire.add(bouton);
 	}
 	
@@ -173,7 +173,7 @@ public class Station{
 		return listeHoraires;
 	}
 	
-	public BoutonHoraire getBoutonHoraire(int numero){
+	public Bouton getBoutonHoraire(int numero){
 		if(numero < listeBoutonsHoraire.size())
 			return listeBoutonsHoraire.elementAt(numero);
 		else{
@@ -182,7 +182,7 @@ public class Station{
 		}
 	}
 	
-	public Vector<BoutonHoraire> getListeBoutonsHoraire(){
+	public Vector<Bouton> getListeBoutonsHoraire(){
 		return listeBoutonsHoraire;
 	}
 	

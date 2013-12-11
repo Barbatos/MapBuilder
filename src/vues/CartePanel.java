@@ -29,11 +29,7 @@ public class CartePanel extends JPanel{
 	private Station stationActuelle = null;
 	private Station stationPassageSouris = null;
 	private Vector<Bouton> listeBoutons = new Vector<Bouton>();
-<<<<<<< HEAD
-	
 	private Carte carte = new Carte(listeZones, listeLignes, listeVilles, listeStations);
-=======
->>>>>>> 2ef66ef9fd3d479a8f6315a8c423a3cd3c6f8b4b
 	
 	public CartePanel(){
 		fenetre = new JFrame();
@@ -97,6 +93,12 @@ public class CartePanel extends JPanel{
 		}
 		
 		// Affichage du bouton d'ajout d'une ligne
+		listeBoutons.add(new Bouton("Ajout de données", CartePanel.WIDTH - 270, 600, 240, 30));
+		
+		// Affichage des boutons
+		for(int i = 0;i < listeBoutons.size();i++){
+			this.listeBoutons.elementAt(i).paintComponent(g);
+		}
 		
 	}
 	

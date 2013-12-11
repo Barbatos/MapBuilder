@@ -69,7 +69,7 @@ public class Station{
 			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), CartePanel.WIDTH - 230, 100 + i * 20);
 		}
 		
-		listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la station " + this.getNom(), CartePanel.WIDTH - 270, 180, 240, 30));
+		listeBoutonsHoraire.add(new BoutonHoraire("Horaires de la station", CartePanel.WIDTH - 270, 180, 240, 30));
 		//listeBoutonsHoraire.elementAt(0).initialiser();
 		
 		for(int i = 0;i < listeLignes.size();i++){

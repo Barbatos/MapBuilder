@@ -3,14 +3,14 @@ package modeles;
 import java.awt.Color;
 import java.awt.Graphics;
  
-public class BoutonHoraire{
+public class Bouton {
 	private String nom;
 	private int x;
 	private int y;
 	private int hauteur;
 	private int largeur;
 	
-	public BoutonHoraire(String nom, int x, int y, int largeur, int hauteur){
+	public Bouton(String nom, int x, int y, int largeur, int hauteur){
 		this.nom = nom;
 		this.x = x;
 		this.y = y;

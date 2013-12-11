@@ -9,8 +9,11 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+<<<<<<< HEAD
 import modeles.Carte;
+=======
 import modeles.Bouton;
+>>>>>>> 2ef66ef9fd3d479a8f6315a8c423a3cd3c6f8b4b
 import modeles.Ligne;
 import modeles.Station;
 import modeles.Ville;

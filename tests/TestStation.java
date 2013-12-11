@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class TestStation {
 
-	@Test //Test sur tous les éléments d'une station (nom, numéro, coordonnees, moyen de transport)
+	@Test //Test sur tous les Ã©lÃ©ments d'une station (nom, numÃ©ro, coordonnees, moyen de transport)
 	public void test() {
 		final int coordx = 50;
 		final int coordy = 400;
@@ -26,7 +26,7 @@ public class TestStation {
 		
 		/*sta1.insertTransport(new MoyenTransport(1, "Bus"));
 		sta1.insertTransport(new MoyenTransport(2, "Tram"));	*/
-		sta1.insertLigne(new Ligne(id, nom, couleur, transport));
+		//ssta1.insertLigne(new Ligne(id, nom, couleur, transport));
 		
 		
 		assertEquals(id, sta1.getId());

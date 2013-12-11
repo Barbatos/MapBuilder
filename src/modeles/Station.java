@@ -155,9 +155,9 @@ public class Station{
 	}
 	
 	/**
-	 * R�cup�re l'horaire � un indice
-	 * @param numero Un int, qui correspond au num�ro de l'horaire dans la liste de horaires
-	 * @return Horaire, qui correspond � l'horaire dans la liste au num�ro indiqu�.
+	 * Récupère l'horaire à un indice
+	 * @param numero Un int, qui correspond au numéro de l'horaire dans la liste de horaires
+	 * @return Horaire, qui correspond à l'horaire dans la liste au numéro indiqué.
 	 */
 	public Horaire getHoraire(int numero) {
 		if (numero < listeHoraires.size())

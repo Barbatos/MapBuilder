@@ -35,19 +35,19 @@ public class CartePanel extends JPanel{
 	public CartePanel(){
 		fenetre = new JFrame();
 		
-		// On d�finit le titre de la fen�tre
+		// On définit le titre de la fenêtre
 		fenetre.setTitle("MapBuilder v0.0.0.0.1");
 
-		// Taille par d�faut
+		// Taille par défaut
 		fenetre.setSize(WIDTH, HEIGHT);
 
-		// On centre la fen�tre
+		// On centre la fenêtre
 		fenetre.setLocationRelativeTo(null);
 
-		// On emp�che le redimensionnement de la fen�tre
+		// On empêche le redimensionnement de la fenêtre
 		fenetre.setResizable(false);
 
-		// Op�ration par d�faut quand on quitte
+		// Opération par défaut quand on quitte
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Import de la classe Affichage
@@ -71,7 +71,7 @@ public class CartePanel extends JPanel{
 		
 		carte.dessinerCarte(g);
 		
-		// Affichage informations de la station cliqu�e
+		// Affichage informations de la station cliquée
 		if(stationActuelle != null){
 			stationActuelle.dessinerInfo(g);
 		}
@@ -82,7 +82,7 @@ public class CartePanel extends JPanel{
 		}
 		
 		// Affichage du bouton d'ajout d'une ligne
-		listeBoutons.add(new Bouton("Ajout de donn�es", CartePanel.WIDTH - 270, 600, 240, 30));
+		listeBoutons.add(new Bouton("Ajout de données", CartePanel.WIDTH - 270, 600, 240, 30));
 		
 		// Affichage des boutons
 		for(int i = 0;i < listeBoutons.size();i++){

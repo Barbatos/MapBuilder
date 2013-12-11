@@ -37,17 +37,17 @@ public class Fichier {
 		
 		try {
 			
-			// Création du fichier
+			// CrÃ©ation du fichier
 			FileOutputStream fichier = new FileOutputStream(cheminFichier);
 			ObjectOutputStream infos = new ObjectOutputStream(fichier);
 			
-			// On y écrit notre objet
+			// On y Ã©crit notre objet
 			infos.writeObject(this.liste);
 			infos.flush();
 			infos.close();
 			fichier.close();
 			
-			System.out.println("Enregistrement du fichier " + cheminFichier + " réussi.");
+			System.out.println("Enregistrement du fichier " + cheminFichier + " rÃ©ussi.");
 			
 			return true;
 		}
@@ -79,7 +79,7 @@ public class Fichier {
 			FileInputStream fichier = new FileInputStream(f);
 			ObjectInputStream infos = new ObjectInputStream(fichier);
 			
-			// On récupère son contenu et on le place dans une liste
+			// On rÃ©cupÃ¨re son contenu et on le place dans une liste
 			this.liste = (List) infos.readObject();
 			
 			// On ferme le fichier

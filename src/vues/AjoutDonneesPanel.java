@@ -6,23 +6,19 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import modeles.Station;
-
-public class HorairesPanel extends JPanel{
+public class AjoutDonneesPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
-	public final static int WIDTH = 1000;
-	public final static int HEIGHT = 500;
+	public final static int WIDTH = 800;
+	public final static int HEIGHT = 600;
 	
 	private JFrame fenetre;
-	private Station station;
 	
-	public HorairesPanel(Station station){
-		this.station = station;
+	public AjoutDonneesPanel(){
 		
 		fenetre = new JFrame();
 		
 		// On définit le titre de la fenêtre
-		fenetre.setTitle("Horaires " + station.getNom());
+		fenetre.setTitle("Ajout de données");
 
 		// Taille par défaut
 		fenetre.setSize(WIDTH, HEIGHT);

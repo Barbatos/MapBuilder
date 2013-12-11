@@ -14,6 +14,7 @@ import modeles.MoyenTransport;
 import modeles.Station;
 import modeles.Ville;
 import modeles.Zone;
+import vues.AjoutDonneesPanel;
 import vues.CartePanel;
 import vues.HorairesPanel;
 
@@ -40,6 +41,7 @@ public class Controleur {
 		ResultSet reponseLigne;
 		ResultSet reponseZone;
 		ResultSet reponseLigneStation;
+		ResultSet reponseZoneStation;
 		
 		/**
 		 * Initialisation des moyens de transport
@@ -108,15 +110,26 @@ public class Controleur {
 		} catch (SQLException e5) {
 			e5.printStackTrace();
 		}
+		
+		/**
+		 * Initialisation des relations stations/zones
+		 */
+		try {
+			reponseZoneStation = this.bdd.select("SELECT * FROM `station-zone`");
+			
+			while(reponseZoneStation.next()){
+				getZoneId(reponseZoneStation.getInt("idZone")).ajouterStation(getStationId(reponseZoneStation.getInt("idStation")));
+			}
+		} catch (SQLException e6){
+			e6.printStackTrace();
+		}
 
 		this.cartePanel.setListeLignes(listeLignes);
 		
 		mouseListener = new MouseListener(){
 			public void mouseClicked(MouseEvent event){
 				verifierClicStation(event.getX(), event.getY());
-				if(clique){
-					verifierClicBouton(event.getX(), event.getY());
-				}
+				verifierClicBouton(event.getX(), event.getY());
 				cartePanel.repaint();
 			}
 			
@@ -166,20 +179,7 @@ public class Controleur {
 	}
 	
 	public void verifierClicBouton(int x, int y){
-		// V�rification du clic sur les boutons d'horaires
-		for(int i = 0;i < this.cartePanel.getStationActuelle().getListeBoutonsHoraire().size();i++){
-			if( 
-				(x <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
-				(x >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX()) && 
-				(y <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
-				(y >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY())
-			){
-				new HorairesPanel(this.cartePanel.getStationActuelle());
-				return;
-			}
-		}
-		
-		// V�rification du clic sur les autres boutons
+		// Vérification du clic sur les boutons
 		for(int i = 0;i < this.cartePanel.getListeBoutons().size();i++){
 			if( 
 				(x <= this.cartePanel.getBouton(i).getX() + this.cartePanel.getBouton(i).getLargeur()) &&
@@ -187,8 +187,26 @@ public class Controleur {
 				(y <= this.cartePanel.getBouton(i).getY() + this.cartePanel.getBouton(i).getHauteur()) && 
 				(y >= this.cartePanel.getBouton(i).getY())
 			){
-				System.out.println("yolo");
-				return;
+				if(this.cartePanel.getBouton(i).getNom() == "Ajout de données"){
+					new AjoutDonneesPanel();
+					return;
+				}
+			}
+		}
+		
+		// Vérification du clic sur les boutons d'horaires, seulement si on
+		// a sélectionné la station qui nous intéresse.
+		if(clique){
+			for(int i = 0;i < this.cartePanel.getStationActuelle().getListeBoutonsHoraire().size();i++){
+				if( 
+					(x <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
+					(x >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX()) && 
+					(y <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
+					(y >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY())
+				){
+					new HorairesPanel(this.cartePanel.getStationActuelle());
+					return;
+				}
 			}
 		}
 	}
@@ -215,6 +233,15 @@ public class Controleur {
 		for(int i = 0;i < listeMoyensTransport.size();i++){
 			if(listeMoyensTransport.elementAt(i).getId() == id){
 				return listeMoyensTransport.elementAt(i);
+			}
+		}
+		return null;
+	}
+	
+	public Zone getZoneId(int id){
+		for(int i = 0;i < listeZones.size();i++){
+			if(listeZones.elementAt(i).getId() == id){
+				return listeZones.elementAt(i);
 			}
 		}
 		return null;

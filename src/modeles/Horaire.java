@@ -67,9 +67,6 @@ public class Horaire {
 		String str = "";
 		str += this.getHeure(); 
 		str += ":" + this.getMinute();
-		//str += " au " + this.getJSemaine();
-		//str += "eme jour de la semaine dans la periode " + this.getPeriode();
-		//str += ". \n";
 		
 		return str;
 	}

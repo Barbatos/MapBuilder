@@ -104,12 +104,10 @@ public class CartePanel extends JPanel{
 	}
 	
 	public void setListeZones(Vector<Zone> zones){
-		this.listeZones = zones;
 		this.carte.setListeZones(zones);
 	}
 	
 	public void setListeLignes(Vector<Ligne> lignes){
-		this.listeLignes = lignes;
 		this.carte.setListeLignes(lignes);
 	}
 	

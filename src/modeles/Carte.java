@@ -119,8 +119,8 @@ public class Carte {
 	public Vector<Zone> getListeZones(){
 		return this.listeZones;
 	}
-	
-	public Vector<Ligne> getListeLignes(){
+
+	public Vector<Ligne> getListeLignes() {
 		return this.listeLignes;
 	}
 	

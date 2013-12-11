@@ -62,7 +62,6 @@ public class Station{
 	public void dessinerInfo(Graphics g){
 		g.setColor(new Color(175, 175, 225));
 		g.drawString("Station : " + this.getNom(), CartePanel.WIDTH - 290, 60);
-		g.drawString("Numero : " + this.getId(), CartePanel.WIDTH - 290, 80);
 		g.drawString("Ligne(s) : ", CartePanel.WIDTH - 290, 100);
 		
 		for(int i = 0;i < listeLignes.size();i++){

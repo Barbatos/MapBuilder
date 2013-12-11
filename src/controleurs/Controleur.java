@@ -13,16 +13,17 @@ import modeles.Carte;
 import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;
+import modeles.Ville;
 import modeles.Zone;
 import vues.CartePanel;
 import vues.HorairesPanel;
 
 public class Controleur {
 	private CartePanel cartePanel;
-	private Carte carte;
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Station> listeStations = new Vector<Station>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
+	private Vector<Ville> listeVilles = new Vector<Ville>();
 	private Vector<MoyenTransport> listeMoyensTransport = new Vector<MoyenTransport>();
 	private MouseListener mouseListener;
 	private MouseMotionListener mouseMotionListener;
@@ -61,7 +62,7 @@ public class Controleur {
 			reponseStation = this.bdd.select("SELECT * FROM station");
 			
 			while(reponseStation.next()){
-				carte.getListeStations().add(new Station(reponseStation.getInt("id"), reponseStation.getInt("coordX"), reponseStation.getInt("coordY"), reponseStation.getString("nom")));
+				listeStations.add(new Station(reponseStation.getInt("id"), reponseStation.getInt("coordX"), reponseStation.getInt("coordY"), reponseStation.getString("nom")));
 			}
 		} catch (SQLException e2) {
 			e2.printStackTrace();
@@ -76,7 +77,7 @@ public class Controleur {
 			while(reponseLigne.next()){
 				MoyenTransport tmp = getMoyenTransportId(reponseLigne.getInt("idTransport"));
 				
-				carte.getListeLignes().add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), tmp));		
+				listeLignes.add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), tmp));		
 			}
 		} catch (SQLException e3){
 			e3.printStackTrace();
@@ -109,7 +110,7 @@ public class Controleur {
 			e5.printStackTrace();
 		}
 
-		this.carte.setListeLignes(listeLignes);
+		this.cartePanel.setListeLignes(listeLignes);
 		
 		mouseListener = new MouseListener(){
 			public void mouseClicked(MouseEvent event){

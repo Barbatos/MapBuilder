@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import modeles.BaseDeDonnees;
-import modeles.Carte;
 import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;

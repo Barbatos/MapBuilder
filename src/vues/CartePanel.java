@@ -9,6 +9,7 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import modeles.Bouton;
 import modeles.Ligne;
 import modeles.Station;
 import modeles.Zone;
@@ -23,6 +24,7 @@ public class CartePanel extends JPanel{
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private Station stationActuelle = null;
 	private Station stationPassageSouris = null;
+	private Vector<Bouton> listeBoutons = new Vector<Bouton>();
 	
 	public CartePanel(){
 		fenetre = new JFrame();
@@ -82,6 +84,9 @@ public class CartePanel extends JPanel{
 		if(stationPassageSouris != null){
 			stationPassageSouris.dessinerNom(g);
 		}
+		
+		// Affichage du bouton d'ajout d'une ligne
+		
 	}
 	
 	public JFrame getFenetre(){

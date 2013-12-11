@@ -115,7 +115,7 @@ public class Controleur {
 			public void mouseClicked(MouseEvent event){
 				verifierClicStation(event.getX(), event.getY());
 				if(clique){
-					verifierClicBoutonHoraire(event.getX(), event.getY());
+					verifierClicBouton(event.getX(), event.getY());
 				}
 				cartePanel.repaint();
 			}
@@ -165,7 +165,8 @@ public class Controleur {
 		}
 	}
 	
-	public void verifierClicBoutonHoraire(int x, int y){
+	public void verifierClicBouton(int x, int y){
+		// VŽrification du clic sur les boutons d'horaires
 		for(int i = 0;i < this.cartePanel.getStationActuelle().getListeBoutonsHoraire().size();i++){
 			if( 
 				(x <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getX() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getLargeur()) &&
@@ -173,7 +174,20 @@ public class Controleur {
 				(y <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
 				(y >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY())
 			){
-				HorairesPanel horairesPanel = new HorairesPanel(this.cartePanel.getStationActuelle());
+				new HorairesPanel(this.cartePanel.getStationActuelle());
+				return;
+			}
+		}
+		
+		// VŽrification du clic sur les autres boutons
+		for(int i = 0;i < this.cartePanel.getListeBoutons().size();i++){
+			if( 
+				(x <= this.cartePanel.getBouton(i).getX() + this.cartePanel.getBouton(i).getLargeur()) &&
+				(x >= this.cartePanel.getBouton(i).getX()) && 
+				(y <= this.cartePanel.getBouton(i).getY() + this.cartePanel.getBouton(i).getHauteur()) && 
+				(y >= this.cartePanel.getBouton(i).getY())
+			){
+				System.out.println("yolo");
 				return;
 			}
 		}

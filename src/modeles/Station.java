@@ -175,7 +175,7 @@ public class Station{
 		}
 	}
 	
-	public Vector<Horaire> getlisteHoraires() {
+	public Vector<Horaire> getListeHoraires() {
 		return listeHoraires;
 	}
 	

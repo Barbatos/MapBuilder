@@ -7,6 +7,10 @@ public class Ville{
 		this.nom = "Pas de nom";
 	}
 	
+	public Ville(String nom){
+		this.nom = nom;
+	}
+	
 	public Ville(String _nom, int x[], int y[]){
 		this.nom = _nom;
 	}

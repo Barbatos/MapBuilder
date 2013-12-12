@@ -53,6 +53,7 @@ public class Carte {
 
 		for(int f = 0; f < listeZones.size(); f++) {
 			listeExte = stationsExterieures(listeZones.elementAt(f));
+			g.setColor(listeZones.elementAt(f).getCouleur());
 
 			for(int i = 0;i < listeZones.elementAt(f).getListeStations().size();i++){
 			//for(int i = 0;i < 8;i++){
@@ -212,7 +213,6 @@ public class Carte {
 		g2.setStroke(new BasicStroke(2));
 		
 		// Affichage des zones
-		g.setColor(new Color(200, 100, 100));
 		
 		this.dessinerZone(g);
 		

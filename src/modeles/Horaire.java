@@ -26,14 +26,30 @@ public class Horaire {
 	public void dessinerHoraire(Graphics g, int x, int y){
 		int hauteur = 30;
 		int largeur = 90;
+		String str = "";
 		
 		g.setColor(new Color(10, 10, 10));
 		g.drawRect(x, y, largeur, hauteur);
-
-		int h = g.getFontMetrics().getHeight();
-		int l = g.getFontMetrics().stringWidth(this.heure + " : " + this.minute);
 		
-		g.drawString(this.heure + " : " + this.minute, x - l / 2 + largeur / 2, y + h / 4 + hauteur / 2);
+		if(this.heure < 10){
+			str += "0" + this.heure;
+		}
+		else{
+			str += this.heure;
+		}
+		
+		str += ":";
+		
+		if(this.minute < 10){
+			str += "0" + this.minute;
+		}
+		else{
+			str += this.minute;
+		}
+		int h = g.getFontMetrics().getHeight();
+		int l = g.getFontMetrics().stringWidth(str);
+		
+		g.drawString(str, x - l / 2 + largeur / 2, y + h / 4 + hauteur / 2);
 	}
 	
 	public int getJSemaine(){

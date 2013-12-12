@@ -214,7 +214,11 @@ public class Carte {
 		
 		// Affichage des zones
 		
-		this.dessinerZone(g);
+		//this.dessinerZone(g);
+		
+		for(int i = 0;i < listeZones.size();i++){
+			listeZones.elementAt(i).dessinerZone(g);
+		}
 		
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){

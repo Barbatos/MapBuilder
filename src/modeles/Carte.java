@@ -56,22 +56,23 @@ public class Carte {
 			listeExte = stationsExterieures(listeZones.elementAt(f));
 
 			for(int i = 0;i < listeZones.elementAt(f).getListeStations().size();i++){
-			//for(int i = 0;i < 2;i++){
+			//for(int i = 0;i < 8;i++){
 				x[0] = listeZones.elementAt(f).getListeStations().elementAt(i).getX();
 				y[0] = listeZones.elementAt(f).getListeStations().elementAt(i).getY();
 				
 				for(int j = i;j < listeZones.elementAt(f).getListeStations().size();j++){
-				//for(int j = i;j < 2;j++){
+				//for(int j = i;j < 8;j++){
 					x[1] = listeZones.elementAt(f).getListeStations().elementAt(j).getX();
 					y[1] = listeZones.elementAt(f).getListeStations().elementAt(j).getY();
 					
 					for(int k = j;k < listeZones.elementAt(f).getListeStations().size();k++){
-					//for(int k = j;k < 2;k++){
+					//for(int k = j;k < 8;k++){
 						x[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getX();
 						y[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getY();
 						
 						//dessinerToutLisse(x, y, g, listeExte);
-						dessinerNormal(x, y, g, listeExte);
+						dessinerToutLisse2(x, y, g, listeExte);
+						//dessinerNormal(x, y, g, listeExte);
 					}
 				}
 			}
@@ -93,7 +94,7 @@ public class Carte {
 			}
 		}
 		if(dessinable) {			
-			g.setColor(new Color(10, 10, 10)); 
+			g.setColor(new Color(10, 10, 200)); 
 			g.fillPolygon(x, y, 3);
 		}
 	}
@@ -149,8 +150,61 @@ public class Carte {
 						xDraw[2] = xTour[k]; 
 						yDraw[2] = yTour[k];
 						
-						g.setColor(new Color(10, 10, 10)); 
-						g.drawPolygon(xDraw, yDraw, 3); 
+						g.setColor(new Color(10, 200, 10)); 
+						g.fillPolygon(xDraw, yDraw, 3); 
+						
+					}
+				}
+			}
+		}
+	}
+
+	
+	private void dessinerToutLisse2(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
+		// TODO Auto-generated method stub
+		boolean dessinable;
+		int xTour[] = new int[12];
+		int yTour[] = new int[12];
+		
+		Polygon polygonXY = new Polygon(x, y, 3);
+		dessinable = true;
+		
+		for(int m = 0; m < listeExte.size(); m ++) {
+			// si le polygone formé par x et y ne contient aucune station de listeExte, alors on le dessine.
+			if(polygonXY.contains(listeExte.elementAt(m).getX(), listeExte.elementAt(m).getY())) {
+				dessinable = false;
+			}
+		}
+
+		// permet de dessiner tout autour de chaque station, et lisse ainsi le rendu
+		for(int d = 0; d < 3; d++) {
+			xTour[0+d*4] = x[d];
+			xTour[1+d*4] = x[d] + 10;
+			xTour[2+d*4] = x[d];
+			xTour[3+d*4] = x[d] - 10;
+			
+			yTour[0+d*4] = y[d] + 10; 
+			yTour[1+d*4] = y[d];
+			yTour[2+d*4] = y[d] - 10;
+			yTour[3+d*4] = y[d];
+		}
+		
+		if(dessinable) {			
+			for(int i = 0; i < 12; i++) {
+				for(int j = i + 1; j < 12; j++) {
+					for(int k = j + 1; k < 12; k++) {
+						int xDraw[] = new int[3];
+						int yDraw[] = new int[3];
+						
+						xDraw[0] = xTour[i];
+						yDraw[0] = yTour[i]; 
+						xDraw[1] = xTour[j]; 
+						yDraw[1] = yTour[j]; 
+						xDraw[2] = xTour[k]; 
+						yDraw[2] = yTour[k];
+						
+						g.setColor(new Color(200, 10, 10)); 
+						g.fillPolygon(xDraw, yDraw, 3); 
 						
 					}
 				}

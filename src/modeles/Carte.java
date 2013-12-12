@@ -70,7 +70,8 @@ public class Carte {
 						x[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getX();
 						y[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getY();
 						
-						dessinerToutLisse(x, y, g, listeExte);
+						//dessinerToutLisse(x, y, g, listeExte);
+						dessinerNormal(x, y, g, listeExte);
 					}
 				}
 			}
@@ -78,6 +79,25 @@ public class Carte {
 
 	}
 	
+	private void dessinerNormal(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
+		// TODO Auto-generated method stub
+		boolean dessinable;
+		
+		Polygon polygonXY = new Polygon(x, y, 3);
+		dessinable = true;
+		
+		for(int m = 0; m < listeExte.size(); m ++) {
+			// si le polygone formé par x et y ne contient aucune station de listeExte, alors on le dessine.
+			if(polygonXY.contains(listeExte.elementAt(m).getX(), listeExte.elementAt(m).getY())) {
+				dessinable = false;
+			}
+		}
+		if(dessinable) {			
+			g.setColor(new Color(10, 10, 10)); 
+			g.fillPolygon(x, y, 3);
+		}
+	}
+
 	private void dessinerToutLisse(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
 		// TODO Auto-generated method stub
 		boolean dessinable;

@@ -54,6 +54,7 @@ public class Carte {
 
 		for(int f = 0; f < listeZones.size(); f++) {
 			listeExte = stationsExterieures(listeZones.elementAt(f));
+			g.setColor(listeZones.elementAt(f).getCouleur());
 
 			for(int i = 0;i < listeZones.elementAt(f).getListeStations().size();i++){
 			//for(int i = 0;i < 8;i++){
@@ -71,8 +72,8 @@ public class Carte {
 						y[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getY();
 						
 						//dessinerToutLisse(x, y, g, listeExte);
-						dessinerToutLisse2(x, y, g, listeExte);
-						//dessinerNormal(x, y, g, listeExte);
+						//dessinerToutLisse2(x, y, g, listeExte);
+						dessinerNormal(x, y, g, listeExte);
 					}
 				}
 			}
@@ -81,7 +82,6 @@ public class Carte {
 	}
 	
 	private void dessinerNormal(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
-		// TODO Auto-generated method stub
 		boolean dessinable;
 		
 		Polygon polygonXY = new Polygon(x, y, 3);
@@ -100,7 +100,6 @@ public class Carte {
 	}
 
 	private void dessinerToutLisse(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
-		// TODO Auto-generated method stub
 		boolean dessinable;
 		int xTour[] = new int[24];
 		int yTour[] = new int[24];
@@ -161,7 +160,6 @@ public class Carte {
 
 	
 	private void dessinerToutLisse2(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
-		// TODO Auto-generated method stub
 		boolean dessinable;
 		int xTour[] = new int[12];
 		int yTour[] = new int[12];
@@ -217,7 +215,6 @@ public class Carte {
 		g2.setStroke(new BasicStroke(2));
 		
 		// Affichage des zones
-		g.setColor(new Color(200, 100, 100));
 		
 		this.dessinerZone(g);
 		

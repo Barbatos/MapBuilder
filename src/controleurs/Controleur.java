@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import modeles.BaseDeDonnees;
+import modeles.Horaire;
 import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;
@@ -38,10 +39,12 @@ public class Controleur {
 	public void initialiser() {
 		ResultSet reponseMoyenTransport;
 		ResultSet reponseStation;
+		ResultSet reponseHoraire;
 		ResultSet reponseLigne;
 		ResultSet reponseZone;
 		ResultSet reponseLigneStation;
 		ResultSet reponseZoneStation;
+		ResultSet reponseVille;
 		
 		/**
 		 * Initialisation des moyens de transport
@@ -76,12 +79,23 @@ public class Controleur {
 			reponseLigne = this.bdd.select("SELECT l.*, lt.idTransport FROM `ligne` l INNER JOIN `ligne-transport` lt ON lt.idLigne = l.id");
 			
 			while(reponseLigne.next()){
-				MoyenTransport tmp = getMoyenTransportId(reponseLigne.getInt("idTransport"));
-				
-				listeLignes.add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), tmp));		
+				listeLignes.add(new Ligne(reponseLigne.getInt("id"), reponseLigne.getString("nom"), new Color(reponseLigne.getInt("couleurR"), reponseLigne.getInt("couleurG"), reponseLigne.getInt("couleurB")), getMoyenTransportId(reponseLigne.getInt("idTransport"))));		
 			}
 		} catch (SQLException e3){
 			e3.printStackTrace();
+		}
+		
+		/**
+		 * Initialisation des horaires
+		 */
+		try {
+			reponseHoraire = this.bdd.select("SELECT * FROM horaire order by heure, minute");
+			
+			while(reponseHoraire.next()){
+				getStationId(reponseHoraire.getInt("idStation")).ajouterHoraire(new Horaire(reponseHoraire.getInt("jSemaine"), reponseHoraire.getInt("heure"), reponseHoraire.getInt("minute"), reponseHoraire.getInt("periode")));
+			}
+		} catch (SQLException e4) {
+			e4.printStackTrace();
 		}
 		
 		/**
@@ -94,8 +108,8 @@ public class Controleur {
 				getLigneId(reponseLigneStation.getInt("idLigne")).ajouterStation(getStationId(reponseLigneStation.getInt("idStation")));
 				getStationId(reponseLigneStation.getInt("idStation")).ajouterLigne(getLigneId(reponseLigneStation.getInt("idLigne")));;
 			}
-		} catch (SQLException e4){
-			e4.printStackTrace();
+		} catch (SQLException e5){
+			e5.printStackTrace();
 		}
 		
 		/**
@@ -107,8 +121,8 @@ public class Controleur {
 			while(reponseZone.next()){
 				listeZones.add(new Zone(reponseZone.getInt("id"), reponseZone.getString("nom"), new Color(reponseZone.getInt("couleurR"), reponseZone.getInt("couleurG"), reponseZone.getInt("couleurB"))));
 			}
-		} catch (SQLException e5) {
-			e5.printStackTrace();
+		} catch (SQLException e6) {
+			e6.printStackTrace();
 		}
 		
 		/**
@@ -121,8 +135,21 @@ public class Controleur {
 				getZoneId(reponseZoneStation.getInt("idZone")).ajouterStation(getStationId(reponseZoneStation.getInt("idStation")));
 				getStationId(reponseZoneStation.getInt("idStation")).setZone(getZoneId(reponseZoneStation.getInt("idZone")));
 			}
-		} catch (SQLException e6){
-			e6.printStackTrace();
+		} catch (SQLException e7){
+			e7.printStackTrace();
+		}
+		
+		/**
+		 * Initialisation des villes
+		 */
+		try {
+			reponseVille = this.bdd.select("SELECT * FROM ville");
+			
+			while(reponseVille.next()){
+				listeVilles.add(new Ville(reponseVille.getString("nom")));
+			}
+		} catch (SQLException e8){
+			e8.printStackTrace();
 		}
 
 		this.cartePanel.setListeLignes(listeLignes);

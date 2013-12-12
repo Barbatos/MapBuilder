@@ -42,5 +42,13 @@ public class HorairesPanel extends JPanel{
 	public void drawComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(new Color(100, 200, 100));
+		
+		g.setColor(new Color(100, 100, 200));
+		g.fillRect(0, 0, 50, 50);
+		
+		for(int i = 0;i < this.station.getListeHoraires().size();i++){
+			this.station.getListeHoraires().elementAt(i).dessinerHoraire(g, 0, i * 30);
+		}
 	}
+	
 }

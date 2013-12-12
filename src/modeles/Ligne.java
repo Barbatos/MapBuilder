@@ -121,7 +121,7 @@ public class Ligne extends Station{
 		
 		str += "\n";
 
-		for (int i = 0; i < this.getStation(0).getlisteHoraires().size(); i++) {
+		for (int i = 0; i < this.getStation(0).getListeHoraires().size(); i++) {
 			for (int j = 0; i < listeStations.size(); i++) {
 				str += this.getStation(j).getHoraire(i) + " \t\t\t ";
 			}

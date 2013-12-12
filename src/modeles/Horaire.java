@@ -1,4 +1,8 @@
 package modeles;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Horaire {
 	private int jSemaine;
 	private int heure;
@@ -17,6 +21,19 @@ public class Horaire {
 		this.heure = heure;
 		this.minute = minute;
 		this.periode = periode;
+	}
+	
+	public void dessinerHoraire(Graphics g, int x, int y){
+		int hauteur = 30;
+		int largeur = 90;
+		
+		g.setColor(new Color(10, 10, 10));
+		g.drawRect(x, y, largeur, hauteur);
+
+		int h = g.getFontMetrics().getHeight();
+		int l = g.getFontMetrics().stringWidth(this.heure + " : " + this.minute);
+		
+		g.drawString(this.heure + " : " + this.minute, x - l / 2 + largeur / 2, y + h / 4 + hauteur / 2);
 	}
 	
 	public int getJSemaine(){

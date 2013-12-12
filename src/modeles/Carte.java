@@ -44,7 +44,6 @@ public class Carte {
 		return listeExte;
 	}
 	
-
 	// inverser les commentaires pour une utilisation sur les 2 premières sations uniquement !
 	public void dessinerZone(Graphics g){
 		Vector<Station> listeExte = new Vector<Station>();
@@ -70,9 +69,9 @@ public class Carte {
 						x[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getX();
 						y[2] = listeZones.elementAt(f).getListeStations().elementAt(k).getY();
 						
-						//dessinerToutLisse(x, y, g, listeExte);
-						dessinerToutLisse2(x, y, g, listeExte);
-						//dessinerNormal(x, y, g, listeExte);
+						//dessinerToutLisse8Points(x, y, g, listeExte);
+						//dessinerToutLisse4Points(x, y, g, listeExte);
+						dessinerNormal(x, y, g, listeExte);
 					}
 				}
 			}
@@ -81,7 +80,6 @@ public class Carte {
 	}
 	
 	private void dessinerNormal(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
-		// TODO Auto-generated method stub
 		boolean dessinable;
 		
 		Polygon polygonXY = new Polygon(x, y, 3);
@@ -99,8 +97,7 @@ public class Carte {
 		}
 	}
 
-	private void dessinerToutLisse(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
-		// TODO Auto-generated method stub
+	private void dessinerToutLisse8Points(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
 		boolean dessinable;
 		int xTour[] = new int[24];
 		int yTour[] = new int[24];
@@ -159,9 +156,7 @@ public class Carte {
 		}
 	}
 
-	
-	private void dessinerToutLisse2(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
-		// TODO Auto-generated method stub
+	private void dessinerToutLisse4Points(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
 		boolean dessinable;
 		int xTour[] = new int[12];
 		int yTour[] = new int[12];

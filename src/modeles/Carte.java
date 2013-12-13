@@ -160,11 +160,8 @@ public class Carte {
 	public void dessinerCarte(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(2));
-		
+
 		// Affichage des zones
-		
-		//this.dessinerZone(g);
-		
 		for(int i = 0;i < listeZones.size();i++){
 			listeZones.elementAt(i).dessinerZone(g);
 		}

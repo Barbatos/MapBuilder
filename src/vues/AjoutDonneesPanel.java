@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 public class AjoutDonneesPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
-	public final static int WIDTH = 800;
-	public final static int HEIGHT = 600;
+	public final static int WIDTH = 1000;
+	public final static int HEIGHT = 500;
 	
 	private JFrame fenetre;
 	
@@ -35,7 +35,7 @@ public class AjoutDonneesPanel extends JPanel{
 		fenetre.setVisible(true);
 	}
 	
-	public void drawComponent(Graphics g){
+	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(new Color(100, 200, 100));
 	}

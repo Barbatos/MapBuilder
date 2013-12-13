@@ -10,6 +10,14 @@ public class Bouton {
 	private int hauteur;
 	private int largeur;
 	
+	public Bouton(){
+		this.nom = "bouton";
+		this.x = -1;
+		this.y = -1;
+		this.largeur = -1;
+		this.hauteur = -1;
+	}
+	
 	public Bouton(String nom, int x, int y, int largeur, int hauteur){
 		this.nom = nom;
 		this.x = x;

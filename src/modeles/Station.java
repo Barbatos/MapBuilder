@@ -18,7 +18,8 @@ public class Station{
 	private String nom;
 	private Vector<Horaire> listeHoraires = new Vector<Horaire>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
-	private Vector<Bouton> listeBoutonsHoraire = new Vector<Bouton>();
+	private Bouton boutonHoraires;
+	private Vector<Bouton> listeBoutonsHorairesLignes = new Vector<Bouton>();
 	private Zone zone;
 	
 	/**
@@ -72,13 +73,15 @@ public class Station{
 			g.drawString("- ligne " + this.getLigne(i).getNom() + " - " + this.getLigne(i).getTransport().getNom(), CartePanel.WIDTH - 230, 100 + i * 20);
 		}
 		
-		listeBoutonsHoraire.add(new Bouton("Horaires de la station", CartePanel.WIDTH - 270, 180, 240, 30));
+		boutonHoraires = new Bouton("Horaires de la station", CartePanel.WIDTH - 270, 180, 240, 30);
 		
 		for(int i = 0;i < listeLignes.size();i++){
-			listeBoutonsHoraire.add(new Bouton("Horaires de la ligne " + this.getLigne(i).getNom(), CartePanel.WIDTH - 270, 220 + 40 * i, 240, 30));
+			listeBoutonsHorairesLignes.add(new Bouton("Horaires de la ligne " + this.getLigne(i).getNom(), CartePanel.WIDTH - 270, 220 + 40 * i, 240, 30));
 		}
 		
-		for(int i = 0;i < listeBoutonsHoraire.size();i++){
+		boutonHoraires.paintComponent(g);
+		
+		for(int i = 0;i < listeBoutonsHorairesLignes.size();i++){
 			this.getBoutonHoraire(i).paintComponent(g);
 		}
 	}
@@ -122,7 +125,7 @@ public class Station{
 	}
 	
 	public void insertBoutonHoraire(Bouton bouton){
-		listeBoutonsHoraire.add(bouton);
+		listeBoutonsHorairesLignes.add(bouton);
 	}
 	
 	/**
@@ -180,16 +183,16 @@ public class Station{
 	}
 	
 	public Bouton getBoutonHoraire(int numero){
-		if(numero < listeBoutonsHoraire.size())
-			return listeBoutonsHoraire.elementAt(numero);
+		if(numero < listeBoutonsHorairesLignes.size())
+			return listeBoutonsHorairesLignes.elementAt(numero);
 		else{
 			System.out.println("Erreur d'insertion de Ligne dans la Station !");
-			return listeBoutonsHoraire.lastElement();
+			return listeBoutonsHorairesLignes.lastElement();
 		}
 	}
 	
 	public Vector<Bouton> getListeBoutonsHoraire(){
-		return listeBoutonsHoraire;
+		return listeBoutonsHorairesLignes;
 	}
 	
 	public Ligne getLigne(int numero){

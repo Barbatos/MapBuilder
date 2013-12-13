@@ -126,6 +126,21 @@ public class Controleur {
 		}
 		
 		/**
+		 * Initialisation des points de chaque zone
+		 */
+		try {
+			reponseZone = this.bdd.select("SELECT * FROM `point-zone` order by idZone, ordre");
+			
+			while(reponseZone.next()){
+				getZoneId(reponseZone.getInt("idZone")).ajouterPointX(reponseZone.getInt("coordX"));
+				getZoneId(reponseZone.getInt("idZone")).ajouterPointY(reponseZone.getInt("coordY"));
+			}
+			
+		} catch (SQLException e7) {
+			e7.printStackTrace();
+		}
+		
+		/**
 		 * Initialisation des relations stations/zones
 		 */
 		try {
@@ -135,8 +150,8 @@ public class Controleur {
 				getZoneId(reponseZoneStation.getInt("idZone")).ajouterStation(getStationId(reponseZoneStation.getInt("idStation")));
 				getStationId(reponseZoneStation.getInt("idStation")).setZone(getZoneId(reponseZoneStation.getInt("idZone")));
 			}
-		} catch (SQLException e7){
-			e7.printStackTrace();
+		} catch (SQLException e8){
+			e8.printStackTrace();
 		}
 		
 		/**
@@ -148,8 +163,8 @@ public class Controleur {
 			while(reponseVille.next()){
 				listeVilles.add(new Ville(reponseVille.getString("nom")));
 			}
-		} catch (SQLException e8){
-			e8.printStackTrace();
+		} catch (SQLException e9){
+			e9.printStackTrace();
 		}
 
 		this.cartePanel.setListeLignes(listeLignes);

@@ -157,57 +157,6 @@ public class Carte {
 		}
 	}
 
-	private void dessinerToutLisse4Points(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
-		boolean dessinable;
-		int xTour[] = new int[12];
-		int yTour[] = new int[12];
-		
-		Polygon polygonXY = new Polygon(x, y, 3);
-		dessinable = true;
-		
-		for(int m = 0; m < listeExte.size(); m ++) {
-			// si le polygone formé par x et y ne contient aucune station de listeExte, alors on le dessine.
-			if(polygonXY.contains(listeExte.elementAt(m).getX(), listeExte.elementAt(m).getY())) {
-				dessinable = false;
-			}
-		}
-
-		// permet de dessiner tout autour de chaque station, et lisse ainsi le rendu
-		for(int d = 0; d < 3; d++) {
-			xTour[0+d*4] = x[d];
-			xTour[1+d*4] = x[d] + 10;
-			xTour[2+d*4] = x[d];
-			xTour[3+d*4] = x[d] - 10;
-			
-			yTour[0+d*4] = y[d] + 10; 
-			yTour[1+d*4] = y[d];
-			yTour[2+d*4] = y[d] - 10;
-			yTour[3+d*4] = y[d];
-		}
-		
-		if(dessinable) {			
-			for(int i = 0; i < 12; i++) {
-				for(int j = i + 1; j < 12; j++) {
-					for(int k = j + 1; k < 12; k++) {
-						int xDraw[] = new int[3];
-						int yDraw[] = new int[3];
-						
-						xDraw[0] = xTour[i];
-						yDraw[0] = yTour[i]; 
-						xDraw[1] = xTour[j]; 
-						yDraw[1] = yTour[j]; 
-						xDraw[2] = xTour[k]; 
-						yDraw[2] = yTour[k];
-						
-						g.setColor(new Color(200, 10, 10)); 
-						g.fillPolygon(xDraw, yDraw, 3); 
-						
-					}
-				}
-			}
-		}
-	}
-
 	public void dessinerCarte(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(2));

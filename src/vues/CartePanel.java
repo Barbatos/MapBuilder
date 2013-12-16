@@ -85,9 +85,9 @@ public class CartePanel extends JPanel{
 		listeBoutons.add(new Bouton("Ajout de données", CartePanel.WIDTH - 270, 600, 240, 30));
 		
 		// Affichage des boutons
-//		for(int i = 0;i < listeBoutons.size();i++){
-//			this.listeBoutons.elementAt(i).paintComponent(g);
-//		}
+		for(int i = 0;i < listeBoutons.size();i++){
+			this.listeBoutons.elementAt(i).paintComponent(g);
+		}
 		
 	}
 	

@@ -248,7 +248,7 @@ public class Controleur {
 					(y <= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY() + this.cartePanel.getStationActuelle().getBoutonHoraire(i).getHauteur()) && 
 					(y >= this.cartePanel.getStationActuelle().getBoutonHoraire(i).getY())
 				){
-					new HorairesPanel(this.cartePanel.getStationActuelle());
+					new HorairesPanel(this.cartePanel.getStationActuelle().getLigne(i));
 					return;
 				}
 			}

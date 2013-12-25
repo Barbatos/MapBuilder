@@ -81,7 +81,7 @@ public class CartePanel extends JPanel{
 			stationPassageSouris.dessinerNom(g);
 		}
 		
-		// Affichage du bouton d'ajout d'une ligne
+		// Affichage du bouton d'ajout de données
 		listeBoutons.add(new Bouton("Ajout de données", CartePanel.WIDTH - 270, 600, 240, 30));
 		
 		// Affichage des boutons

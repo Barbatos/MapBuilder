@@ -183,8 +183,8 @@ public class Controleur {
 			public void mouseReleased(MouseEvent event){
 				if(appui == true && !verifierPassageStation(event.getX(), event.getY())){
 					deplacerStation(event.getX(), event.getY());
-					appui = false;
 				}
+				appui = false;
 			}
 			
 			public void mousePressed(MouseEvent event){
@@ -198,7 +198,11 @@ public class Controleur {
 		};
 		
 		mouseMotionListener = new MouseMotionListener(){
-			public void mouseDragged(MouseEvent event){}
+			public void mouseDragged(MouseEvent event){
+				if(appui){
+					System.out.println("Position souris: x:" +event.getX()+", y:"+event.getY());
+				}
+			}
 			public void mouseMoved(MouseEvent event){
 				verifierPassageStation(event.getX(), event.getY());
 				cartePanel.repaint();

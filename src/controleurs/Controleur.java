@@ -30,6 +30,7 @@ public class Controleur {
 	private MouseMotionListener mouseMotionListener;
 	private BaseDeDonnees bdd;
 	private boolean clique = false;
+	private boolean appui = false;
 	
 	public Controleur(CartePanel _carte){
 		this.cartePanel = _carte;
@@ -179,8 +180,18 @@ public class Controleur {
 			
 			public void mouseEntered(MouseEvent event){}			
 			public void mouseExited(MouseEvent event){}
-			public void mouseReleased(MouseEvent event){}
-			public void mousePressed(MouseEvent event){}
+			public void mouseReleased(MouseEvent event){
+				if(appui == true){
+					deplacerStation(event.getX(), event.getY());
+					appui = false;
+				}
+			}
+			
+			public void mousePressed(MouseEvent event){
+				if(verifierClicStation(event.getX(), event.getY())){
+					appui = true;
+				}
+			}
 		};
 		
 		mouseMotionListener = new MouseMotionListener(){
@@ -195,7 +206,24 @@ public class Controleur {
 		this.cartePanel.addMouseListener(mouseListener);
 	}
 	
-	public void verifierClicStation(int x, int y){
+	public void deplacerStation(int x, int y){
+		if(!appui){
+			return;
+		}
+		
+		System.out.println("Déplacement de la station "+this.cartePanel.getStationActuelle().getNom()+", x:"+x+", y:"+y);
+		try {
+			this.bdd.query("UPDATE station SET coordX = "+x+", coordY = "+y+" WHERE id = "+this.cartePanel.getStationActuelle().getId());
+			this.cartePanel.getStationActuelle().setX(x);
+			this.cartePanel.getStationActuelle().setY(y);
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		
+		cartePanel.repaint();
+	}
+	
+	public boolean verifierClicStation(int x, int y){
 		for(int i = 0; i < listeStations.size(); i++){
 			if( 
 				(x <= (listeStations.elementAt(i).getX() + 7)) &&
@@ -205,8 +233,11 @@ public class Controleur {
 			  ){
 				this.cartePanel.setStationActuelle(listeStations.elementAt(i));
 				clique = true;
+				return true;
 			}
 		}
+		
+		return false;
 	}
 	
 	public void verifierPassageStation(int x, int y){

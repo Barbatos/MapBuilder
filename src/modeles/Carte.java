@@ -156,15 +156,48 @@ public class Carte {
 			}
 		}
 	}
+	
+	public void dessinerZoneCercles(Graphics g){
+		int distanceMin = 9999;
+		int distanceCourante;
+		boolean staExterne = false;
+		
+		for(int i = 0;i < this.listeStations.size();i++){
+			for(int j = 0;j < this.listeStations.size();j++){
+				distanceCourante = (int) Math.sqrt((listeStations.elementAt(i).getX() - listeStations.elementAt(j).getX()) * (listeStations.elementAt(i).getX() - listeStations.elementAt(j).getX()) + ((listeStations.elementAt(i).getY() - listeStations.elementAt(j).getY()) * (listeStations.elementAt(i).getY() - listeStations.elementAt(j).getY())));
+				if(distanceMin < distanceCourante){
+					distanceMin = distanceCourante;
+					if(this.listeStations.elementAt(i).getZone() != this.listeStations.elementAt(j).getZone()){
+						staExterne = true;
+					}
+					else{
+						staExterne = false;
+					}
+				}
+			}
+
+			System.out.println(this.listeStations.elementAt(i));
+			g.setColor(this.listeStations.elementAt(i).getZone().getCouleur());
+			
+			if(staExterne){
+				g.fillOval(this.listeStations.elementAt(i).getX() - distanceMin / 2, this.listeStations.elementAt(i).getY() - distanceMin / 2, distanceMin, distanceMin);
+			}
+			else{
+				g.fillOval(this.listeStations.elementAt(i).getX() - distanceMin, this.listeStations.elementAt(i).getY() - distanceMin, distanceMin * 2, distanceMin * 2);
+			}
+		}
+	}
 
 	public void dessinerCarte(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(2));
 
 		// Affichage des zones
-		for(int i = 0;i < listeZones.size();i++){
-			listeZones.elementAt(i).dessinerZone(g);
-		}
+//		for(int i = 0;i < listeZones.size();i++){
+//			listeZones.elementAt(i).dessinerZone(g);
+//		}
+		
+		dessinerZoneCercles(g);
 		
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){

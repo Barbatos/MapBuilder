@@ -211,7 +211,6 @@ public class Controleur {
 			return;
 		}
 		
-		System.out.println("Déplacement de la station "+this.cartePanel.getStationActuelle().getNom()+", x:"+x+", y:"+y);
 		try {
 			this.bdd.query("UPDATE station SET coordX = "+x+", coordY = "+y+" WHERE id = "+this.cartePanel.getStationActuelle().getId());
 			this.cartePanel.getStationActuelle().setX(x);

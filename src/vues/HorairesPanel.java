@@ -42,8 +42,10 @@ public class HorairesPanel extends JPanel{
 	    	}
 	    }
 	    
-	    if((nbHoraireMax + 1) * 90 + 45 > WIDTH){
-	    	JScrollBar hbar = new JScrollBar(JScrollBar.HORIZONTAL, 0, WIDTH, 0, (nbHoraireMax + 1) * 90 + 45);
+	    System.out.println(nbHoraireMax);
+	    
+	    if(180 + nbHoraireMax * 90 + 45 > WIDTH){
+	    	JScrollBar hbar = new JScrollBar(JScrollBar.HORIZONTAL, 0, WIDTH, 0, 180 + nbHoraireMax * 90 + 45);
 	    	hbar.addAdjustmentListener(new ajustement());
 	    	add(hbar, BorderLayout.SOUTH);
 	    }

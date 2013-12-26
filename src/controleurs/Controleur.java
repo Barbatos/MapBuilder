@@ -181,7 +181,7 @@ public class Controleur {
 			public void mouseEntered(MouseEvent event){}			
 			public void mouseExited(MouseEvent event){}
 			public void mouseReleased(MouseEvent event){
-				if(appui == true){
+				if(appui == true && !verifierPassageStation(event.getX(), event.getY())){
 					deplacerStation(event.getX(), event.getY());
 					appui = false;
 				}
@@ -190,6 +190,9 @@ public class Controleur {
 			public void mousePressed(MouseEvent event){
 				if(verifierClicStation(event.getX(), event.getY())){
 					appui = true;
+				}
+				else {
+					appui = false;
 				}
 			}
 		};
@@ -239,7 +242,7 @@ public class Controleur {
 		return false;
 	}
 	
-	public void verifierPassageStation(int x, int y){
+	public boolean verifierPassageStation(int x, int y){
 		for(int i = 0; i < listeStations.size(); i++){
 			if( 
 				(x <= (listeStations.elementAt(i).getX() + 7)) &&
@@ -248,8 +251,11 @@ public class Controleur {
 				(y >= (listeStations.elementAt(i).getY() - 7))
 			  ){
 				this.cartePanel.setStationPassageSouris(listeStations.elementAt(i));
+				return true;
 			}
 		}
+		
+		return false;
 	}
 	
 	public void verifierClicBouton(int x, int y){

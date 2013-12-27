@@ -54,7 +54,7 @@ public class CartePanel extends JPanel{
 		fenetre.setContentPane(this);
 		
 		fenetre.setVisible(true);
-	}	
+	}
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

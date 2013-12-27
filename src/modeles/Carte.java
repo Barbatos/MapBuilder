@@ -157,33 +157,38 @@ public class Carte {
 		}
 	}
 	
-	public void dessinerZoneCercles(Graphics g){
-		int distanceMin = 9999;
+	public void dessinerZoneCercles(Graphics g){		
+		int distanceMin;
 		int distanceCourante;
 		boolean staExterne = false;
 		
-		for(int i = 0;i < this.listeStations.size();i++){
-			for(int j = 0;j < this.listeStations.size();j++){
-				distanceCourante = (int) Math.sqrt((listeStations.elementAt(i).getX() - listeStations.elementAt(j).getX()) * (listeStations.elementAt(i).getX() - listeStations.elementAt(j).getX()) + ((listeStations.elementAt(i).getY() - listeStations.elementAt(j).getY()) * (listeStations.elementAt(i).getY() - listeStations.elementAt(j).getY())));
-				if(distanceMin < distanceCourante){
-					distanceMin = distanceCourante;
-					if(this.listeStations.elementAt(i).getZone() != this.listeStations.elementAt(j).getZone()){
-						staExterne = true;
-					}
-					else{
-						staExterne = false;
+		for(int k = 0;k < listeZones.size();k++){
+			for(int i = 0;i < listeZones.elementAt(k).getListeStations().size();i++){
+				distanceMin = 9999;
+				for(int j = 0;j < listeZones.elementAt(k).getListeStations().size();j++){
+					if(listeZones.elementAt(k).getListeStations().elementAt(i) != listeZones.elementAt(k).getListeStations().elementAt(j)){
+						distanceCourante = (int) Math.sqrt((listeZones.elementAt(k).getListeStations().elementAt(i).getX() - listeZones.elementAt(k).getListeStations().elementAt(j).getX()) * (listeZones.elementAt(k).getListeStations().elementAt(i).getX() - listeZones.elementAt(k).getListeStations().elementAt(j).getX()) + ((listeZones.elementAt(k).getListeStations().elementAt(i).getY() - listeZones.elementAt(k).getListeStations().elementAt(j).getY()) * (listeZones.elementAt(k).getListeStations().elementAt(i).getY() - listeZones.elementAt(k).getListeStations().elementAt(j).getY())));
+						if(distanceMin > distanceCourante){
+							distanceMin = distanceCourante;
+							if(listeZones.elementAt(k).getListeStations().elementAt(i).getZone() != listeZones.elementAt(k).getListeStations().elementAt(j).getZone()){
+								staExterne = true;
+							}
+							else{
+								staExterne = false;
+							}
+						}
 					}
 				}
-			}
-
-			System.out.println(this.listeStations.elementAt(i));
-			g.setColor(this.listeStations.elementAt(i).getZone().getCouleur());
-			
-			if(staExterne){
-				g.fillOval(this.listeStations.elementAt(i).getX() - distanceMin / 2, this.listeStations.elementAt(i).getY() - distanceMin / 2, distanceMin, distanceMin);
-			}
-			else{
-				g.fillOval(this.listeStations.elementAt(i).getX() - distanceMin, this.listeStations.elementAt(i).getY() - distanceMin, distanceMin * 2, distanceMin * 2);
+	
+				System.out.println(listeZones.elementAt(k).getListeStations().elementAt(i));
+				g.setColor(listeZones.elementAt(k).getCouleur());
+				
+				if(staExterne){
+					g.fillOval(listeZones.elementAt(k).getListeStations().elementAt(i).getX() - distanceMin / 2, listeZones.elementAt(k).getListeStations().elementAt(i).getY() - distanceMin / 2, distanceMin, distanceMin);
+				}
+				else{
+					g.fillOval(listeZones.elementAt(k).getListeStations().elementAt(i).getX() - distanceMin, listeZones.elementAt(k).getListeStations().elementAt(i).getY() - distanceMin, distanceMin * 2, distanceMin * 2);
+				}
 			}
 		}
 	}
@@ -193,11 +198,11 @@ public class Carte {
 		g2.setStroke(new BasicStroke(2));
 
 		// Affichage des zones
-//		for(int i = 0;i < listeZones.size();i++){
-//			listeZones.elementAt(i).dessinerZone(g);
-//		}
+		for(int i = 0;i < listeZones.size();i++){
+			listeZones.elementAt(i).dessinerZone(g);
+		}
 		
-		dessinerZoneCercles(g);
+//		dessinerZoneCercles(g);
 		
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){

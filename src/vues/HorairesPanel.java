@@ -30,8 +30,8 @@ public class HorairesPanel extends JPanel{
 
 	    setLayout(new BorderLayout());
 	    
-	    if((this.ligne.getListeStations().size() + 1) * 30 + 15 > HEIGHT){
-	    	JScrollBar vbar = new JScrollBar(JScrollBar.VERTICAL, 0, HEIGHT, 0, (this.ligne.getListeStations().size() + 1) * 30);
+	    if((this.ligne.getListeStations().size() + 1) * 31 > HEIGHT){
+	    	JScrollBar vbar = new JScrollBar(JScrollBar.VERTICAL, 0, HEIGHT, 0, (this.ligne.getListeStations().size() + 1) * 31);
 	    	vbar.addAdjustmentListener(new ajustement());
 	    	add(vbar, BorderLayout.EAST);
 	    }
@@ -42,10 +42,8 @@ public class HorairesPanel extends JPanel{
 	    	}
 	    }
 	    
-	    System.out.println(nbHoraireMax);
-	    
-	    if(180 + nbHoraireMax * 90 + 45 > WIDTH){
-	    	JScrollBar hbar = new JScrollBar(JScrollBar.HORIZONTAL, 0, WIDTH, 0, 180 + nbHoraireMax * 90 + 45);
+	    if(180 + nbHoraireMax * 91 + 45 > WIDTH){
+	    	JScrollBar hbar = new JScrollBar(JScrollBar.HORIZONTAL, 0, WIDTH, 0, 180 + nbHoraireMax * 91 + 45);
 	    	hbar.addAdjustmentListener(new ajustement());
 	    	add(hbar, BorderLayout.SOUTH);
 	    }
@@ -78,8 +76,6 @@ public class HorairesPanel extends JPanel{
 			else if(e.getAdjustable().getOrientation() == JScrollBar.VERTICAL){
 				scrollY = e.getValue() * (-1);
 			}
-			
-			
 				
 			fenetre.repaint();
 		}

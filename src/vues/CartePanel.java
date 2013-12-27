@@ -103,6 +103,14 @@ public class CartePanel extends JPanel{
 		return stationPassageSouris;
 	}
 	
+	public void setListeVilles(Vector<Ville> villes){
+		this.carte.setListeVilles(villes);
+	}
+	
+	public void setListeStations(Vector<Station> stations){
+		this.carte.setListeStations(stations);
+	}
+	
 	public void setListeZones(Vector<Zone> zones){
 		this.carte.setListeZones(zones);
 	}

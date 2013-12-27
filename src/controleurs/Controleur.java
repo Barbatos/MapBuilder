@@ -168,6 +168,7 @@ public class Controleur {
 			e9.printStackTrace();
 		}
 
+		this.cartePanel.setListeStations(listeStations);
 		this.cartePanel.setListeLignes(listeLignes);
 		this.cartePanel.setListeZones(listeZones);
 		

@@ -6,11 +6,16 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import modeles.BaseDeDonnees;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -20,8 +25,10 @@ public class AjoutVillePanel extends JPanel{
 	public final static int HEIGHT = 110;
 	
 	private JFrame fenetre;
+	private BaseDeDonnees bdd;
 	
-	public AjoutVillePanel(){
+	public AjoutVillePanel(BaseDeDonnees _bdd){
+		this.bdd = _bdd;
 		
 		fenetre = new JFrame();
 		
@@ -48,12 +55,12 @@ public class AjoutVillePanel extends JPanel{
 		pane.setLayout(layout);
 		
 		JLabel nomVilleLabel = new JLabel("Nom ville");
-		JTextField nomVilleField = new JTextField();
+		final JTextField nomVilleField = new JTextField();
 		
 		JButton boutonOk = new JButton("Ok");
 		boutonOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
+				ajouterVilleBdd(nomVilleField.getText());
 			}
 		});
 		
@@ -61,7 +68,7 @@ public class AjoutVillePanel extends JPanel{
 		JButton boutonRetour = new JButton("Retour");
 		boutonRetour.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				
+				fenetre.dispose();
 			}
 		});
 		
@@ -71,6 +78,16 @@ public class AjoutVillePanel extends JPanel{
 		pane.add(boutonRetour);
 		
         fenetre.setContentPane(pane);
+	}
+	
+	public void ajouterVilleBdd(String ville){
+		try {
+			this.bdd.query("INSERT INTO ville (nom) VALUE ('"+ville+"')");
+			System.out.println("Ville ajoutée: "+ville);
+			fenetre.dispose();
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 	}
 	
 	public void paintComponent(Graphics g){

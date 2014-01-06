@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 12 Décembre 2013 à 12:35
--- Version du serveur: 5.5.31
--- Version de PHP: 5.4.4-14+deb7u5
+-- Généré le: Lun 06 Janvier 2014 à 15:07
+-- Version du serveur: 5.5.33
+-- Version de PHP: 5.4.4-14+deb7u7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,22 +31,33 @@ CREATE TABLE IF NOT EXISTS `horaire` (
   `heure` tinyint(2) NOT NULL,
   `minute` tinyint(2) NOT NULL,
   `periode` tinyint(3) NOT NULL,
-  `IdStation` int(11) NOT NULL,
-  PRIMARY KEY (`jSemaine`,`heure`,`minute`,`periode`,`IdStation`)
+  `idStation` int(10) NOT NULL,
+  `idLigne` int(10) NOT NULL,
+  PRIMARY KEY (`jSemaine`,`heure`,`minute`,`periode`,`idStation`,`idLigne`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `horaire`
 --
 
-INSERT INTO `horaire` (`jSemaine`, `heure`, `minute`, `periode`, `IdStation`) VALUES
-(1, 5, 0, 1, 30),
-(1, 5, 10, 1, 30),
-(1, 5, 20, 1, 30),
-(1, 5, 40, 1, 30),
-(1, 5, 50, 1, 30),
-(1, 6, 0, 1, 30),
-(1, 6, 10, 1, 30);
+INSERT INTO `horaire` (`jSemaine`, `heure`, `minute`, `periode`, `idStation`, `idLigne`) VALUES
+(1, 5, 0, 1, 30, 2),
+(1, 5, 10, 1, 30, 2),
+(1, 5, 20, 1, 30, 2),
+(1, 5, 40, 1, 30, 2),
+(1, 5, 50, 1, 30, 2),
+(1, 6, 0, 1, 30, 2),
+(1, 6, 10, 1, 30, 2),
+(1, 6, 20, 1, 30, 2),
+(1, 6, 30, 1, 30, 2),
+(1, 6, 40, 1, 30, 2),
+(1, 6, 50, 1, 30, 2),
+(1, 7, 0, 1, 30, 2),
+(1, 7, 10, 1, 30, 2),
+(1, 7, 20, 1, 30, 2),
+(1, 7, 30, 1, 30, 2),
+(1, 7, 40, 1, 30, 2),
+(1, 7, 50, 1, 30, 2);
 
 -- --------------------------------------------------------
 
@@ -120,6 +131,56 @@ INSERT INTO `moyentransport` (`id`, `nom`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `point-zone`
+--
+
+CREATE TABLE IF NOT EXISTS `point-zone` (
+  `idZone` int(10) NOT NULL,
+  `ordre` int(10) NOT NULL,
+  `coordX` int(10) NOT NULL,
+  `coordY` int(10) NOT NULL,
+  PRIMARY KEY (`idZone`,`ordre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `point-zone`
+--
+
+INSERT INTO `point-zone` (`idZone`, `ordre`, `coordX`, `coordY`) VALUES
+(1, 1, 120, 54),
+(1, 2, 130, 54),
+(1, 3, 130, 44),
+(1, 4, 140, 44),
+(1, 5, 185, 101),
+(1, 6, 317, 193),
+(1, 7, 148, 563),
+(1, 8, 0, 0),
+(1, 9, 0, 0),
+(1, 10, 0, 0),
+(1, 11, 0, 0),
+(1, 12, 0, 0),
+(1, 13, 0, 0),
+(1, 14, 0, 0),
+(1, 15, 0, 0),
+(1, 16, 0, 0),
+(1, 17, 0, 0),
+(1, 18, 0, 0),
+(1, 19, 0, 0),
+(1, 20, 0, 0),
+(1, 21, 0, 0),
+(1, 22, 84, 607),
+(1, 23, 0, 0),
+(1, 24, 0, 0),
+(1, 25, 0, 0),
+(1, 26, 0, 0),
+(1, 27, 48, 497),
+(1, 28, 0, 0),
+(1, 29, 0, 0),
+(1, 30, 0, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `station`
 --
 
@@ -136,40 +197,40 @@ CREATE TABLE IF NOT EXISTS `station` (
 --
 
 INSERT INTO `station` (`id`, `nom`, `coordX`, `coordY`) VALUES
-(1, 'Maréchal Juin', 136, 89),
-(2, 'Côte de Nacre', 154, 96),
-(3, 'Citis', 185, 101),
+(1, 'Maréchal Juin', 138, 91),
+(2, 'Côte de Nacre', 153, 99),
+(3, 'Citis', 201, 90),
 (4, 'Claud Bloch / Campus 4', 168, 116),
-(5, 'CHU', 154, 155),
-(6, 'Copernic', 141, 200),
+(5, 'CHU', 136, 145),
+(6, 'Copernic', 150, 191),
 (7, 'Calvaire St-Pierre', 112, 201),
 (8, 'CROUS-SUAPS', 110, 230),
-(9, 'Université', 95, 269),
-(10, 'Place de la Mare', 78, 286),
+(9, 'Université', 93, 267),
+(10, 'Place de la Mare', 78, 284),
 (11, 'Quatrans', 89, 300),
 (12, 'St-Pierre', 107, 320),
 (13, 'Bernières', 117, 330),
-(14, 'Résistance', 123, 347),
+(14, 'Résistance', 130, 343),
 (15, 'Quai de Juillet', 130, 365),
-(16, 'Gare SNCF', 143, 378),
-(17, 'Bd. Leroy', 172, 424),
-(18, 'Lux-Victor Lépine', 180, 447),
-(19, 'Guynemer', 162, 458),
-(20, 'Poincaré', 161, 490),
+(16, 'Gare SNCF', 147, 379),
+(17, 'Bd. Leroy', 179, 393),
+(18, 'Lux-Victor Lépine', 187, 435),
+(19, 'Guynemer', 180, 468),
+(20, 'Poincaré', 184, 497),
 (21, 'Liberté', 150, 525),
 (22, 'Concorde', 148, 563),
-(23, 'Modigliani', 119, 572),
-(24, 'Ifs Jean Vilar', 84, 607),
-(25, 'Hérouville St-Clair', 317, 193),
-(26, 'Café des Images', 302, 206),
-(27, 'Académie', 285, 200),
-(28, 'Château d''Eau', 257, 191),
-(29, 'Pierre Heuzé', 212, 209),
-(30, 'Caen Campus 2', 129, 64),
-(31, 'Cité U Lebisey', 176, 196),
+(23, 'Modigliani', 154, 591),
+(24, 'Ifs Jean Vilar', 173, 614),
+(25, 'Hérouville St-Clair', 363, 234),
+(26, 'Café des Images', 322, 211),
+(27, 'Académie', 273, 181),
+(28, 'Château d''Eau', 233, 194),
+(29, 'Pierre Heuzé', 221, 221),
+(30, 'Caen Campus 2', 90, 55),
+(31, 'Cité U Lebisey', 177, 217),
 (32, 'Aviation', 121, 497),
 (33, 'Rostand-Fresnel', 96, 501),
-(34, 'Caen Grâce de Dieu', 48, 497);
+(34, 'Caen Grâce de Dieu', 60, 524);
 
 -- --------------------------------------------------------
 

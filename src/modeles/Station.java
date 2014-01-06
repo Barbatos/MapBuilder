@@ -155,6 +155,10 @@ public class Station{
 		return this.nom;
 	}
 	
+	/**
+	 * Recupere la zone de cette Station
+	 * @return Une chaine de caracteres,qui correspond à la zone de cette Station
+	 */
 	public Zone getZone(){
 		return this.zone;
 	}
@@ -173,10 +177,18 @@ public class Station{
 		}
 	}
 	
+	/**
+	 * Recupere la liste des horaires de cette Station
+	 * @return Une liste,qui correspond aux horaires de cette Station
+	 */
 	public Vector<Horaire> getListeHoraires() {
 		return listeHoraires;
 	}
 	
+	/**
+	 * Recupere le bouton d'affichage des horaires
+	 * @return Une liste avec les boutons correspondant au bouton sélectionné
+	 */
 	public Bouton getBoutonHoraire(int numero){
 		if(numero < listeBoutonsHorairesLignes.size())
 			return listeBoutonsHorairesLignes.elementAt(numero);
@@ -186,6 +198,10 @@ public class Station{
 		}
 	}
 	
+	/**
+	 * Recupere la position du bouton d'horaire
+	 * @return Une liste avec l'emplacement du bouton sélectionné
+	 */
 	public Vector<Bouton> getListeBoutonsHoraire(){
 		return listeBoutonsHorairesLignes;
 	}
@@ -231,14 +247,27 @@ public class Station{
 		this.nom = nom;
 	}
 	
+	/**
+	 * Definit la zone de cette Station
+	 * @param zone Une zone, qui correspond au à la zone de cette Station
+	 * @see Zone
+	 */
 	public void setZone(Zone zone){
 		this.zone = zone;
 	}
 	
+	/**
+	 * Definit les horaires de cette Station
+	 * @param listeHoraires Une liste, qui correspond aux horaires de cette Station
+	 * @see Horaire
+	 */
 	public void setlisteHoraires(Vector<Horaire> listeHoraires) {
 		this.listeHoraires = listeHoraires;
 	}
 	
+	/**
+	 * Affiche le nom, l'id et la position de la station
+	 */
 	public String toString(){
 		String str;
 		str = "Station : ";

@@ -3,6 +3,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Vector;
 
+/**
+ * Zone est la classe representant une zone géographique
+ * 
+ * @version 1.0
+ */
 public class Zone extends Station {
 	private int id;
 	private String nom;

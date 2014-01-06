@@ -57,6 +57,12 @@ public class AjoutDonneesPanel extends JPanel{
         });  
 		
 		JButton boutonAjoutStation = new JButton("Ajouter une station");
+		boutonAjoutStation.addActionListener(new ActionListener() {  
+            public void actionPerformed(ActionEvent e) {  
+                ajouterStation();
+            }  
+        });
+		
 		JButton boutonAjoutLigne = new JButton("Ajouter une ligne");
         JButton boutonAjoutZone = new JButton("Ajouter une zone");
         
@@ -70,6 +76,10 @@ public class AjoutDonneesPanel extends JPanel{
 	
 	public void ajouterVille(){
 		new AjoutVillePanel(bdd);
+	}
+	
+	public void ajouterStation(){
+		new AjoutStationPanel(bdd);
 	}
 	
 	public void paintComponent(Graphics g){

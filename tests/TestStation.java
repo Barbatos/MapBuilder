@@ -1,10 +1,10 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
 
-import modeles.Ligne;
 import modeles.MoyenTransport;
 import modeles.Station;
+import modeles.Zone;
 
 import org.junit.Test;
 
@@ -19,8 +19,7 @@ public class TestStation {
 		final String nom = "Bastille";
 		final MoyenTransport transport = new MoyenTransport(3, "Train");
 		final Color couleur = new Color(200, 200, 200);
-		//final int numero = 0;
-		//final String transport = "Bus";
+		final Zone zone = new Zone(id, nom, couleur);
 		
 		Station sta1 = new Station(id, coordx, coordy, nom);
 		
@@ -31,7 +30,7 @@ public class TestStation {
 		
 		assertEquals(id, sta1.getId());
 		assertEquals(nom, sta1.getNom());
-		
+		//assertEquals(zone, sta1.getZone());       //NE MARCHE PAS /!\
 	}
 
 }

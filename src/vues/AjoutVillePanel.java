@@ -8,23 +8,25 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
-public class AjoutDonneesPanel extends JPanel{
+public class AjoutVillePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 200;
-	public final static int HEIGHT = 200;
+	public final static int HEIGHT = 110;
 	
 	private JFrame fenetre;
 	
-	public AjoutDonneesPanel(){
+	public AjoutVillePanel(){
 		
 		fenetre = new JFrame();
 		
 		// On définit le titre de la fenêtre
-		fenetre.setTitle("Ajout de données");
+		fenetre.setTitle("Ajouter une ville");
 
 		// Taille par défaut
 		fenetre.setSize(WIDTH, HEIGHT);
@@ -42,24 +44,31 @@ public class AjoutDonneesPanel extends JPanel{
 		
 		Container pane = fenetre.getContentPane();
 		
-		MigLayout layout = new MigLayout();
+		MigLayout layout = new MigLayout("fillx", "[right]rel[grow,fill]", "[]10[]");
 		pane.setLayout(layout);
 		
-		JButton boutonAjoutVille = new JButton("Ajouter une ville");
-		boutonAjoutVille.addActionListener(new ActionListener() {  
-            public void actionPerformed(ActionEvent e) {  
-                new AjoutVillePanel();
-            }  
-        });  
+		JLabel nomVilleLabel = new JLabel("Nom ville");
+		JTextField nomVilleField = new JTextField();
 		
-		JButton boutonAjoutStation = new JButton("Ajouter une station");
-		JButton boutonAjoutLigne = new JButton("Ajouter une ligne");
-        JButton boutonAjoutZone = new JButton("Ajouter une zone");
-        
-        pane.add(boutonAjoutVille, "cell 0 1");
-        pane.add(boutonAjoutStation, "cell 0 2");
-        pane.add(boutonAjoutLigne, "cell 0 3");
-        pane.add(boutonAjoutZone, "cell 0 4");
+		JButton boutonOk = new JButton("Ok");
+		boutonOk.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+			}
+		});
+		
+		
+		JButton boutonRetour = new JButton("Retour");
+		boutonRetour.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+			}
+		});
+		
+		pane.add(nomVilleLabel);
+		pane.add(nomVilleField, "wrap");
+		pane.add(boutonOk);
+		pane.add(boutonRetour);
 		
         fenetre.setContentPane(pane);
 	}

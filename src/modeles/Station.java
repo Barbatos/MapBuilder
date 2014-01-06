@@ -187,6 +187,7 @@ public class Station{
 	
 	/**
 	 * Recupere le bouton d'affichage des horaires
+	 * @param numero Un int qui correspond au numéro du bouton sélectionné
 	 * @return Une liste avec les boutons correspondant au bouton sélectionné
 	 */
 	public Bouton getBoutonHoraire(int numero){

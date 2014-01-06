@@ -1,19 +1,19 @@
 package vues;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Graphics;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import net.miginfocom.swing.MigLayout;
+
 public class AjoutDonneesPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
-	public final static int WIDTH = 1000;
-	public final static int HEIGHT = 500;
+	public final static int WIDTH = 200;
+	public final static int HEIGHT = 200;
 	
 	private JFrame fenetre;
 	
@@ -40,25 +40,19 @@ public class AjoutDonneesPanel extends JPanel{
 		
 		Container pane = fenetre.getContentPane();
 		
-		pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+		MigLayout layout = new MigLayout();
+		pane.setLayout(layout);
 		
 		JButton boutonAjoutVille = new JButton("Ajouter une ville");
-		boutonAjoutVille.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
 		JButton boutonAjoutStation = new JButton("Ajouter une station");
-		boutonAjoutStation.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
 		JButton boutonAjoutLigne = new JButton("Ajouter une ligne");
-		boutonAjoutLigne.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
         JButton boutonAjoutZone = new JButton("Ajouter une zone");
-        boutonAjoutZone.setAlignmentX(Component.CENTER_ALIGNMENT);
-       
-        pane.add(boutonAjoutVille);
-        pane.add(boutonAjoutStation);
-        pane.add(boutonAjoutLigne);
-        pane.add(boutonAjoutZone);
         
+        pane.add(boutonAjoutVille, "cell 0 1");
+        pane.add(boutonAjoutStation, "cell 0 2");
+        pane.add(boutonAjoutLigne, "cell 0 3");
+        pane.add(boutonAjoutZone, "cell 0 4");
+		
         fenetre.setContentPane(pane);
 	}
 	

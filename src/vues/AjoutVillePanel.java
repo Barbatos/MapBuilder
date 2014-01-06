@@ -57,7 +57,7 @@ public class AjoutVillePanel extends JPanel{
 		JLabel nomVilleLabel = new JLabel("Nom ville");
 		final JTextField nomVilleField = new JTextField();
 		
-		JButton boutonOk = new JButton("Ok");
+		JButton boutonOk = new JButton("Ajouter");
 		boutonOk.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				ajouterVilleBdd(nomVilleField.getText());
@@ -74,8 +74,8 @@ public class AjoutVillePanel extends JPanel{
 		
 		pane.add(nomVilleLabel);
 		pane.add(nomVilleField, "wrap");
-		pane.add(boutonOk);
 		pane.add(boutonRetour);
+		pane.add(boutonOk);
 		
         fenetre.setContentPane(pane);
 	}

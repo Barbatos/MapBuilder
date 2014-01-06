@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import modeles.BaseDeDonnees;
+
 import net.miginfocom.swing.MigLayout;
 
 public class AjoutDonneesPanel extends JPanel{
@@ -18,8 +20,10 @@ public class AjoutDonneesPanel extends JPanel{
 	public final static int HEIGHT = 200;
 	
 	private JFrame fenetre;
+	private BaseDeDonnees bdd;
 	
-	public AjoutDonneesPanel(){
+	public AjoutDonneesPanel(BaseDeDonnees _bdd){
+		this.bdd = _bdd;
 		
 		fenetre = new JFrame();
 		
@@ -48,7 +52,7 @@ public class AjoutDonneesPanel extends JPanel{
 		JButton boutonAjoutVille = new JButton("Ajouter une ville");
 		boutonAjoutVille.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent e) {  
-                new AjoutVillePanel();
+                ajouterVille();
             }  
         });  
 		
@@ -62,6 +66,10 @@ public class AjoutDonneesPanel extends JPanel{
         pane.add(boutonAjoutZone, "cell 0 4");
 		
         fenetre.setContentPane(pane);
+	}
+	
+	public void ajouterVille(){
+		new AjoutVillePanel(bdd);
 	}
 	
 	public void paintComponent(Graphics g){

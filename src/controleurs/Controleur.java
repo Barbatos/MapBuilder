@@ -273,7 +273,7 @@ public class Controleur {
 				(y >= this.cartePanel.getBouton(i).getY())
 			){
 				if(this.cartePanel.getBouton(i).getNom() == "Ajout de données"){
-					new AjoutDonneesPanel();
+					new AjoutDonneesPanel(bdd);
 					return;
 				}
 			}

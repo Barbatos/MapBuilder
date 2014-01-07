@@ -32,9 +32,9 @@ public class Controleur {
 	private boolean clique = false;
 	private boolean appui = false;
 	
-	public Controleur(CartePanel _carte){
-		this.cartePanel = _carte;
-		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "");
+	public Controleur(){
+		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "derp");
+		this.cartePanel = new CartePanel(bdd);
 	}
 	
 	public void initialiser() {
@@ -67,7 +67,7 @@ public class Controleur {
 			reponseStation = this.bdd.select("SELECT * FROM station");
 			
 			while(reponseStation.next()){
-				listeStations.add(new Station(reponseStation.getInt("id"), reponseStation.getInt("coordX"), reponseStation.getInt("coordY"), reponseStation.getString("nom")));
+				listeStations.add(new Station(reponseStation.getInt("id"), reponseStation.getInt("coordX"), reponseStation.getInt("coordY"), reponseStation.getString("nom"), reponseStation.getInt("ville")));
 			}
 		} catch (SQLException e2) {
 			e2.printStackTrace();
@@ -120,7 +120,7 @@ public class Controleur {
 			reponseZone = this.bdd.select("SELECT * FROM zone");
 			
 			while(reponseZone.next()){
-				listeZones.add(new Zone(reponseZone.getInt("id"), reponseZone.getString("nom"), new Color(reponseZone.getInt("couleurR"), reponseZone.getInt("couleurG"), reponseZone.getInt("couleurB"))));
+				listeZones.add(new Zone(reponseZone.getInt("id"), reponseZone.getString("nom"), new Color(reponseZone.getInt("couleurR"), reponseZone.getInt("couleurG"), reponseZone.getInt("couleurB")), reponseZone.getInt("ville")));
 			}
 		} catch (SQLException e6) {
 			e6.printStackTrace();

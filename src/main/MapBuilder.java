@@ -10,8 +10,7 @@ public class MapBuilder {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run(){
-				CartePanel carte = new CartePanel();
-				Controleur controleur = new Controleur(carte);
+				Controleur controleur = new Controleur();
 				controleur.initialiser();
 			}
 		});

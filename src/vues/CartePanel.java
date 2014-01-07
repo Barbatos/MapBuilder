@@ -2,27 +2,35 @@ package vues;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import modeles.Carte;
+import modeles.BaseDeDonnees;
 import modeles.Bouton;
+import modeles.Carte;
 import modeles.Ligne;
 import modeles.Station;
 import modeles.Ville;
 import modeles.Zone;
+import net.miginfocom.swing.MigLayout;
 
 public class CartePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 1200;
 	public final static int HEIGHT = 675;
+	
+	public static int VILLE = 0;
 	
 	private JFrame fenetre;
 	private Vector<Zone> listeZones = new Vector<Zone>();
@@ -34,10 +42,17 @@ public class CartePanel extends JPanel{
 	private Vector<Bouton> listeBoutons = new Vector<Bouton>();
 	
 	private ImageIcon backgroundImage = null;
+	private BaseDeDonnees bdd;
+	
+	private final JComboBox<String> comboVilles = new JComboBox<String>();
 	
 	private Carte carte = new Carte(listeZones, listeLignes, listeVilles, listeStations);
 	
-	public CartePanel(){
+	public CartePanel(BaseDeDonnees _bdd){
+		ResultSet reponseVille;
+		
+		this.bdd = _bdd;
+		
 		fenetre = new JFrame();
 		
 		// On définit le titre de la fenêtre
@@ -59,6 +74,33 @@ public class CartePanel extends JPanel{
 		fenetre.setContentPane(this);
 		
 		fenetre.setVisible(true);
+		
+		Container pane = fenetre.getContentPane();
+		
+		MigLayout layout = new MigLayout("fillx", "[right]rel[grow,fill]", "[]10[]");
+		pane.setLayout(layout);
+		
+		try {
+			reponseVille = this.bdd.select("SELECT nom FROM `ville` ORDER BY nom ASC");
+			
+			while(reponseVille.next()){
+				comboVilles.addItem(reponseVille.getString("nom"));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		pane.add(comboVilles, "wrap");
+		
+		comboVilles.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e){
+				VILLE = comboVilles.getSelectedIndex();
+				System.out.println(VILLE);
+				carte.setVilleCourante(VILLE);
+			}
+		});
+		
+		fenetre.setContentPane(pane);
 	}
 	
 	public void paintComponent(Graphics g){

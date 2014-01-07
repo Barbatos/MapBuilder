@@ -15,6 +15,7 @@ public class Zone extends Station {
 	private int[] pointsX;
 	private int[] pointsY;
 	private Vector<Station> listeStations = new Vector<Station>();
+	private int ville;
 	
 	public Zone(){
 		this.id = -1;
@@ -22,14 +23,16 @@ public class Zone extends Station {
 		this.couleur = new Color(100, 100, 100);
 		this.pointsX = new int[0];
 		this.pointsY = new int[0];
+		this.ville = 0;
 	}
 	
-	public Zone(int _id, String _nom, Color couleur){
+	public Zone(int _id, String _nom, Color couleur, int ville){
 		this.id = _id;
 		this.nom = _nom;
 		this.couleur = couleur;
 		this.pointsX = new int[0];
 		this.pointsY = new int[0];
+		this.ville = ville;
 	}
 	
 	public void dessinerZone(Graphics g){
@@ -85,6 +88,10 @@ public class Zone extends Station {
 		return pointsY;
 	}
 	
+	public int getVille(){
+		return ville;
+	}
+	
 	public Station getStation(int numero) {
 		if (numero < listeStations.size())
 			return listeStations.elementAt(numero);
@@ -116,5 +123,9 @@ public class Zone extends Station {
 	public void setPointsZone(int[] coordX, int[] coordY){
 		this.pointsX = coordX;
 		this.pointsY = coordY;
+	}
+	
+	public void setVille(int ville){
+		this.ville = ville;
 	}
 }

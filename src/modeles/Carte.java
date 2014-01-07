@@ -18,9 +18,8 @@ public class Carte {
 	private Vector<Ville> listeVilles = new Vector<Ville>();
 	private Vector<Station> listeStations = new Vector<Station>();
 	
-	/**
-	 * Constructeur par defaut
-	 */
+	public static int VILLE = 0;
+
 	public Carte(){
 	}
 	
@@ -248,13 +247,15 @@ public class Carte {
 				}
 			}
 
-			g.setColor(listeStations.elementAt(i).getZone().getCouleur());
-			
-			if(staExterne){
-				g.fillOval(listeStations.elementAt(i).getX() - distanceMin / 2, listeStations.elementAt(i).getY() - distanceMin / 2, distanceMin, distanceMin);
-			}
-			else{
-				g.fillOval(listeStations.elementAt(i).getX() - distanceMin, listeStations.elementAt(i).getY() - distanceMin, distanceMin * 2, distanceMin * 2);
+			if(listeStations.elementAt(i).getVille() == VILLE){
+				g.setColor(listeStations.elementAt(i).getZone().getCouleur());
+				
+				if(staExterne){
+					g.fillOval(listeStations.elementAt(i).getX() - distanceMin / 2, listeStations.elementAt(i).getY() - distanceMin / 2, distanceMin, distanceMin);
+				}
+				else{
+					g.fillOval(listeStations.elementAt(i).getX() - distanceMin, listeStations.elementAt(i).getY() - distanceMin, distanceMin * 2, distanceMin * 2);
+				}
 			}
 		}
 	}
@@ -279,7 +280,9 @@ public class Carte {
 		
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){
-			listeLignes.elementAt(i).dessinerLigne(g2);
+			if(listeLignes.elementAt(i).getStation(0).getVille() == VILLE){
+				listeLignes.elementAt(i).dessinerLigne(g2);
+			}
 		}
 	}
 	
@@ -289,6 +292,10 @@ public class Carte {
 	 * @param zones, Un vecteur de zones
 	 * @see Zone
 	 */
+	public void setVilleCourante(int ville){
+		this.VILLE = ville;
+	}
+
 	public void setListeZones(Vector<Zone> zones){
 		this.listeZones = zones;
 	}

@@ -14,7 +14,8 @@ public class TestZone {
 		final int _id = 1;
 		final String _nom = "Test";
 		final Color _couleur = new Color(100, 100, 100);
-		Zone zone = new Zone(_id, _nom, _couleur);
+		final int _ville = 1;
+		Zone zone = new Zone(_id, _nom, _couleur, _ville);
 		
 		assertEquals(_id, zone.getId());
 		assertEquals(_nom, zone.getNom());

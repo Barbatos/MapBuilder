@@ -20,6 +20,7 @@ public class Station{
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private Vector<Bouton> listeBoutonsHorairesLignes = new Vector<Bouton>();
 	private Zone zone;
+	private int ville;
 	
 	/**
 	 * Constructeur par defaut d'une Station
@@ -29,6 +30,7 @@ public class Station{
 		this.coordX = -1;
 		this.coordY = -1;
 		this.nom = "Sans nom";
+		this.ville = 0;
 	}
 	
 	/**
@@ -38,11 +40,12 @@ public class Station{
 	 * @param nom Une chaine de caractere, qui correspond au nom cette Station
 	 * @see Coordonnees
 	 */
-	public Station(int id, int coordX, int coordY, String nom){
+	public Station(int id, int coordX, int coordY, String nom, int ville){
 		this.id = id;
 		this.coordX = coordX;
 		this.coordY = coordY;
 		this.nom = nom;
+		this.ville = ville;
 	}
 	
 	/**
@@ -216,6 +219,10 @@ public class Station{
 		}
 	}
 	
+	public int getVille(){
+		return ville;
+	}
+	
 	/**
 	 * Definit les coordonnees de cette Station
 	 * @param coordX Un entier, qui correspond a la coordonnee x de cette Station
@@ -264,6 +271,10 @@ public class Station{
 	 */
 	public void setlisteHoraires(Vector<Horaire> listeHoraires) {
 		this.listeHoraires = listeHoraires;
+	}
+	
+	public void setVille(int ville){
+		this.ville = ville;
 	}
 	
 	/**

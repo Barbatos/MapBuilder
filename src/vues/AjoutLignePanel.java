@@ -111,13 +111,20 @@ public class AjoutLignePanel extends JPanel{
 	
 	public void ajouterLigneBdd(){
 		try {
-			this.bdd.query("INSERT INTO ligne (nom, couleurR, couleurG, couleurB) VALUES ('"+nomLigneField.getText()+"', '"+Integer.parseInt(couleurR.getText())+"', '"+Integer.parseInt(couleurG.getText())+"', '"+Integer.parseInt(couleurB.getText())+"')");
+			this.bdd.query("INSERT INTO `ligne` (nom, couleurR, couleurG, couleurB) VALUES ('"+nomLigneField.getText()+"', '"+Integer.parseInt(couleurR.getText())+"', '"+Integer.parseInt(couleurG.getText())+"', '"+Integer.parseInt(couleurB.getText())+"')");
 			
-			System.out.println("Ligne ajoutée: "+nomLigneField.getText());
-			fenetre.dispose();
 		} catch (SQLException e2) {
 			e2.printStackTrace();
 		}
+		
+		try {
+			this.bdd.query("INSERT INTO `ligne-transport` (idLigne, idTransport) VALUES ( (SELECT id FROM ligne WHERE nom = '"+nomLigneField.getText()+"'), (SELECT id FROM moyentransport WHERE nom = '"+listeMT.getSelectedItem().toString()+"'))");
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		
+		fenetre.dispose();
+		System.out.println("Ligne ajoutée: "+nomLigneField.getText());
 	}
 	
 	public void paintComponent(Graphics g){

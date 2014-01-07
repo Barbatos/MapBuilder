@@ -34,7 +34,7 @@ public class Controleur {
 	
 	public Controleur(CartePanel _carte){
 		this.cartePanel = _carte;
-		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "bite");
+		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "");
 	}
 	
 	public void initialiser() {

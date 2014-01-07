@@ -32,10 +32,12 @@ public class AjoutStationPanel extends JPanel{
 	private final JTextField coordYField = new JTextField();
 	private final JComboBox<String> listeLignes = new JComboBox<String>();
 	private final JComboBox<String> listeZones = new JComboBox<String>();
+	private final JComboBox<String> listeVilles = new JComboBox<String>();
 	
 	public AjoutStationPanel(BaseDeDonnees _bdd){
 		ResultSet reponseLigne;
 		ResultSet reponseZone;
+		ResultSet reponseVille;
 		
 		this.bdd = _bdd;
 		
@@ -68,6 +70,7 @@ public class AjoutStationPanel extends JPanel{
 		JLabel coordYLabel = new JLabel("Coordonnée Y");
 		JLabel ligneLabel = new JLabel("Ligne");
 		JLabel zoneLabel = new JLabel("Zone");
+		JLabel villeLabel = new JLabel("Ville");
 		
 		try {
 			reponseLigne = this.bdd.select("SELECT nom FROM `ligne` ORDER BY nom ASC");
@@ -84,6 +87,16 @@ public class AjoutStationPanel extends JPanel{
 			
 			while(reponseZone.next()){
 				listeZones.addItem(reponseZone.getString("nom"));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		try {
+			reponseVille = this.bdd.select("SELECT nom FROM `ville` ORDER BY nom ASC");
+			
+			while(reponseVille.next()){
+				listeVilles.addItem(reponseVille.getString("nom"));
 			}
 		} catch (SQLException e){
 			e.printStackTrace();
@@ -114,6 +127,8 @@ public class AjoutStationPanel extends JPanel{
 		pane.add(listeLignes, "wrap");
 		pane.add(zoneLabel);
 		pane.add(listeZones, "wrap");
+		pane.add(villeLabel);
+		pane.add(listeVilles, "wrap");
 		pane.add(boutonRetour);
 		pane.add(boutonOk);
 		
@@ -122,8 +137,10 @@ public class AjoutStationPanel extends JPanel{
 	
 	public void ajouterStationBdd(){
 		try {
-			this.bdd.query("INSERT INTO station (nom, coordX, coordY) VALUES ('"+nomStationField.getText()+"', '"+Integer.parseInt(coordXField.getText())+"', '"+Integer.parseInt(coordYField.getText())+"')");
-			//this.bdd.query("INSERT INTO station-zone ")
+			this.bdd.query("INSERT INTO `station` (nom, coordX, coordY) VALUES ('"+nomStationField.getText()+"', '"+Integer.parseInt(coordXField.getText())+"', '"+Integer.parseInt(coordYField.getText())+"')");
+			this.bdd.query("INSERT INTO `station-zone` (idStation, idZone) VALUES ("
+					+ "(SELECT id FROM `station` WHERE nom = '"+nomStationField.getText()+"'), "
+					+ "(SELECT id FROM `zone` WHERE nom = '"+listeZones.getSelectedItem().toString()+"'))");
 			System.out.println("Station ajoutée: "+nomStationField.getText());
 			fenetre.dispose();
 		} catch (SQLException e2) {

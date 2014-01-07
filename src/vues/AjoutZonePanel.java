@@ -5,9 +5,11 @@ import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,8 +30,11 @@ public class AjoutZonePanel extends JPanel{
 	private final JTextField couleurR = new JTextField();
 	private final JTextField couleurG = new JTextField();
 	private final JTextField couleurB = new JTextField();
+	private final JComboBox<String> listeVilles = new JComboBox<String>();
 	
 	public AjoutZonePanel(BaseDeDonnees _bdd){
+		ResultSet reponseVille;
+		
 		this.bdd = _bdd;
 		
 		fenetre = new JFrame();
@@ -60,6 +65,17 @@ public class AjoutZonePanel extends JPanel{
 		JLabel couleurRLabel = new JLabel("Couleur R");
 		JLabel couleurGLabel = new JLabel("Couleur G");
 		JLabel couleurBLabel = new JLabel("Couleur B");
+		JLabel villeLabel 	 = new JLabel("Ville");
+			
+		try {
+			reponseVille = this.bdd.select("SELECT nom FROM `ville` ORDER BY nom ASC");
+			
+			while(reponseVille.next()){
+				listeVilles.addItem(reponseVille.getString("nom"));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
 		
 		JButton boutonOk = new JButton("Ajouter");
 		boutonOk.addActionListener(new ActionListener(){
@@ -84,6 +100,8 @@ public class AjoutZonePanel extends JPanel{
 		pane.add(couleurG, "wrap");
 		pane.add(couleurBLabel);
 		pane.add(couleurB, "wrap");
+		pane.add(villeLabel);
+		pane.add(listeVilles, "wrap");
 		pane.add(boutonRetour);
 		pane.add(boutonOk);
 		
@@ -92,7 +110,12 @@ public class AjoutZonePanel extends JPanel{
 	
 	public void ajouterZoneBdd(){
 		try {
-			this.bdd.query("INSERT INTO zone (nom, couleurR, couleurG, couleurB) VALUES ('"+nomZoneField.getText()+"', '"+Integer.parseInt(couleurR.getText())+"', '"+Integer.parseInt(couleurG.getText())+"', '"+Integer.parseInt(couleurB.getText())+"')");
+			this.bdd.query("INSERT INTO zone (nom, couleurR, couleurG, couleurB, ville) "
+					+ "VALUES ('"+nomZoneField.getText()+"', "
+					+ "'"+Integer.parseInt(couleurR.getText())+"', "
+					+ "'"+Integer.parseInt(couleurG.getText())+"', "
+					+ "'"+Integer.parseInt(couleurB.getText())+"', "
+					+ "(SELECT id FROM ville WHERE nom = '"+listeVilles.getSelectedItem().toString()+"'))");
 			System.out.println("Zone ajoutée: "+nomZoneField.getText());
 			fenetre.dispose();
 		} catch (SQLException e2) {

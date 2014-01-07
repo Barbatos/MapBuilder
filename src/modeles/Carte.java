@@ -7,15 +7,36 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.util.Vector;
 
+/**
+ * Une carte est modelisee par cette classe
+ * 
+ * @version 1.0
+ */
 public class Carte {
 	private Vector<Zone> listeZones = new Vector<Zone>();
 	private Vector<Ligne> listeLignes = new Vector<Ligne>();
 	private Vector<Ville> listeVilles = new Vector<Ville>();
 	private Vector<Station> listeStations = new Vector<Station>();
 	
+	/**
+	 * Constructeur par defaut
+	 */
 	public Carte(){
 	}
 	
+	/**
+	 * Constructeur parametre
+	 * 
+	 * @param listeZones, Un vecteur de zone sur la carte
+	 * @param listeLignes, Un vecteur de ligne sur la carte
+	 * @param listeVilles, Un vecteur de villes sur la carte
+	 * @param listeStations, Un vecteur de stations sur la carte
+	 * 
+	 * @see Zone
+	 * @see Ligne
+	 * @see Ville
+	 * @see Station
+	 */
 	public Carte(Vector<Zone> listeZones, Vector<Ligne> listeLignes, Vector<Ville> listeVilles, Vector<Station> listeStations) {
 		this.listeLignes = listeLignes;
 		this.listeStations = listeStations;
@@ -23,7 +44,14 @@ public class Carte {
 		this.listeZones = listeZones;
 	}
 	
-	Vector<Station> stationsExterieures(Zone zone) {
+	/**
+	 * Methode qui donne les stations qui n'appartiennent pas a une zone donnee
+	 * 
+	 * @param zone, La zone dot on veut les stations exterieures
+	 * @return Vector<Station>, Un vecteur de stations qui n'appartiennent pas a la zone
+	 * @see Station
+	 */
+	public Vector<Station> stationsExterieures(Zone zone) {
 		Vector<Station> listeExte = new Vector<Station>();
 		boolean dehors;
 		
@@ -44,6 +72,14 @@ public class Carte {
 		return listeExte;
 	}
 	
+	/**
+	 * Methode qui dessine une zone sur la carte en faisant un algorithme
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see Graphics
+	 * @see Zone
+	 * @see Station
+	 */
 	// inverser les commentaires pour une utilisation sur les 2 premières sations uniquement !
 	public void dessinerZone(Graphics g){
 		Vector<Station> listeExte = new Vector<Station>();
@@ -80,6 +116,17 @@ public class Carte {
 
 	}
 	
+	/**
+	 * Methode qui dessine les zones de maniere simple : trace point par point entre les stations
+	 * 
+	 * @param x, Liste d'entiers qui correspondent a des abcisses
+	 * @param y, Liste d'entiers qui correspondent a des ordonnees
+	 * @param g, Une instance de Graphics
+	 * @param listeExte
+	 * @see Graphics
+	 * @see Station
+	 * @see Zone
+	 */
 	private void dessinerNormal(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
 		boolean dessinable;
 		
@@ -98,6 +145,18 @@ public class Carte {
 		}
 	}
 
+	/**
+	 * Methode qui dessine les zones de maniere complexe : 
+	 * Chaque station voit 8 points autour d'elle, lesquels sont relies aux autres des autres stations
+	 * 
+	 * @param x, Liste d'entiers qui correspondent a des abcisses
+	 * @param y, Liste d'entiers qui correspondent a des ordonnees
+	 * @param g, Une instance de Graphics
+	 * @param listeExte
+	 * @see Graphics
+	 * @see Station
+	 * @see Zone
+	 */
 	private void dessinerToutLisse8Points(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
 		boolean dessinable;
 		int xTour[] = new int[24];
@@ -157,6 +216,16 @@ public class Carte {
 		}
 	}
 	
+	/**
+	 * Methode qui dessine les zones de maniere ingenieuse : 
+	 * On dessine des cercles centres sur chaque stations de diametre egal a la distance avec la station la plus proche
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @param listeExte
+	 * @see Graphics
+	 * @see Station
+	 * @see Zone
+	 */
 	public void dessinerZoneCercles(Graphics g){		
 		int distanceMin;
 		int distanceCourante;
@@ -190,6 +259,13 @@ public class Carte {
 		}
 	}
 
+	/**
+	 * Methode qui dessine la carte
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see Graphics
+	 * @see Ligne
+	 */
 	public void dessinerCarte(Graphics g){
 		Graphics2D g2 = (Graphics2D)g;
 		g2.setStroke(new BasicStroke(2));
@@ -207,35 +283,83 @@ public class Carte {
 		}
 	}
 	
+	/**
+	 * Setter sur les zones de la carte
+	 * 
+	 * @param zones, Un vecteur de zones
+	 * @see Zone
+	 */
 	public void setListeZones(Vector<Zone> zones){
 		this.listeZones = zones;
 	}
 	
+	/**
+	 * Setter sur les lignes de la carte
+	 * 
+	 * @param lignes, Un vecteur de lignes
+	 * @see Ligne
+	 */
 	public void setListeLignes(Vector<Ligne> lignes){
 		this.listeLignes = lignes;
 	}
 	
+	/**
+	 * Setter sur les stations de la carte
+	 * 
+	 * @param stations, Un vecteur de stations 
+	 * @see Station
+	 */
 	public void setListeStations(Vector<Station> stations){
 		this.listeStations = stations;
 	}
 	
+	/**
+	 * Setter sur les villes de la carte
+	 * 
+	 * @param villes, Un vecteur de villes
+	 * @see Ville
+	 */
 	public void setListeVilles(Vector<Ville> villes){
 		this.listeVilles = villes;
 	}
 
+	/**
+	 * Getter sur les zones de la carte
+	 * 
+	 * @return Vector<Zone>, Un vecteur des zones de la carte
+	 * @see Zone
+	 */
 	public Vector<Zone> getListeZones(){
 		return this.listeZones;
 	}
 
+	/**
+	 * Getter sur les lignes de la carte
+	 * 
+	 * @return Vector<Ligne>, Un vecteur des lignes de la carte
+	 * @see Ligne
+	 */
 	public Vector<Ligne> getListeLignes() {
 		return this.listeLignes;
 	}
 	
+	/**
+	 * Getter sur les stations de la carte
+	 * 
+	 * @return Vector<Station>, Un vecteur des stations de la carte
+	 * @see Station
+	 */
 	public Vector<Station> getListeStations(){
 		return this.listeStations;
 	}
 	
-	public Vector<Ville> getListeVilles(){
+	/**
+	 * Getter sur les villes de la carte
+	 * 
+	 * @return Vector<Ville>, Un vecteur des villes de la carte
+	 * @see Ville
+	 */
+public Vector<Ville> getListeVilles(){
 		return this.listeVilles;
 	}
 }

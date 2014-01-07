@@ -22,7 +22,7 @@ import net.miginfocom.swing.MigLayout;
 public class AjoutStationPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 380;
-	public final static int HEIGHT = 260;
+	public final static int HEIGHT = 300;
 	
 	private JFrame fenetre;
 	private BaseDeDonnees bdd;

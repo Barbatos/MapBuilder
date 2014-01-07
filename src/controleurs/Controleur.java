@@ -182,7 +182,7 @@ public class Controleur {
 			public void mouseEntered(MouseEvent event){}			
 			public void mouseExited(MouseEvent event){}
 			public void mouseReleased(MouseEvent event){
-				if(appui == true && !verifierPassageStation(event.getX(), event.getY())){
+				if(appui == true){
 					enregistrerPositionStation(event.getX(), event.getY());
 				}
 				appui = false;
@@ -200,7 +200,7 @@ public class Controleur {
 		
 		mouseMotionListener = new MouseMotionListener(){
 			public void mouseDragged(MouseEvent event){
-				if(appui && !verifierPassageStation(event.getX(), event.getY())){
+				if(appui){
 					deplacerStation(event.getX(), event.getY());
 					System.out.println("Position souris: x:" +event.getX()+", y:"+event.getY());
 				}

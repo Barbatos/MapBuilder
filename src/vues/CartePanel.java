@@ -4,8 +4,11 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -29,6 +32,8 @@ public class CartePanel extends JPanel{
 	private Station stationActuelle = null;
 	private Station stationPassageSouris = null;
 	private Vector<Bouton> listeBoutons = new Vector<Bouton>();
+	
+	private ImageIcon backgroundImage = null;
 	
 	private Carte carte = new Carte(listeZones, listeLignes, listeVilles, listeStations);
 	
@@ -69,6 +74,9 @@ public class CartePanel extends JPanel{
 		g.setColor(new Color(175, 175, 225));
 		g.drawString("INFORMATIONS", CartePanel.WIDTH - 300 / 2 - g.getFontMetrics().stringWidth("INFORMATIONS") / 2, 20);
 		
+		backgroundImage = new ImageIcon("caen.png");
+		g.drawImage(backgroundImage.getImage(), 0, 0, 894, 660, this);
+		
 		carte.dessinerCarte(g);
 		
 		// Affichage informations de la station cliquée
@@ -88,7 +96,6 @@ public class CartePanel extends JPanel{
 		for(int i = 0;i < listeBoutons.size();i++){
 			this.listeBoutons.elementAt(i).paintComponent(g);
 		}
-		
 	}
 	
 	public JFrame getFenetre(){

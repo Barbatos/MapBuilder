@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Vector;
 
 import modeles.BaseDeDonnees;
@@ -31,6 +32,7 @@ public class Controleur {
 	private BaseDeDonnees bdd;
 	private boolean clique = false;
 	private boolean appui = false;
+	private long debutClic = 0;
 	
 	public Controleur(){
 		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "derp");
@@ -183,7 +185,11 @@ public class Controleur {
 			public void mouseExited(MouseEvent event){}
 			public void mouseReleased(MouseEvent event){
 				if(appui == true){
-					enregistrerPositionStation(event.getX(), event.getY());
+					long finClic = new Date().getTime();
+					
+					if(finClic - debutClic > 800){
+						enregistrerPositionStation(event.getX(), event.getY());
+					}
 				}
 				appui = false;
 			}
@@ -191,6 +197,7 @@ public class Controleur {
 			public void mousePressed(MouseEvent event){
 				if(verifierClicStation(event.getX(), event.getY())){
 					appui = true;
+					debutClic = new Date().getTime();
 				}
 				else {
 					appui = false;

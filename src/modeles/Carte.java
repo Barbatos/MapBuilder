@@ -276,7 +276,7 @@ public class Carte {
 //			listeZones.elementAt(i).dessinerZone(g);
 //		}
 		
-		//dessinerZoneCercles(g);
+		dessinerZoneCercles(g);
 		
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){

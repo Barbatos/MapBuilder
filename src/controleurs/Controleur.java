@@ -44,7 +44,7 @@ import vues.AjoutDonneesPanel;
 import vues.CartePanel;
 import vues.HorairesPanel;
 /**
- * Le controleur du modèle MVC est mis en place à travers cette classe
+ * Le controleur du modele MVC est mis en place à travers cette classe
  * 
  * @version 1.0
  */
@@ -261,8 +261,8 @@ public class Controleur {
 	/**
 	 * Méthode qui permet de déplacer une station sur la carte
 	 * 
-	 * @param x, Un entier, la position en abscisses
-	 * @param y, Un entier, la position en ordonnées
+	 * @param x Un entier, la position en abscisses
+	 * @param y Un entier, la position en ordonnées
 	 */
 	public void deplacerStation(int x, int y){
 		if(!appui){
@@ -278,8 +278,8 @@ public class Controleur {
 	/**
 	 * Méthode qui enregistre la nouvelle position de la station
 	 * 
-	 * @param x, Un entier, la position en abscisses
-	 * @param y, Un entier, la position en ordonnées
+	 * @param x Un entier, la position en abscisses
+	 * @param y Un entier, la position en ordonnées
 	 */
 	public void enregistrerPositionStation(int x, int y){
 		if(!appui){
@@ -300,8 +300,8 @@ public class Controleur {
 	/**
 	 * Méthode qui permet de vérifier si le clic sur la station est correct ou non.
 	 * 
-     * @param x, Un entier, la position en abscisses
-	 * @param y, Un entier, la position en ordonnées
+     * @param x Un entier, la position en abscisses
+	 * @param y Un entier, la position en ordonnées
 	 * @return boolean
 	 */
 	public boolean verifierClicStation(int x, int y){
@@ -324,8 +324,8 @@ public class Controleur {
 	/**
 	 * Méthode qui vérifie si une station est survolée par la souris
 	 *  
-     * @param x, Un entier, la position en abscisses
-	 * @param y, Un entier, la position en ordonnées
+     * @param x Un entier, la position en abscisses
+	 * @param y Un entier, la position en ordonnées
 	 * @return boolean
 	 */
 	public boolean verifierPassageStation(int x, int y){
@@ -347,8 +347,8 @@ public class Controleur {
 	/**
 	 * Méthode qui vérifie le clic sur un bouton
 	 * 
-	 * @param x, Un entier, la position en abscisses
-	 * @param y, Un entier, la position en ordonnées
+	 * @param x Un entier, la position en abscisses
+	 * @param y Un entier, la position en ordonnées
 	 */
 	public void verifierClicBouton(int x, int y){
 		// Vérification du clic sur les boutons
@@ -385,7 +385,7 @@ public class Controleur {
 	
 	/**
 	 * Méthode qui donne la station à l'indice indiqué
-	 * @param id, Un entier, l'indice réclamé
+	 * @param id Un entier, l'indice réclamé
 	 * @return Station
 	 * @see Station
 	 */
@@ -400,7 +400,7 @@ public class Controleur {
 	
 	/**
 	 * Méthode qui donne la ligne à l'indice indiqué
-	 * @param id, Un entier, l'indice réclamé
+	 * @param id Un entier, l'indice réclamé
 	 * @return Ligne
 	 * @see Ligne
 	 */
@@ -415,7 +415,7 @@ public class Controleur {
 	
 	/**
 	 * Méthode qui donne le moyen de transport à l'indice indiqué
-	 * @param id, Un entier, l'indice réclamé
+	 * @param id Un entier, l'indice réclamé
 	 * @return MoyenTransport
 	 * @see MoyenTransport
 	 */	
@@ -430,7 +430,7 @@ public class Controleur {
 	
 	/**
 	 * Méthode qui donne la zone à l'indice indiqué
-	 * @param id, Un entier, l'indice réclamé
+	 * @param id Un entier, l'indice réclamé
 	 * @return Zone
 	 * @see Zone
 	 */	

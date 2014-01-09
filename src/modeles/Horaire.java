@@ -50,10 +50,10 @@ public class Horaire {
 	
 	/**
 	 * Constructeur prenant en paramtre des entiers indiquants le jour de la semaine, l'heure, la minute et la periode
-	 * @param jSemaine, Un entier qui definit le jour de la semaine (compris entre 1 et 7)
-	 * @param heure, Un entier qui definit l'heure de passage (compris entre 0 et 23)
-	 * @param minute, Un entier qui definit la minute de passage (compris entre 0 et 59)
-	 * @param periode, Un entier qui sert d'identifiant de la période
+	 * @param jSemaine int qui definit le jour de la semaine (compris entre 1 et 7)
+	 * @param heure int qui definit l'heure de passage (compris entre 0 et 23)
+	 * @param minute int qui definit la minute de passage (compris entre 0 et 59)
+	 * @param periode int qui sert d'identifiant de la période
 	 */
 	public Horaire(int jSemaine, int heure, int minute, int periode){
 		this.jSemaine = jSemaine;
@@ -64,9 +64,9 @@ public class Horaire {
 	
 	/**
 	 * Dessine la fenetre avec les horaires
-	 * @param g, Une instance de Graphics
-	 * @param x, Un entier qui correspond a l'abscisse d'origine de la fenetre
-	 * @param y, Un entier qui correspond a l'ordonnee d'origine de la fenetre
+	 * @param g Une instance de Graphics
+	 * @param x int qui correspond a l'abscisse d'origine de la fenetre
+	 * @param y int qui correspond a l'ordonnee d'origine de la fenetre
 	 * @see Graphics 
 	 */
 	public void dessinerHoraire(Graphics g, int x, int y){
@@ -100,7 +100,7 @@ public class Horaire {
 	
 	/**
 	 * Recupere le jour de la semaine
-	 * @return Un entier qui correspond au jour de la semaine
+	 * @return int qui correspond au jour de la semaine
 	 */
 	public int getJSemaine(){
 		return this.jSemaine;
@@ -108,7 +108,7 @@ public class Horaire {
 	
 	/**
 	 * Recupere l'heure
-	 * @return Un entier qui correspond a l'heure
+	 * @return int qui correspond a l'heure
 	 */
 	public int getHeure(){
 		return this.heure;
@@ -116,7 +116,7 @@ public class Horaire {
 	
 	/**
 	 * Recupere la minute
-	 * @return Un entier qui correspond a la minute 
+	 * @return int qui correspond a la minute 
 	 */
 	public int getMinute(){
 		return this.minute;
@@ -124,7 +124,7 @@ public class Horaire {
 	
 	/**
 	 * Recupere la periode
-	 * @return Un entier qui correspond a la periode
+	 * @return int qui correspond a la periode
 	 */
 	public int getPeriode(){
 		return this.periode;
@@ -132,7 +132,7 @@ public class Horaire {
 	
 	/**
 	 * Definit le jour de la semaine
-	 * @param jSemaine, Un entier compris entre 1 et 7
+	 * @param jSemaine int compris entre 1 et 7
 	 */
 	public void setJSemaine(int jSemaine){
 		if(jSemaine < 8 && jSemaine > 0)
@@ -141,7 +141,7 @@ public class Horaire {
 	
 	/**
 	 * Definit l'heure
-	 * @param heure, Un entier compris entre 0 et 23
+	 * @param heure int compris entre 0 et 23
 	 */
 	public void setHeure(int heure){
 		if(heure >= 24){
@@ -155,7 +155,7 @@ public class Horaire {
 	
 	/**
 	 * Definit la minute
-	 * @param minute, Un entier compris entre 0 et 59
+	 * @param minute int compris entre 0 et 59
 	 */
 	public void setMinute(int minute){
 		if(minute >= 60){
@@ -169,14 +169,14 @@ public class Horaire {
 	
 	/**
 	 * Definit la periode
-	 * @param periode, Un entier
+	 * @param periode int
 	 */
 	public void setPeriode(int periode){
 		this.periode = periode;
 	}
 	
 	/**
-	 * Affiche l'heure, et la minute de l'horaire
+	 * Affiche l'heure et la minute de l'horaire
 	 */
 	public String toString(){
 		String str = "";

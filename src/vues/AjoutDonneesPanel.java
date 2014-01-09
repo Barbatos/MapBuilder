@@ -54,7 +54,7 @@ public class AjoutDonneesPanel extends JPanel{
 	/**
 	 * Constructeur de la vue. Elle prend en paramètre une base de données sur laquelle seront faits les ajouts.
 	 * 
-	 * @param _bdd, Une base de données, sur laquelle seront faits les ajouts.
+	 * @param _bdd Une base de données, sur laquelle seront faits les ajouts.
 	 * @see BaseDeDonnees
 	 */
 	public AjoutDonneesPanel(BaseDeDonnees _bdd){
@@ -155,7 +155,7 @@ public class AjoutDonneesPanel extends JPanel{
 	/**
 	 * Méthode qui permet de dessiner la vue.
 	 * 
-	 * @param g, Une instance de Graphics
+	 * @param g Une instance de Graphics
 	 * @see graphics
 	 */
 	public void paintComponent(Graphics g){

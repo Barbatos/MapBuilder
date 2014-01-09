@@ -49,7 +49,7 @@ public class Ville{
 	
 	/**
 	 * Recupere le nom de cette ville
-	 * @return Un String, qui correspond au nom de cette ville
+	 * @return String qui correspond au nom de cette ville
 	 */
 	public String getNom(){
 		return this.nom;
@@ -57,7 +57,7 @@ public class Ville{
 	
 	/**
 	 * Definit le nom de cette ville
-	 * @param _nom Un String, qui correspond au nom de la ville
+	 * @param _nom String qui correspond au nom de la ville
 	 */
 	public void setNom(String _nom){
 		this.nom = _nom;

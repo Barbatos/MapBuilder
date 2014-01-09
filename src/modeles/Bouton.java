@@ -84,7 +84,7 @@ public class Bouton {
 
 	/**
 	 * Recupère le nom du bouton
-	 * @return Une chaine de caracteres, qui correspond au nom du bouton
+	 * @return String qui correspond au nom du bouton
 	 */
 	public String getNom(){
 		return this.nom;
@@ -92,7 +92,7 @@ public class Bouton {
 	
 	/**
 	 * Récupere la coordonnee X du bouton
-	 * @return Un entier, qui correspond a la coordonnee X du bouton
+	 * @return int qui correspond a la coordonnee X du bouton
 	 */
 	public int getX(){
 		return this.x;
@@ -100,7 +100,7 @@ public class Bouton {
 	
 	/**
 	 * Récupère la coordonnee Y du bouton
-	 * @return Un entier, qui correspond a la coordonnee Y du bouton
+	 * @return int qui correspond a la coordonnee Y du bouton
 	 */
 	public int getY(){
 		return this.y;
@@ -108,7 +108,7 @@ public class Bouton {
 	
 	/**
 	 * Recupère la largeur du bouton
-	 * @return Un entier, qui correspond a la taille en largeur du bouton
+	 * @return int qui correspond a la taille en largeur du bouton
 	 */
 	public int getLargeur(){
 		return this.largeur;
@@ -116,7 +116,7 @@ public class Bouton {
 	
 	/**
 	 * Recupere la hauteur du bouton
-	 * @return Un entier, qui correspond a la taille en hauteur du bouton
+	 * @return int qui correspond a la taille en hauteur du bouton
 	 */
 	public int getHauteur(){
 		return this.hauteur;
@@ -124,7 +124,7 @@ public class Bouton {
 	
 	/**
 	 * definit le nom du bouton
-	 * @param nom Un entier, qui correspond au nom du bouton
+	 * @param nom qui correspond au nom du bouton
 	 */
 	public void setNom(String nom){
 		this.nom = nom;
@@ -132,7 +132,7 @@ public class Bouton {
 	
 	/**
 	 * definit la coordonnee X du bouton
-	 * @param x Un entier, qui correspond a la coordonnee X du bouton
+	 * @param x int qui correspond a la coordonnee X du bouton
 	 */
 	public void setX(int x){
 		this.x = x;
@@ -140,7 +140,7 @@ public class Bouton {
 	
 	/**
 	 * definit la coordonnee Y du bouton
-	 * @param y Un entier, qui correspond a la coordonnee Y du bouton
+	 * @param y int qui correspond a la coordonnee Y du bouton
 	 */
 	public void setY(int y){
 		this.y = y;
@@ -148,7 +148,7 @@ public class Bouton {
 	
 	/**
 	 * definit la largeur du bouton
-	 * @param largeur Un entier, qui correspond a la largeur du bouton
+	 * @param largeur int qui correspond a la largeur du bouton
 	 */
 	public void setLargeur(int largeur){
 		this.largeur = largeur;
@@ -156,7 +156,7 @@ public class Bouton {
 	
 	/**
 	 * definit la hauteur du bouton
-	 * @param hauteur Un entier, qui correspond a la hauteur du bouton
+	 * @param hauteur int qui correspond a la hauteur du bouton
 	 */
 	public void setHauteur(int hauteur){
 		this.hauteur = hauteur;

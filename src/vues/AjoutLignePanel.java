@@ -169,7 +169,7 @@ public class AjoutLignePanel extends JPanel{
 	/**
 	 * Cette méthode dessine à l'écran la fenêtre formulaire.
 	 * 
-	 * @param g, Une instance de Graphics
+	 * @param g Une instance de Graphics
 	 * @see Graphics
 	 */
 	public void paintComponent(Graphics g){

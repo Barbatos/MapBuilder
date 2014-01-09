@@ -80,7 +80,7 @@ public class CartePanel extends JPanel{
 	/**
 	 * Constructeur de la carte qui prend en paramètre une base de données dont on va récupérer les informations
 	 * 
-	 * @param _bdd, La base de données dont on va récupérer les données pour créer la carte
+	 * @param _bdd La base de données dont on va récupérer les données pour créer la carte
 	 * @see BaseDeDonnees
 	 */
 	public CartePanel(BaseDeDonnees _bdd){
@@ -141,7 +141,7 @@ public class CartePanel extends JPanel{
 	/**
 	 * Cette méthode dessine à l'écran la fenêtre principale.
 	 * 
-	 * @param g, Une instance de Graphics
+	 * @param g Une instance de Graphics
 	 * @see Graphics
 	 */
 	public void paintComponent(Graphics g){
@@ -270,7 +270,7 @@ public class CartePanel extends JPanel{
 	/**
 	 * Methode qui retourne le bouton à un indice donné
 	 * 
-	 * @param i, Un entier qui correspond à l'indice du bouton
+	 * @param i Un entier qui correspond à l'indice du bouton
 	 * @return Bouton
 	 * @see Bouton
 	 */

@@ -52,7 +52,7 @@ public class Ligne extends Station{
 	
 	/**
 	 * Constructeur d'une ligne avec parametres
-	 * @param _id 		Un entier, un identifiant unique pour la ligne 
+	 * @param _id 		un entier un identifiant unique pour la ligne 
 	 * @param _nom 		Une chaine de caracteres, le nom de la ligne
 	 * @param _couleur 	Ue couleur (3 entiers), définit la couleur sur la carte de la ligne, 
 	 * attention, la ligne retour doit possèder la même couleur
@@ -106,7 +106,7 @@ public class Ligne extends Station{
 	
 	/**
 	 * Donne l'identifiant de la station
-	 * @return Un entier, l'identifiant de la station
+	 * @return int l'identifiant de la station
 	 */
 	public int getId(){
 		return this.id;
@@ -114,7 +114,7 @@ public class Ligne extends Station{
 	
 	/**
 	 * Donne le nom de la station
-	 * @return Une chaine de caractere, le nom de la ligne
+	 * @return String le nom de la ligne
 	 */
 	public String getNom(){
 		return this.nom;
@@ -122,7 +122,7 @@ public class Ligne extends Station{
 
 	/**
 	 * Donne la couleur de la station
-	 * @return Une couleur, la couleur de la ligne
+	 * @return Color la couleur de la ligne
 	 * @see Color
 	 */
 	public Color getCouleur(){
@@ -140,8 +140,8 @@ public class Ligne extends Station{
 	
 	/**
 	 * Retourne la station au numero indique
-	 * @param numero, un entier auquel correspond une station 
-	 * @return Une Station, celle au numero envoye en parametre
+	 * @param numero un entier auquel correspond une station 
+	 * @return Station celle au numero envoye en parametre
 	 * @see Station 
 	 */
 	public Station getStation(int numero) {
@@ -155,8 +155,8 @@ public class Ligne extends Station{
 	
 	/**
 	 * Retourne l'ordre de la station indiquee dans la ligne
-	 * @param station, une station dont on cherche le numero
-	 * @return un entier, l'ordre de la station envoyee en parametre dans la ligne
+	 * @param station une station dont on cherche le numero
+	 * @return int l'ordre de la station envoyee en parametre dans la ligne
 	 * @see Station
 	 */
 	public int getNumeroStation(Station station) {
@@ -165,7 +165,7 @@ public class Ligne extends Station{
 	
 	/**
 	 * Retourne la liste des stations dans l'ordre de la ligne
-	 * @return Vector<Stations>, la liste des stations de la ligne
+	 * @return Vector<Stations> la liste des stations de la ligne
 	 * @see Station
 	 */
 	public Vector<Station> getListeStations() {
@@ -174,6 +174,7 @@ public class Ligne extends Station{
 	
 	/**
 	 * Permet de donner un id a la ligne
+	 * @param _id
 	 */
 	public void setId(int _id){
 		this.id = _id;
@@ -181,6 +182,7 @@ public class Ligne extends Station{
 	
 	/**
 	 * Permet de donner un nom a la ligne
+	  * @param _nom
 	 */
 	public void setNom(String _nom){
 		this.nom = _nom;

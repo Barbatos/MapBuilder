@@ -52,10 +52,10 @@ public class Carte {
 	/**
 	 * Constructeur parametre
 	 * 
-	 * @param listeZones, Un vecteur de zone sur la carte
-	 * @param listeLignes, Un vecteur de ligne sur la carte
-	 * @param listeVilles, Un vecteur de villes sur la carte
-	 * @param listeStations, Un vecteur de stations sur la carte
+	 * @param listeZones Un vecteur de zone sur la carte
+	 * @param listeLignes Un vecteur de ligne sur la carte
+	 * @param listeVilles Un vecteur de villes sur la carte
+	 * @param listeStations Un vecteur de stations sur la carte
 	 * 
 	 * @see Zone
 	 * @see Ligne
@@ -72,8 +72,8 @@ public class Carte {
 	/**
 	 * Methode qui donne les stations qui n'appartiennent pas a une zone donnee
 	 * 
-	 * @param zone, La zone dot on veut les stations exterieures
-	 * @return Vector<Station>, Un vecteur de stations qui n'appartiennent pas a la zone
+	 * @param zone La zone dot on veut les stations exterieures
+	 * @return Vector<Station> Un vecteur de stations qui n'appartiennent pas a la zone
 	 * @see Station
 	 */
 	public Vector<Station> stationsExterieures(Zone zone) {
@@ -100,7 +100,7 @@ public class Carte {
 	/**
 	 * Methode qui dessine une zone sur la carte en faisant un algorithme
 	 * 
-	 * @param g, Une instance de Graphics
+	 * @param g Une instance de Graphics
 	 * @see Graphics
 	 * @see Zone
 	 * @see Station
@@ -144,9 +144,9 @@ public class Carte {
 	/**
 	 * Methode qui dessine les zones de maniere simple : trace point par point entre les stations
 	 * 
-	 * @param x, Liste d'entiers qui correspondent a des abcisses
-	 * @param y, Liste d'entiers qui correspondent a des ordonnees
-	 * @param g, Une instance de Graphics
+	 * @param x Liste d'entiers qui correspondent a des abcisses
+	 * @param y Liste d'entiers qui correspondent a des ordonnees
+	 * @param g Une instance de Graphics
 	 * @param listeExte
 	 * @see Graphics
 	 * @see Station
@@ -174,9 +174,9 @@ public class Carte {
 	 * Methode qui dessine les zones de maniere complexe : 
 	 * Chaque station voit 8 points autour d'elle, lesquels sont relies aux autres des autres stations
 	 * 
-	 * @param x, Liste d'entiers qui correspondent a des abcisses
-	 * @param y, Liste d'entiers qui correspondent a des ordonnees
-	 * @param g, Une instance de Graphics
+	 * @param x Liste d'entiers qui correspondent a des abcisses
+	 * @param y Liste d'entiers qui correspondent a des ordonnees
+	 * @param g Une instance de Graphics
 	 * @param listeExte
 	 * @see Graphics
 	 * @see Station
@@ -246,7 +246,7 @@ public class Carte {
 	 * Methode qui dessine les zones de maniere ingenieuse : 
 	 * On dessine des cercles centres sur chaque stations de diametre egal a la distance avec la station la plus proche
 	 * 
-	 * @param g, Une instance de Graphics
+	 * @param g Une instance de Graphics
 	 * @param listeExte
 	 * @see Graphics
 	 * @see Station
@@ -297,7 +297,7 @@ public class Carte {
 	/**
 	 * Methode qui dessine la carte
 	 * 
-	 * @param g, Une instance de Graphics
+	 * @param g Une instance de Graphics
 	 * @see Graphics
 	 * @see Ligne
 	 */
@@ -323,7 +323,7 @@ public class Carte {
 	/**
 	 * Setter sur les zones de la carte
 	 * 
-	 * @param zones, Un vecteur de zones
+	 * @param zones Un vecteur de zones
 	 * @see Zone
 	 */
 	public void setVilleCourante(int ville){
@@ -337,7 +337,7 @@ public class Carte {
 	/**
 	 * Setter sur les lignes de la carte
 	 * 
-	 * @param lignes, Un vecteur de lignes
+	 * @param lignes Un vecteur de lignes
 	 * @see Ligne
 	 */
 	public void setListeLignes(Vector<Ligne> lignes){
@@ -347,7 +347,7 @@ public class Carte {
 	/**
 	 * Setter sur les stations de la carte
 	 * 
-	 * @param stations, Un vecteur de stations 
+	 * @param stations Un vecteur de stations 
 	 * @see Station
 	 */
 	public void setListeStations(Vector<Station> stations){
@@ -357,7 +357,7 @@ public class Carte {
 	/**
 	 * Setter sur les villes de la carte
 	 * 
-	 * @param villes, Un vecteur de villes
+	 * @param villes Un vecteur de villes
 	 * @see Ville
 	 */
 	public void setListeVilles(Vector<Ville> villes){
@@ -367,7 +367,7 @@ public class Carte {
 	/**
 	 * Getter sur les zones de la carte
 	 * 
-	 * @return Vector<Zone>, Un vecteur des zones de la carte
+	 * @return Vector<Zone> Un vecteur des zones de la carte
 	 * @see Zone
 	 */
 	public Vector<Zone> getListeZones(){
@@ -377,7 +377,7 @@ public class Carte {
 	/**
 	 * Getter sur les lignes de la carte
 	 * 
-	 * @return Vector<Ligne>, Un vecteur des lignes de la carte
+	 * @return Vector<Ligne> Un vecteur des lignes de la carte
 	 * @see Ligne
 	 */
 	public Vector<Ligne> getListeLignes() {
@@ -387,7 +387,7 @@ public class Carte {
 	/**
 	 * Getter sur les stations de la carte
 	 * 
-	 * @return Vector<Station>, Un vecteur des stations de la carte
+	 * @return Vector<Station> Un vecteur des stations de la carte
 	 * @see Station
 	 */
 	public Vector<Station> getListeStations(){
@@ -397,7 +397,7 @@ public class Carte {
 	/**
 	 * Getter sur les villes de la carte
 	 * 
-	 * @return Vector<Ville>, Un vecteur des villes de la carte
+	 * @return Vector<Ville> Un vecteur des villes de la carte
 	 * @see Ville
 	 */
 	public Vector<Ville> getListeVilles(){

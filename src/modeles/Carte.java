@@ -1,10 +1,12 @@
 package modeles;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.awt.RenderingHints;
 import java.util.Vector;
 
 /**
@@ -247,6 +249,13 @@ public class Carte {
 				}
 			}
 
+			Graphics2D g2d = (Graphics2D) g;
+	        g2d.setRenderingHint(
+	            RenderingHints.KEY_ANTIALIASING,
+	            RenderingHints.VALUE_ANTIALIAS_ON);
+	        g2d.setComposite(AlphaComposite.getInstance(
+	            AlphaComposite.SRC_OVER, 0.6f));
+	        
 			if(listeStations.elementAt(i).getVille() == VILLE){
 				g.setColor(listeStations.elementAt(i).getZone().getCouleur());
 				
@@ -254,7 +263,7 @@ public class Carte {
 					g.fillOval(listeStations.elementAt(i).getX() - distanceMin / 2, listeStations.elementAt(i).getY() - distanceMin / 2, distanceMin, distanceMin);
 				}
 				else{
-					g.fillOval(listeStations.elementAt(i).getX() - distanceMin, listeStations.elementAt(i).getY() - distanceMin, distanceMin * 2, distanceMin * 2);
+					g.fillOval(listeStations.elementAt(i).getX() - (distanceMin+10), listeStations.elementAt(i).getY() - (distanceMin+10), (distanceMin+10) * 2, (distanceMin+10) * 2);
 				}
 			}
 		}
@@ -276,7 +285,7 @@ public class Carte {
 //			listeZones.elementAt(i).dessinerZone(g);
 //		}
 		
-		//dessinerZoneCercles(g);
+		dessinerZoneCercles(g);
 		
 		// Affichage des lignes
 		for(int i = 0; i < listeLignes.size(); i++){

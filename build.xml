@@ -4,7 +4,7 @@
 	<property name="src.rep" value="${proj.rep}/src"/>
 	<property name="tests.rep" value="${proj.rep}/tests"/>
 	<property name="bin.rep" value="${proj.rep}/bin"/>
-	<property name="rapport.rep" value="${proj.rep}/rapport-de-tests"/>
+	<property name="rapport.rep" value="${proj.rep}/rapports"/>
 	<property name="doc.rep" value="${proj.rep}/doc"/>
 	<target name="mise_a_zero">
 	    <delete dir="${bin.rep}"/>
@@ -18,7 +18,7 @@
 		<mkdir dir="${jar.rep}"/>
 		<jar destfile="${jar.rep}/MapBuilder.jar">
 			<manifest>
-				<attribute name="Main-Class" value="MapBuilder"/>
+				<attribute name="Main-Class" value="main.MapBuilder"/>
 			</manifest>
 			<fileset dir = "${bin.rep}">
 				<include name="**/*.class"/>

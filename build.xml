@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="MapBuilder">
     <property name="proj.rep" value="."/>
 	<property name="src.rep" value="${proj.rep}/src"/>
@@ -26,7 +26,56 @@
 			</fileset>
 		</jar>
 	</target>
-	<target name="lancement/executable">
+	<target name="lancement_executable">
 		<java jar="${jar.rep}/MapBuilder.jar" fork="true"/>
+	</target>
+	<target name="compilation_tests">
+		<mkdir dir="${bin.rep}"/>
+		<javac srcdir="${tests.rep}" destdir="${bin.rep}"/>
+	</target>
+	<target name="production_tests">
+		<mkdir dir="${jar.rep}"/>
+		<jar destfile="${jar.rep}/test-mapbuilder.jar">
+			<fileset dir = "${bin.rep}">
+				<include name="**/*.class"/>
+			</fileset>
+		</jar>
+	</target>
+	<target name="lancement_tests">
+		<mkdir dir="${rapport.rep}"/>
+		<junit printsummary="yes" fork="yes">
+			<classpath location="${bin.rep}"/>
+			<formatter type="xml"/>
+			<batchtest fork="yes" todir="${rapport.rep}">
+				<fileset dir="${tests.rep}">
+					<include name="**/Test*.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	<target name="rapport_de_tests">
+		<junitreport todir="${rapport.rep}">
+			<fileset dir="${rapport.rep}" includes="TEST-*.xml"/>
+			<report todir="${rapport.rep}"/>
+		</junitreport>
+	</target>
+	<target name="documentation">
+		<mkdir dir="${doc.rep}"/>
+		<javadoc 	sourcepath="${src.rep}" destdir="${doc.rep}"
+					author="true" version="true"
+					private="false" protected="false"
+					windowtitle="API MapBuilder" doctitle="MapBuilder">
+		</javadoc>
+	</target>
+	<target name="ant">
+		<antcall target="mise_a_zero" />
+		<antcall target="compilation" />
+		<antcall target="production_executable" />
+		<antcall target="lancement_executable" />
+		<antcall target="compilation_tests" />
+		<antcall target="production_tests" />
+		<antcall target="lancement_tests" />
+		<antcall target="rapport_de_tests" />
+		<antcall target="documentation" />
 	</target>
 </project>

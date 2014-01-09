@@ -32,6 +32,13 @@ public class AjoutZonePanel extends JPanel{
 	private final JTextField couleurB = new JTextField();
 	private final JComboBox<String> listeVilles = new JComboBox<String>();
 	
+	/**
+	 * Constructeur de la fenêtre qui contient le formulaire d'ajout de la zone. 
+	 * Elle prend en paramètre la base de données où seront effectives les modifications.
+	 * 
+	 * @param _bdd
+	 * @see BaseDeDonnees
+	 */
 	public AjoutZonePanel(BaseDeDonnees _bdd){
 		ResultSet reponseVille;
 		
@@ -108,6 +115,9 @@ public class AjoutZonePanel extends JPanel{
         fenetre.setContentPane(pane);
 	}
 	
+	/**
+	 * Méthode qui ajoute la zone dans la base de données
+	 */
 	public void ajouterZoneBdd(){
 		try {
 			this.bdd.query("INSERT INTO zone (nom, couleurR, couleurG, couleurB, ville) "
@@ -123,6 +133,12 @@ public class AjoutZonePanel extends JPanel{
 		}
 	}
 	
+	/**
+	 * Cette méthode dessine à l'écran la fenêtre formulaire.
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see Graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
         setBackground(new Color(175, 175, 175));

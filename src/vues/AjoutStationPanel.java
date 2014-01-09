@@ -18,6 +18,11 @@ import javax.swing.JTextField;
 import modeles.BaseDeDonnees;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * Classe d'ajout d'une station dans la base de données.
+ * 
+ * @version 1.0
+ */
 public class AjoutStationPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 380;
@@ -33,6 +38,13 @@ public class AjoutStationPanel extends JPanel{
 	private final JComboBox<String> listeZones = new JComboBox<String>();
 	private final JComboBox<String> listeVilles = new JComboBox<String>();
 	
+	/**
+	 * Constructeur de la fenêtre qui contient le formulaire d'ajout d'une station. 
+	 * Elle prend en paramètre la base de données où seront effectives les modifications.
+	 * 
+	 * @param _bdd
+	 * @see BaseDeDonnees
+	 */
 	public AjoutStationPanel(BaseDeDonnees _bdd){
 		ResultSet reponseLigne;
 		ResultSet reponseZone;
@@ -134,6 +146,9 @@ public class AjoutStationPanel extends JPanel{
         fenetre.setContentPane(pane);
 	}
 	
+	/**
+	 * Méthode qui ajoute la station dans la base de données
+	 */
 	public void ajouterStationBdd(){
 		try {
 			this.bdd.query("INSERT INTO `station` (nom, coordX, coordY) VALUES ('"+nomStationField.getText()+"', '"+Integer.parseInt(coordXField.getText())+"', '"+Integer.parseInt(coordYField.getText())+"')");
@@ -147,6 +162,12 @@ public class AjoutStationPanel extends JPanel{
 		}
 	}
 	
+	/**
+	 * Cette méthode dessine à l'écran la fenêtre formulaire.
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see Graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
         setBackground(new Color(175, 175, 175));

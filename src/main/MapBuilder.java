@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.SwingUtilities;
+
 import controleurs.Controleur;
 
 public class MapBuilder {

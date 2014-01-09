@@ -25,6 +25,11 @@ import modeles.Ville;
 import modeles.Zone;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * La carte est affichée dans une fenêtre principale qui est générée par cette classe
+ * 
+ * @version 1.0
+ */
 public class CartePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 1200;
@@ -48,6 +53,12 @@ public class CartePanel extends JPanel{
 	
 	private Carte carte = new Carte(listeZones, listeLignes, listeVilles, listeStations);
 	
+	/**
+	 * Constructeur de la carte qui prend en paramètre une base de données dont on va récupérer les informations
+	 * 
+	 * @param _bdd, La base de données dont on va récupérer les données pour créer la carte
+	 * @see BaseDeDonnees
+	 */
 	public CartePanel(BaseDeDonnees _bdd){
 		ResultSet reponseVille;
 		
@@ -103,6 +114,12 @@ public class CartePanel extends JPanel{
 		fenetre.setContentPane(pane);
 	}
 	
+	/**
+	 * Cette méthode dessine à l'écran la fenêtre principale.
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see Graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(new Color(100, 100, 100));
@@ -144,42 +161,95 @@ public class CartePanel extends JPanel{
 		return fenetre;
 	}
 	
+	/**
+	 * Getter sur la station en cours de sélection
+	 * @return Station
+	 * @see Station
+	 */
 	public Station getStationActuelle(){
 		return stationActuelle;
 	}
 	
+	/**
+	 * Getter sur la station où la souris est
+	 * @return Station
+	 * @see Station
+	 */
 	public Station getStationPassageSouris(){
 		return stationPassageSouris;
 	}
 	
+	/**
+	 * Setter sur les villes de la carte
+	 * @param villes
+	 * @see Ville
+	 */
 	public void setListeVilles(Vector<Ville> villes){
 		this.carte.setListeVilles(villes);
 	}
-	
+
+	/**
+	 * Setter sur les stations de la carte
+	 * @param stations
+	 * @see Station
+	 */
 	public void setListeStations(Vector<Station> stations){
 		this.carte.setListeStations(stations);
 	}
 	
+	/**
+	 * Setter sur les zones de la carte
+	 * @param zones
+	 * @see Zone
+	 */
 	public void setListeZones(Vector<Zone> zones){
 		this.carte.setListeZones(zones);
 	}
 	
+	/**
+	 * Setter sur les lignes de la carte
+	 * @param lignes
+	 * @see Ligne
+	 */
 	public void setListeLignes(Vector<Ligne> lignes){
 		this.carte.setListeLignes(lignes);
 	}
 	
+	/**
+	 * Setter sur la station selectionnee
+	 * @param _station
+	 * @see Station
+	 */
 	public void setStationActuelle(Station _station){
 		this.stationActuelle = _station;
 	}
 	
+	/**
+	 * Setter sur la station sous la souris
+	 * @param station
+	 * @see Station
+	 */
 	public void setStationPassageSouris(Station station){
 		this.stationPassageSouris = station;
 	}
 	
+	/**
+	 * Methode qui renvoit la liste des boutons
+	 * 
+	 * @return Vector<Bouton>
+	 * @see Bouton
+	 */
 	public Vector<Bouton> getListeBoutons(){
 		return this.listeBoutons;
 	}
 	
+	/**
+	 * Methode qui retourne le bouton à un indice donné
+	 * 
+	 * @param i, Un entier qui correspond à l'indice du bouton
+	 * @return Bouton
+	 * @see Bouton
+	 */
 	public Bouton getBouton(int i){
 		return this.listeBoutons.elementAt(i);
 	}

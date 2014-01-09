@@ -18,6 +18,11 @@ import modeles.BaseDeDonnees;
 
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * L'ajout des villes dans la base de données passe par la vue générée par cette classe
+ * 
+ * @version 1.0
+ */
 public class AjoutVillePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 200;
@@ -26,6 +31,13 @@ public class AjoutVillePanel extends JPanel{
 	private JFrame fenetre;
 	private BaseDeDonnees bdd;
 	
+	/**
+	 * Constructeur de la fenêtre qui contient le formulaire d'ajout de la ville. 
+	 * Elle prend en paramètre la base de données où seront effectives les modifications.
+	 * 
+	 * @param _bdd
+	 * @see BaseDeDonnees
+	 */
 	public AjoutVillePanel(BaseDeDonnees _bdd){
 		this.bdd = _bdd;
 		
@@ -79,6 +91,9 @@ public class AjoutVillePanel extends JPanel{
         fenetre.setContentPane(pane);
 	}
 	
+	/**
+	 * Méthode qui ajoute la ville dans la base de données
+	 */
 	public void ajouterVilleBdd(String ville){
 		try {
 			this.bdd.query("INSERT INTO ville (nom) VALUE ('"+ville+"')");
@@ -89,6 +104,12 @@ public class AjoutVillePanel extends JPanel{
 		}
 	}
 	
+	/**
+	 * Cette méthode dessine à l'écran la fenêtre formulaire.
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see Graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
         setBackground(new Color(175, 175, 175));

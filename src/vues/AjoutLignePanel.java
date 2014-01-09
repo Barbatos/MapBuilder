@@ -1,3 +1,4 @@
+
 package vues;
 
 import java.awt.Color;
@@ -18,6 +19,11 @@ import javax.swing.JTextField;
 import modeles.BaseDeDonnees;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * L'ajout des lignes dans la base de données passe par la vue générée par cette classe
+ * 
+ * @version 1.0
+ */
 public class AjoutLignePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 260;
@@ -33,6 +39,13 @@ public class AjoutLignePanel extends JPanel{
 	
 	private final JComboBox<String> listeMT = new JComboBox<String>();
 	
+	/**
+	 * Constructeur de la fenêtre qui contient le formulaire d'ajout de la ligne. 
+	 * Elle prend en paramètre la base de données où seront effectives les modifications.
+	 * 
+	 * @param _bdd
+	 * @see BaseDeDonnees
+	 */
 	public AjoutLignePanel(BaseDeDonnees _bdd){
 		ResultSet reponseMT;
 		
@@ -109,6 +122,9 @@ public class AjoutLignePanel extends JPanel{
         fenetre.setContentPane(pane);
 	}
 	
+	/**
+	 * Méthode qui ajoute la ligne dans la base de données
+	 */
 	public void ajouterLigneBdd(){
 		try {
 			this.bdd.query("INSERT INTO `ligne` (nom, couleurR, couleurG, couleurB) VALUES ('"+nomLigneField.getText()+"', '"+Integer.parseInt(couleurR.getText())+"', '"+Integer.parseInt(couleurG.getText())+"', '"+Integer.parseInt(couleurB.getText())+"')");
@@ -127,6 +143,12 @@ public class AjoutLignePanel extends JPanel{
 		System.out.println("Ligne ajoutée: "+nomLigneField.getText());
 	}
 	
+	/**
+	 * Cette méthode dessine à l'écran la fenêtre formulaire.
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see Graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
         setBackground(new Color(175, 175, 175));

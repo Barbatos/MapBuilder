@@ -14,6 +14,11 @@ import modeles.BaseDeDonnees;
 
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * Les vues permettant les ajouts de données sont modélisées par cette classe.
+ * 
+ * @version 1.0
+ */
 public class AjoutDonneesPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 200;
@@ -22,6 +27,12 @@ public class AjoutDonneesPanel extends JPanel{
 	private JFrame fenetre;
 	private BaseDeDonnees bdd;
 	
+	/**
+	 * Constructeur de la vue. Elle prend en paramètre une base de données sur laquelle seront faits les ajouts.
+	 * 
+	 * @param _bdd, Une base de données, sur laquelle seront faits les ajouts.
+	 * @see BaseDeDonnees
+	 */
 	public AjoutDonneesPanel(BaseDeDonnees _bdd){
 		this.bdd = _bdd;
 		
@@ -85,22 +96,44 @@ public class AjoutDonneesPanel extends JPanel{
         fenetre.setContentPane(pane);
 	}
 	
+	/**
+	 * Méthode d'ajout d'une Ville à la base de données.
+	 * @see bdd
+	 */
 	public void ajouterVille(){
 		new AjoutVillePanel(bdd);
 	}
 	
+	/**
+	 * Méthode d'ajout d'une Station à la base de données.
+	 * @see bdd
+	 */	
 	public void ajouterStation(){
 		new AjoutStationPanel(bdd);
 	}
 	
+	/**
+	 * Méthode d'ajout d'une Zone à la base de données.
+	 * @see bdd
+	 */
 	public void ajouterZone(){
 		new AjoutZonePanel(bdd);
 	}
 	
+	/**
+	 * Méthode d'ajout d'une Ligne à la base de données.
+	 * @see bdd
+	 */
 	public void ajouterLigne(){
 		new AjoutLignePanel(bdd);
 	}
 	
+	/**
+	 * Méthode qui permet de dessiner la vue.
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
         setBackground(new Color(175, 175, 175));

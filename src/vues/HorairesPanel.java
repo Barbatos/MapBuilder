@@ -12,6 +12,11 @@ import javax.swing.JScrollBar;
 
 import modeles.Ligne;
 
+/**
+ * Les horaires s'affichent sur des fenêtres générées par cette classe.
+ * 
+ * @version 1.0
+ */
 public class HorairesPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public final static int WIDTH = 1000;
@@ -22,6 +27,12 @@ public class HorairesPanel extends JPanel{
 	private int scrollX = 0;
 	private int scrollY = 0;
 	
+	/**
+	 * Constructeur de la fenêtre des horaires d'une ligne passée en paramètre
+	 * 
+	 * @param ligne
+	 * @see Ligne 
+	 */
 	public HorairesPanel(Ligne ligne){
 		this.ligne = ligne;
 		int nbHoraireMax = 0;
@@ -66,6 +77,11 @@ public class HorairesPanel extends JPanel{
 		fenetre.setVisible(true);
 	}
 	
+	/**
+	 * Classe d'ajustement de la fenêtre au nombre d'entrées des données horaires
+	 * 
+	 * @version 1.0
+	 */
 	class ajustement implements AdjustmentListener{
 		public void adjustmentValueChanged(AdjustmentEvent e){
 			if(e.getAdjustable().getOrientation() == JScrollBar.HORIZONTAL){
@@ -79,6 +95,12 @@ public class HorairesPanel extends JPanel{
 		}
 	}
 	
+	/**
+	 * Cette méthode dessine à l'écran la fenetre des horaires.
+	 * 
+	 * @param g, Une instance de Graphics
+	 * @see Graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(new Color(175, 175, 175));

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="MapBuilder">
     <property name="proj.rep" value="."/>
+	<property name="jar.rep" value="${proj.rep}/bin" />
 	<property name="src.rep" value="${proj.rep}/src"/>
 	<property name="tests.rep" value="${proj.rep}/tests"/>
 	<property name="bin.rep" value="${proj.rep}/bin"/>

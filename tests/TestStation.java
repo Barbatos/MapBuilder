@@ -24,14 +24,10 @@ public class TestStation {
 		
 		Station sta1 = new Station(id, coordx, coordy, nom, ville);
 		
-		/*sta1.insertTransport(new MoyenTransport(1, "Bus"));
-		sta1.insertTransport(new MoyenTransport(2, "Tram"));	*/
-		//ssta1.insertLigne(new Ligne(id, nom, couleur, transport));
 		
 		
 		assertEquals(id, sta1.getId());
 		assertEquals(nom, sta1.getNom());
-		//assertEquals(zone, sta1.getZone());       //NE MARCHE PAS /!\
 	}
 
 }

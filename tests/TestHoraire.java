@@ -1,5 +1,7 @@
 import modeles.Horaire;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 public class TestHoraire {
@@ -17,5 +19,7 @@ public class TestHoraire {
 		assertEquals(_heure, hour.getHeure());
 		assertEquals(_minute, hour.getMinute());
 		assertEquals(_periode, hour.getPeriode());
+		
+		
 	}
 }

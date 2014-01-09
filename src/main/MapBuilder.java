@@ -1,8 +1,6 @@
 package main;
 
 import javax.swing.SwingUtilities;
-
-import vues.CartePanel;
 import controleurs.Controleur;
 
 public class MapBuilder {

@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modeles.BaseDeDonnees;
-import modeles.Ligne;
 import net.miginfocom.swing.MigLayout;
 
 public class AjoutStationPanel extends JPanel{

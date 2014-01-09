@@ -158,6 +158,7 @@ public class Carte {
 	 * @see Station
 	 * @see Zone
 	 */
+	@SuppressWarnings("unused")
 	private void dessinerToutLisse8Points(int[] x, int[] y, Graphics g, Vector<Station> listeExte) {
 		boolean dessinable;
 		int xTour[] = new int[24];
@@ -302,7 +303,7 @@ public class Carte {
 	 * @see Zone
 	 */
 	public void setVilleCourante(int ville){
-		this.VILLE = ville;
+		Carte.VILLE = ville;
 	}
 
 	public void setListeZones(Vector<Zone> zones){
@@ -375,7 +376,7 @@ public class Carte {
 	 * @return Vector<Ville>, Un vecteur des villes de la carte
 	 * @see Ville
 	 */
-public Vector<Ville> getListeVilles(){
+	public Vector<Ville> getListeVilles(){
 		return this.listeVilles;
 	}
 }

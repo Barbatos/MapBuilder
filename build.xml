@@ -21,12 +21,18 @@
 	            </fileset>
 	        </classpath>
 		</javac>
+		<copy todir="${jar.rep}/lib">
+	         <fileset dir="${lib.rep}">
+	             <include name="*.jar"/>
+	     </fileset>
+	    </copy>
 	</target>
 	<target name="production_executable">
 		<mkdir dir="${jar.rep}"/>
 		<jar destfile="${jar.rep}/MapBuilder.jar">
 			<manifest>
 				<attribute name="Main-Class" value="main.MapBuilder"/>
+				<attribute name="Class-Path" value="./lib/mysql-connector-java-5.0.8-bin.jar ./lib/miglayout-4.0-swing.jar ./lib/junit-4.11.jar"/>
 			</manifest>
 			<fileset dir = "${bin.rep}">
 				<include name="**/*.class"/>
@@ -46,6 +52,11 @@
 	            </fileset>
 			</classpath>
 		</javac>
+		<copy todir="${jar.rep}/lib">
+	         <fileset dir="${lib.rep}">
+	             <include name="*.jar"/>
+	     </fileset>
+	    </copy>
 	</target>
 	<target name="production_tests">
 		<mkdir dir="${jar.rep}"/>

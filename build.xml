@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="MapBuilder">
+    <property name="proj.rep" value="."/>
+	<property name="src.rep" value="${proj.rep}/src"/>
+	<property name="tests.rep" value="${proj.rep}/tests"/>
+	<property name="bin.rep" value="${proj.rep}/bin"/>
+	<property name="rapport.rep" value="${proj.rep}/rapport-de-tests"/>
+	<property name="doc.rep" value="${proj.rep}/doc"/>
+	<target name="mise_a_zero">
+	    <delete dir="${bin.rep}"/>
+	    <delete dir="${rapport.rep}"/>
+	</target>
+	<target name="compilation">
+	    <mkdir dir="${bin.rep}"/>
+		<javac srcdir="${src.rep}" destdir="${bin.rep}"/>
+	</target>
+	<target name="production_executable">
+		<mkdir dir="${jar.rep}"/>
+		<jar destfile="${jar.rep}/MapBuilder.jar">
+			<manifest>
+				<attribute name="Main-Class" value="MapBuilder"/>
+			</manifest>
+			<fileset dir = "${bin.rep}">
+				<include name="**/*.class"/>
+				<exclude name="**/Test*.class"/>
+			</fileset>
+		</jar>
+	</target>
+	<target name="lancement/executable">
+		<java jar="${jar.rep}/MapBuilder.jar" fork="true"/>
+	</target>
+</project>

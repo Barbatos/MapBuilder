@@ -14,7 +14,7 @@
 	</target>
 	<target name="compilation">
 	    <mkdir dir="${bin.rep}"/>
-		<javac srcdir="${src.rep}" destdir="${bin.rep}" debug="true" includeantruntime="false">
+		<javac encoding="UTF-8" srcdir="${src.rep}" destdir="${bin.rep}" debug="true" includeantruntime="false">
 			<classpath>
 	            <fileset dir="${lib.rep}">
 	                <include name="**/*.jar" />
@@ -78,6 +78,7 @@
 		<javadoc 	sourcepath="${src.rep}" destdir="${doc.rep}"
 					author="true" version="true"
 					private="false" protected="false"
+					encoding="UTF-8"
 					windowtitle="API MapBuilder" doctitle="MapBuilder">
 		</javadoc>
 	</target>

@@ -43,7 +43,11 @@ import modeles.Zone;
 import vues.AjoutDonneesPanel;
 import vues.CartePanel;
 import vues.HorairesPanel;
-
+/**
+ * Le controleur du modèle MVC est mis en place à travers cette classe
+ * 
+ * @version 1.0
+ */
 public class Controleur {
 	private CartePanel cartePanel;
 	private Vector<Zone> listeZones = new Vector<Zone>();
@@ -58,11 +62,19 @@ public class Controleur {
 	private boolean appui = false;
 	private long debutClic = 0;
 	
+	/**
+	 * Constructeur du controleur : 
+	 * il fait la connexion à la base de données 
+	 * il crée la vue sur la carte
+	 */
 	public Controleur(){
 		this.bdd = new BaseDeDonnees("jdbc:mysql://better.call.barbatos.fr:3306/mapbuilder", "mapbuilder", "derp");
 		this.cartePanel = new CartePanel(bdd);
 	}
 	
+	/**
+	 * Méthode d'initialisation du contrôleur
+	 */
 	public void initialiser() {
 		ResultSet reponseMoyenTransport;
 		ResultSet reponseStation;
@@ -246,6 +258,12 @@ public class Controleur {
 		this.cartePanel.addMouseListener(mouseListener);
 	}
 	
+	/**
+	 * Méthode qui permet de déplacer une station sur la carte
+	 * 
+	 * @param x, Un entier, la position en abscisses
+	 * @param y, Un entier, la position en ordonnées
+	 */
 	public void deplacerStation(int x, int y){
 		if(!appui){
 			return;
@@ -257,6 +275,12 @@ public class Controleur {
 		cartePanel.repaint();
 	}
 	
+	/**
+	 * Méthode qui enregistre la nouvelle position de la station
+	 * 
+	 * @param x, Un entier, la position en abscisses
+	 * @param y, Un entier, la position en ordonnées
+	 */
 	public void enregistrerPositionStation(int x, int y){
 		if(!appui){
 			return;
@@ -273,6 +297,13 @@ public class Controleur {
 		cartePanel.repaint();
 	}
 	
+	/**
+	 * Méthode qui permet de vérifier si le clic sur la station est correct ou non.
+	 * 
+     * @param x, Un entier, la position en abscisses
+	 * @param y, Un entier, la position en ordonnées
+	 * @return boolean
+	 */
 	public boolean verifierClicStation(int x, int y){
 		for(int i = 0; i < listeStations.size(); i++){
 			if( 
@@ -290,6 +321,13 @@ public class Controleur {
 		return false;
 	}
 	
+	/**
+	 * Méthode qui vérifie si une station est survolée par la souris
+	 *  
+     * @param x, Un entier, la position en abscisses
+	 * @param y, Un entier, la position en ordonnées
+	 * @return boolean
+	 */
 	public boolean verifierPassageStation(int x, int y){
 		for(int i = 0; i < listeStations.size(); i++){
 			if( 
@@ -306,6 +344,12 @@ public class Controleur {
 		return false;
 	}
 	
+	/**
+	 * Méthode qui vérifie le clic sur un bouton
+	 * 
+	 * @param x, Un entier, la position en abscisses
+	 * @param y, Un entier, la position en ordonnées
+	 */
 	public void verifierClicBouton(int x, int y){
 		// Vérification du clic sur les boutons
 		for(int i = 0;i < this.cartePanel.getListeBoutons().size();i++){
@@ -339,6 +383,12 @@ public class Controleur {
 		}
 	}
 	
+	/**
+	 * Méthode qui donne la station à l'indice indiqué
+	 * @param id, Un entier, l'indice réclamé
+	 * @return Station
+	 * @see Station
+	 */
 	public Station getStationId(int id){
 		for(int i = 0;i < listeStations.size();i++){
 			if(listeStations.elementAt(i).getId() == id){
@@ -348,6 +398,12 @@ public class Controleur {
 		return null;
 	}
 	
+	/**
+	 * Méthode qui donne la ligne à l'indice indiqué
+	 * @param id, Un entier, l'indice réclamé
+	 * @return Ligne
+	 * @see Ligne
+	 */
 	public Ligne getLigneId(int id){
 		for(int i = 0;i < listeLignes.size();i++){
 			if(listeLignes.elementAt(i).getId() == id){
@@ -357,6 +413,12 @@ public class Controleur {
 		return null;
 	}
 	
+	/**
+	 * Méthode qui donne le moyen de transport à l'indice indiqué
+	 * @param id, Un entier, l'indice réclamé
+	 * @return MoyenTransport
+	 * @see MoyenTransport
+	 */	
 	public MoyenTransport getMoyenTransportId(int id){
 		for(int i = 0;i < listeMoyensTransport.size();i++){
 			if(listeMoyensTransport.elementAt(i).getId() == id){
@@ -366,6 +428,12 @@ public class Controleur {
 		return null;
 	}
 	
+	/**
+	 * Méthode qui donne la zone à l'indice indiqué
+	 * @param id, Un entier, l'indice réclamé
+	 * @return Zone
+	 * @see Zone
+	 */	
 	public Zone getZoneId(int id){
 		for(int i = 0;i < listeZones.size();i++){
 			if(listeZones.elementAt(i).getId() == id){
@@ -375,3 +443,4 @@ public class Controleur {
 		return null;
 	}
 }
+
